@@ -4,11 +4,11 @@ Sometimes you might have the need to write (your sensor) data into a remote file
 more data than you can store on your local Arduino device for your local processing logic . 
 
 If your device is connected to the Internet this library is coming to your rescue: The FTP protocol 
-is one of oldest communication protocols: It is easy to implement and therefor rather efficient and
+is one of oldest communication protocols: It is easy to implement and therefore rather efficient and
 you can find plenty of free server implementations on all platforms.
 
 This is a simple but powerful FTP client library for Arduino provides a Stream based API for the 
-remote Files. 
+remote files. 
 
 We support
 
@@ -46,16 +46,13 @@ On a ESP32 or ESP8266 e.g. the following initialization is working:
 
 
 ## File Download - Reading Remote Files
-You open a connection by calling the begin() method on a ArduinoFTPClient object where you pass
+You open a FTP connection to a remote host by calling the begin() method on a ArduinoFTPClient object where you pass
 - the IP address of your server
 - the userid to log into your server and 
 - the related password  
 
 The open method provides a FTPFile for the indicated file name. The FTPFile is just a Stream so
-you have all import functionality available that you already know e.g. from Serial.
-
-After the processing you need to close the file with close() and the client with end() to release 
-the resources.
+you have all reading and writing functionality available that you already know e.g. from Serial.
 
 ```
     ArduinoFTPClient client;
@@ -69,9 +66,11 @@ the resources.
     file.close();
     client.end();
 ```
+After the processing you need to close the file with close() and the client with end() to release 
+the resources.
 
 ## File Download - Line Based
-Instead of reading a bock of characters we can request to read a line (which is delimited with CR LF)
+Instead of reading a bock of characters we can request to read a line (which is delimited with LF)
 ```
     ArduinoFTPClient client;
     client.begin(IPAddress(192,168,1,10), "user", "password");
@@ -133,8 +132,8 @@ The files of a directory are listed with the help of an Iterator.
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FileIterator it = client.ls("/directory");
     for (fileIt = ar.begin(); fileIt != ar.end(); fileIt++)  {
-        File fileName = *fileIt;
-        Serial.println(fileName)
+        FTPFile file = *fileIt;
+        Serial.println(file.name())
     }
 ```
 
