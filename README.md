@@ -30,6 +30,7 @@ If you want to use it with any other functionality you will need to implement yo
 On a ESP32 or ESP8266 e.g. the following initialization is working:
 
 ```
+    Serial.begin(115200);
     // connect to WIFI
     WiFi.begin("Network name, "wifi password");
     while (WiFi.status() != WL_CONNECTED) {
