@@ -7,7 +7,7 @@ If your device is connected to the Internet this library is coming to your rescu
 is one of oldest communication protocols: It is easy to implement and therefore rather efficient and
 you can find plenty of free server implementations on all platforms.
 
-This is a simple but powerful FTP client library for Arduino provides a Stream based API for the 
+This is a simple but powerful FTP client library for Arduino that provides a Stream based API for the 
 remote files. 
 
 We support
