@@ -229,8 +229,8 @@ class FTPBasicAPI {
 class FTPFile : public Stream {
   public:
     FTPFile(FTPBasicAPI *api_ptr, const char* name, FileMode mode);
-    FTPFile::FTPFile(FTPFile &cpy);
-    FTPFile::FTPFile(FTPFile &&move);
+    FTPFile(FTPFile &cpy);
+    FTPFile(FTPFile &&move);
 
     ~FTPFile();
     virtual size_t write(uint8_t data);

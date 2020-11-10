@@ -335,7 +335,7 @@ FTPFile::FTPFile(FTPFile &cpy){
     file_name = strdup(cpy.file_name);
     eol = cpy.eol;
     mode = cpy.mode;
-    api_ptr = cpy.api_ptr
+    api_ptr = cpy.api_ptr;
     object_type = cpy.object_type;
 }
 
