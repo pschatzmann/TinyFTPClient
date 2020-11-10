@@ -147,7 +147,7 @@ Supported log levels are DEBUG, INFO, WARN, ERROR
     FTPLogger.setLevel(DEBUG);
 ```
 
-## Limitatins
+## Limitations
 We currently support only one open control session with one open data session. This means that you can not run multiple operations
 in parallel. E.g doing a download while the list directory is still in process. 
 
