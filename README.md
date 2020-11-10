@@ -139,12 +139,12 @@ The files of a directory are listed with the help of an Iterator.
 
 ## Logging
 You can activate the logging by defining the Stream which should be used for logging and setting the log level. 
-Supported log levels are DEBUG, INFO, WARN, ERROR
+Supported log levels are LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR
 
 ```
     Serial.begin(9600);
     FTPLogger.setOutput(Serial);
-    FTPLogger.setLevel(DEBUG);
+    FTPLogger.setLogLevel(LOG_DEBUG);
 ```
 
 ## Limitations
