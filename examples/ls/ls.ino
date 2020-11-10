@@ -2,21 +2,11 @@
 
 FTPClient client;
 
-void  list(char *dir) {
-    FileNameIterator it = client.ls("/");
-    for (auto fileIt = it.begin(); fileIt != it.end(); fileIt++)  {
-        char* fileName = *fileIt;
-        Serial.println(fileName)
-//      uncomment for recursive list
-//      listTree(fileName);
-    }
-}
-
 void setup() {
     Serial.begin(115200);
 
     // connect to WIFI
-    WiFi.begin("Phil Schatzmann", "sabrina01");
+    WiFi.begin("network name", "password");
     while (WiFi.status() != WL_CONNECTED) {
       delay(500);
       Serial.print(".");
@@ -29,12 +19,16 @@ void setup() {
 
     // optional logging
     FTPLogger::setOutput(Serial);
-    FTPLogger::setLogLevel(LOG_DEBUG);
+    //FTPLogger::setLogLevel(LOG_DEBUG);
 
     // open connection
-    client.begin(IPAddress(192,168,1,10), "user", "password");
+    client.begin(IPAddress(192,168,1,10), "userid", "password");
 
-    list("/");
+    FTPFileIterator it = client.ls("/");
+    for (auto fileIt = it.begin(); fileIt != it.end(); fileIt++)  {
+        FTPFile file = *fileIt;
+        Serial.println(file.name());
+    }
     
     // clenaup
     client.end();
