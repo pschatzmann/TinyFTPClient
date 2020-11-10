@@ -6,7 +6,7 @@ void setup() {
     Serial.begin(115200);
 
     // connect to WIFI
-    WiFi.begin("Phil Schatzmann", "sabrina01");
+    WiFi.begin("network name", "password");
     while (WiFi.status() != WL_CONNECTED) {
       delay(500);
       Serial.print(".");
@@ -22,7 +22,7 @@ void setup() {
     //FTPLogger::setLogLevel(LOG_DEBUG);
     
     // open connection
-    client.begin(IPAddress(192,168,1,10), "pschatzmann", "sabrina1");
+    client.begin(IPAddress(192,168,1,10), "user", "password");
 
     // copy data from file
     FTPFile file = client.open("/Users/pschatzmann/Dropbox/Manuals/Mavlink.pdf");

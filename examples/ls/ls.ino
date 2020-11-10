@@ -22,7 +22,7 @@ void setup() {
     //FTPLogger::setLogLevel(LOG_DEBUG);
 
     // open connection
-    client.begin(IPAddress(192,168,1,10), "userid", "password");
+    client.begin(IPAddress(192,168,1,10), "user", "password");
 
     FTPFileIterator it = client.ls("/");
     for (auto fileIt = it.begin(); fileIt != it.end(); fileIt++)  {
