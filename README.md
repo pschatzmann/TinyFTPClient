@@ -144,8 +144,8 @@ Supported log levels are LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR
 
 ```
     Serial.begin(9600);
-    FTPLogger.setOutput(Serial);
-    FTPLogger.setLogLevel(LOG_DEBUG);
+    FTPLogger::setOutput(Serial);
+    FTPLogger::setLogLevel(LOG_DEBUG);
 ```
 
 ## Limitations
