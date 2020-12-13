@@ -1,4 +1,4 @@
-# ArduinoFTPClient
+# TinyFTPClient
 
 Sometimes you might have the need to write (your sensor) data into a remote file or you might need
 more data than you can store on your local Arduino device for your local processing logic . 
@@ -56,7 +56,7 @@ The open method provides a FTPFile for the indicated file name. The FTPFile is j
 you have all reading and writing functionality available that you already know e.g. from Serial.
 
 ```
-    ArduinoFTPClient client;
+    FTPClient client;
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt");
     byte buffer[100];
@@ -73,7 +73,7 @@ the resources.
 ## File Download - Line Based
 Instead of reading a bock of characters we can request to read a line (which is delimited with LF)
 ```
-    ArduinoFTPClient client;
+    FTPClient client;
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt");
     char buffer[100];
@@ -90,7 +90,7 @@ You can write to a file on a remote system by using the regular Stream write() o
 the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.
 
 ```
-    ArduinoFTPClient client;
+    FTPClient client;
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt", WRITE);
     char buffer[100];
@@ -105,7 +105,7 @@ the file alreay exists it will be replaced with the new content if you use the F
 ## File Upload - Appending
 You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND
 ```
-    ArduinoFTPClient client;
+    FTPClient client;
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt", WRITE_APPEND);
     char buffer[100];
@@ -129,7 +129,7 @@ The ArduinoFTPClient supports the following directory operations:
 The files of a directory are listed with the help of an Iterator. 
 
 ```
-    ArduinoFTPClient client;
+    FTPClient client;
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FileIterator it = client.ls("/directory");
     for (fileIt = ar.begin(); fileIt != ar.end(); fileIt++)  {
@@ -158,7 +158,7 @@ If you execute a new command any existing running command is cancelled.
 You can download the library as zip and call include Library -> zip library. Or you can git clone this project into the Arduino libraries folder e.g. with
 ```
 cd  ~/Documents/Arduino/libraries
-git clone pschatzmann/ArduinoFTPClient.git
+git clone pschatzmann/TinyFTPClient.git
 ```
 
 ## Change History
