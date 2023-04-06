@@ -154,6 +154,10 @@ in parallel. E.g doing a download while the list directory is still in process.
 
 If you execute a new command any existing running command is cancelled.
 
+## Documentation
+
+- [Class Documentation](https://pschatzmann.github.io/TinyFTPClient/docs/html/annotated.html)
+
 ## Installation
 You can download the library as zip and call include Library -> zip library. Or you can git clone this project into the Arduino libraries folder e.g. with
 ```
