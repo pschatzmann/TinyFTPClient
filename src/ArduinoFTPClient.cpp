@@ -72,11 +72,11 @@ bool FTPBasicAPI::open(FtpIpClient *cmdPar, FtpIpClient *dataPar, IPAddress &add
 
     bool ok = connect( address, port, command_ptr, true);
     if (ok && username!=nullptr) {
-        char* ok_result[] = {"331","230","530", nullptr};
+        const char* ok_result[] = {"331","230","530", nullptr};
         ok = cmd("USER", username, ok_result);
     }
     if (ok && password!=nullptr) {
-        char* ok_result[] = {"230","202",nullptr};
+        const char* ok_result[] = {"230","202",nullptr};
         ok = cmd("PASS", password, ok_result);
     }
     if (ok) {
@@ -88,7 +88,7 @@ bool FTPBasicAPI::open(FtpIpClient *cmdPar, FtpIpClient *dataPar, IPAddress &add
 
 bool FTPBasicAPI::quit() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "quit");      
-    char* ok_result[] = {"221","226", nullptr};
+    const char* ok_result[] = {"221","226", nullptr};
     return cmd("QUIT", nullptr, ok_result, false);    
 }
 
@@ -150,7 +150,7 @@ size_t FTPBasicAPI::size(const char * file){
 
 ObjectType FTPBasicAPI::objectType(const char * file) {
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","objectType"); 
-    char* ok_result[] = {"213","550", nullptr}; 
+    const char* ok_result[] = {"213","550", nullptr}; 
     ObjectType result =  TypeDirectory;   
     if (cmd("SIZE", file, ok_result)) {
         if (strncmp(result_reply,"213",3)==0){
@@ -163,17 +163,18 @@ ObjectType FTPBasicAPI::objectType(const char * file) {
 bool FTPBasicAPI::abort() {
     if (current_operation!=NOP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","abort");      
-        char* ok[] = {"225", "226",nullptr};
+        const char* ok[] = {"225", "226",nullptr};
         current_operation = NOP;
         return cmd("ABOR", nullptr, ok);
     }
+    return true;
 }
 
 Stream *FTPBasicAPI::read(const char* file_name ) {
     if (current_operation!=READ_OP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "read");      
         abort();
-        char* ok[] = {"150","125", nullptr};
+        const char* ok[] = {"150","125", nullptr};
         cmd("RETR", file_name, ok);
         current_operation = READ_OP;
     }
@@ -185,7 +186,7 @@ Stream *FTPBasicAPI::write(const char* file_name, FileMode mode) {
     if (current_operation!=WRITE_OP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "write");      
         abort();
-        char* ok_write[] = {"125", "150", nullptr};
+        const char* ok_write[] = {"125", "150", nullptr};
         cmd(mode == WRITE_APPEND_MODE ? "APPE": "STOR", file_name, ok_write);
         current_operation = WRITE_OP;
     }
@@ -193,10 +194,10 @@ Stream *FTPBasicAPI::write(const char* file_name, FileMode mode) {
     return data_ptr->stream();
 }
 
-Stream* FTPBasicAPI::ls(char* file_name){
+Stream* FTPBasicAPI::ls(const char* file_name){
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "ls");      
     abort();
-    char* ok[] = {"125", "150", nullptr};
+    const char* ok[] = {"125", "150", nullptr};
     cmd("NLST",file_name, ok);
     current_operation = LS_OP;
     return data_ptr->stream();
@@ -224,7 +225,7 @@ bool FTPBasicAPI::connect(IPAddress adr, int port, FtpIpClient *client_ptr, bool
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI::connect", buffer);          
     ok = client_ptr->connect(adr, port);
     if (ok && doCheckResult){
-        char* ok_result[] = {"220","200",nullptr};
+        const char* ok_result[] = {"220","200",nullptr};
         ok = checkResult(ok_result, "connect");
     }
     if (!ok){
@@ -233,12 +234,12 @@ bool FTPBasicAPI::connect(IPAddress adr, int port, FtpIpClient *client_ptr, bool
     return ok;
 }
 
-bool FTPBasicAPI::cmd(const char* command, const char* par, char* expected, bool wait_for_data) {
-    char* expected_array[] = { expected, nullptr };
+bool FTPBasicAPI::cmd(const char* command, const char* par, const char* expected, bool wait_for_data) {
+    const char* expected_array[] = { expected, nullptr };
     return cmd(command, par, expected_array, wait_for_data);
 }
 
-bool FTPBasicAPI::cmd(const char* command_str, const char* par, char* expected[], bool wait_for_data) {
+bool FTPBasicAPI::cmd(const char* command_str, const char* par, const char* expected[], bool wait_for_data) {
     char command_buffer[512];
     Stream *stream_ptr = command_ptr->stream();
     if (par==nullptr){
@@ -253,7 +254,7 @@ bool FTPBasicAPI::cmd(const char* command_str, const char* par, char* expected[]
     return checkResult(expected, command_buffer, wait_for_data);
 }
 
-bool FTPBasicAPI::checkResult( char* expected[], char* command, bool wait_for_data) {
+bool FTPBasicAPI::checkResult(const char* expected[],const char* command, bool wait_for_data) {
     // consume all result lines
     bool ok = false;
     result_reply[0] = '\0';
@@ -371,6 +372,7 @@ size_t FTPFile::write(char* data, int len) {
     for (int j=0;j<len;j++){
         count += write(data[j]);
     }
+    return count;
 }
 
 int FTPFile::read() {
@@ -427,7 +429,7 @@ void FTPFile::flush() {
 
 void FTPFile::close() {
     FTPLogger::writeLog( LOG_INFO, "FTPFile", "close");
-    char* ok[] = {"226", nullptr};
+    const char* ok[] = {"226", nullptr};
     api_ptr->checkResult(ok, "close", false);
     if (api_ptr->currentOperation()==WRITE_OP) {
         flush();
@@ -458,7 +460,7 @@ FTPClient::FTPClient(int port, int data_port ){
     FtpIpClient *command;
     FtpIpClient *data; 
 
-#ifdef ESP32 {
+#ifdef ESP32 
     command = new FtpIpClientWifi();
     data = new FtpIpClientWifi();
     cleanup_clients = true;
@@ -510,25 +512,25 @@ FTPFile& FTPClient::open(const char *filename, FileMode mode) {
 
 // Create the requested directory heirarchy--if intermediate directories
 // do not exist they will be created.
-bool FTPClient::mkdir(char *filepath) {
+bool FTPClient::mkdir(const char *filepath) {
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "mkdir");
     return api.mkdir(filepath);
 }
 
 // Delete the file.
-bool FTPClient::remove(char *filepath) {
+bool FTPClient::remove(const char *filepath) {
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "remove");
     return api.del(filepath);
 }
 
 // Removes a directory
-bool FTPClient::rmdir(char *filepath){
+bool FTPClient::rmdir(const char *filepath){
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "rmdir");
     return api.rmd(filepath);
 }
 
 // lists all file names in the specified directory
-FTPFileIterator FTPClient::ls(char* path, FileMode mode) {
+FTPFileIterator FTPClient::ls(const char* path, FileMode mode) {
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "ls");
     FTPFileIterator it(&api, path, mode);
     return it;
@@ -541,7 +543,7 @@ FTPFileIterator FTPClient::ls(char* path, FileMode mode) {
  * and we dont loose the data when we mix it with read and write operations.
  */
 
-FTPFileIterator::FTPFileIterator(FTPBasicAPI *api, char* dir, FileMode mode){
+FTPFileIterator::FTPFileIterator(FTPBasicAPI *api, const char* dir, FileMode mode){
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator()");
     this->directory_name = dir;
     this->api_ptr = api;

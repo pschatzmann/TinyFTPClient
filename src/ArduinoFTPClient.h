@@ -194,7 +194,7 @@ class FTPBasicAPI {
     virtual  bool abort()  ;
     virtual  Stream *read(const char* file_name )  ;
     virtual  Stream *write(const char* file_name, FileMode mode)  ;
-    virtual  Stream * ls(char* file_name) ;
+    virtual  Stream * ls(const char* file_name) ;
     virtual  void closeData()  ;
     virtual  void setCurrentOperation(CurrentOperation op) ;
     virtual CurrentOperation currentOperation() { return current_operation; }
@@ -204,10 +204,10 @@ class FTPBasicAPI {
 
   protected:
     virtual bool connect(IPAddress adr, int port, FtpIpClient *client, bool doCheckResult=false);
-    virtual bool cmd(const char* command, const char* par, char* expected, bool wait_for_data=true);
-    virtual bool cmd(const char* command_str, const char* par, char* expected[], bool wait_for_data=true);
+    virtual bool cmd(const char* command, const char* par, const char* expected, bool wait_for_data=true);
+    virtual bool cmd(const char* command_str, const char* par, const char* expected[], bool wait_for_data=true);
     virtual void checkClosed(FtpIpClient *stream) ;
-    virtual bool checkResult(char* expected[], char* command_for_log, bool wait_for_data=true);
+    virtual bool checkResult(const char* expected[], const char* command_for_log, bool wait_for_data=true);
 
     CurrentOperation current_operation = NOP; // currently running op -> do we need to cancel ?
     FtpIpClient *command_ptr; // Client for commands
@@ -264,7 +264,7 @@ class FTPFile : public Stream {
  */
 class FTPFileIterator {
   public:
-    FTPFileIterator(FTPBasicAPI *api, char* dir, FileMode mode);
+    FTPFileIterator(FTPBasicAPI *api, const char* dir, FileMode mode);
     FTPFileIterator(FTPFileIterator &copy);
     FTPFileIterator(FTPFileIterator &&copy);
     ~FTPFileIterator();
@@ -285,7 +285,7 @@ class FTPFileIterator {
     FTPBasicAPI* api_ptr;
     Stream* stream_ptr;
     FileMode file_mode;
-    char* directory_name = "";
+    const char* directory_name = "";
     char buffer[MAXFILE_NAME_LENGTH];
 };
 
@@ -310,13 +310,13 @@ class FTPClient {
     virtual  FTPFile& open(const char *filename, FileMode mode = READ_MODE);
     // Create the requested directory heirarchy--if intermediate directories
     // do not exist they will be created.
-    virtual  bool mkdir(char *filepath);    
+    virtual  bool mkdir(const char *filepath);    
     // Delete the file.
-    virtual  bool remove(char *filepath);
+    virtual  bool remove(const char *filepath);
     // Removes a directory
-    virtual  bool rmdir(char *filepath);
+    virtual  bool rmdir(const char *filepath);
     // lists all file names in the specified directory
-    virtual FTPFileIterator ls(char* path, FileMode mode = WRITE_MODE);
+    virtual FTPFileIterator ls(const char* path, FileMode mode = WRITE_MODE);
 
   protected:
     void init(FtpIpClient *command, FtpIpClient *data, int port = COMMAND_PORT, int data_port = DATA_PORT) ;
