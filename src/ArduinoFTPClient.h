@@ -45,7 +45,7 @@ enum LogLevel  { LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR };
 enum ObjectType { TypeFile, TypeDirectory, TypeUndefined };
 
 /**
- * @brief IPConnect
+ * @brief FtpIpClient
  * Unfortunatly there are different TCP/IP APIs in Arduino. We currently support
  * Ethernet and WiFi
  */
@@ -60,7 +60,9 @@ class FtpIpClient {
 };
 
 #include <Ethernet.h>
-
+/**
+ * @brief FtpIpClient for Ethernet
+ */
 class IPConnectEthernet : public FtpIpClient {
     virtual bool connect(IPAddress address, int port){
        bool ok = client.connect(address, port);
@@ -88,6 +90,10 @@ class IPConnectEthernet : public FtpIpClient {
 
 #if defined(ESP32) || defined(ESP8266) 
 #include <WiFi.h>
+
+/**
+ * @brief FtpIpClient for ESP Wifi
+ */
 
 class FtpIpClientWifi : public FtpIpClient {
   public:
