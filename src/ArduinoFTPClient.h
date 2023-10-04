@@ -90,7 +90,7 @@ class IPConnectEthernet : public FtpIpClient {
 
 #if defined(ESP32) || defined(ESP8266) 
 #include <WiFi.h>
-
+#define USE_ESP
 /**
  * @brief FtpIpClient for ESP Wifi
  */
