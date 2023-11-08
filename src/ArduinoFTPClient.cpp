@@ -220,7 +220,7 @@ void FTPBasicAPI::flush() {
 bool FTPBasicAPI::connect(IPAddress adr, int port, Client *client_ptr, bool doCheckResult  ){
     char buffer[80];
     bool ok = true;
-#ifdef USE_ESP
+#if defined(ESP32) || defined(ESP8266)
     sprintf(buffer,"connect %s:%d", adr.toString().c_str(), port);
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI::connect", buffer); 
 #endif         

@@ -27,8 +27,7 @@
  * 
  */
 
-#ifndef ARDUINOFTPCLIENT_H
-#define ARDUINOFTPCLIENT_H
+#pragma once
 
 #include "Arduino.h"
 #include "Stream.h"
@@ -272,6 +271,3 @@ class FTPClient {
     int data_port;
     bool cleanup_clients;
 };
-
-
-#endif
