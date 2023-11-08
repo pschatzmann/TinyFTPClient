@@ -1,6 +1,14 @@
+
+/**
+ * FTP download using an ESP32
+*/
+
+#include "WiFi.h"
 #include "ArduinoFTPClient.h"
 
-FTPClient client;
+WiFiClient cmd;
+WiFiClient data;
+FTPClient client(cmd, data);
 
 void setup() {
     Serial.begin(115200);

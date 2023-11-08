@@ -1,4 +1,13 @@
-FTPClient client;
+
+
+
+#include "WiFi.h"
+#include "ArduinoFTPClient.h"
+
+WiFiClient cmd;
+WiFiClient data;
+FTPClient client(cmd, data);
+
 
 void setup() {
     Serial.begin(115200);

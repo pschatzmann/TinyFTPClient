@@ -1,6 +1,9 @@
+#include "WiFi.h"
 #include "ArduinoFTPClient.h"
 
-FTPClient client;
+WiFiClient cmd;
+WiFiClient data;
+FTPClient client(cmd, data);
 
 
 void setup() {

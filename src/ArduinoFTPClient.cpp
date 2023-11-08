@@ -1,6 +1,5 @@
 #include "ArduinoFTPClient.h"
-
-
+#include <stdio.h>
 
 /**
  * @brief FTPLogger
@@ -64,7 +63,7 @@ FTPBasicAPI::~FTPBasicAPI(){
     FTPLogger::writeLog( LOG_DEBUG, "~FTPBasicAPI");      
 }
 
-bool FTPBasicAPI::open(FtpIpClient *cmdPar, FtpIpClient *dataPar, IPAddress &address, int port, int data_port, const char* username, const char *password){
+bool FTPBasicAPI::open(Client *cmdPar, Client *dataPar, IPAddress &address, int port, int data_port, const char* username, const char *password){
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI ", "open");
     command_ptr = cmdPar;
     data_ptr = dataPar;  
@@ -92,7 +91,7 @@ bool FTPBasicAPI::quit() {
     return cmd("QUIT", nullptr, ok_result, false);    
 }
 
-bool FTPBasicAPI::isConnected(){
+bool FTPBasicAPI::connected(){
     return is_open;
 }
 
@@ -179,7 +178,7 @@ Stream *FTPBasicAPI::read(const char* file_name ) {
         current_operation = READ_OP;
     }
     checkClosed(data_ptr);
-    return data_ptr->stream();
+    return data_ptr;
 }
 
 Stream *FTPBasicAPI::write(const char* file_name, FileMode mode) {
@@ -191,7 +190,7 @@ Stream *FTPBasicAPI::write(const char* file_name, FileMode mode) {
         current_operation = WRITE_OP;
     }
     checkClosed(data_ptr);
-    return data_ptr->stream();
+    return data_ptr;
 }
 
 Stream* FTPBasicAPI::ls(const char* file_name){
@@ -200,7 +199,7 @@ Stream* FTPBasicAPI::ls(const char* file_name){
     const char* ok[] = {"125", "150", nullptr};
     cmd("NLST",file_name, ok);
     current_operation = LS_OP;
-    return data_ptr->stream();
+    return data_ptr;
 }
 
 void FTPBasicAPI::closeData() {
@@ -215,10 +214,10 @@ void FTPBasicAPI::setCurrentOperation(CurrentOperation op){
 
 void FTPBasicAPI::flush() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","flush");      
-    data_ptr->stream()->flush();
+    data_ptr->flush();
 }
 
-bool FTPBasicAPI::connect(IPAddress adr, int port, FtpIpClient *client_ptr, bool doCheckResult  ){
+bool FTPBasicAPI::connect(IPAddress adr, int port, Client *client_ptr, bool doCheckResult  ){
     char buffer[80];
     bool ok = true;
 #ifdef USE_ESP
@@ -243,7 +242,7 @@ bool FTPBasicAPI::cmd(const char* command, const char* par, const char* expected
 
 bool FTPBasicAPI::cmd(const char* command_str, const char* par, const char* expected[], bool wait_for_data) {
     char command_buffer[512];
-    Stream *stream_ptr = command_ptr->stream();
+    Stream *stream_ptr = command_ptr;
     if (par==nullptr){
         strcpy(command_buffer, command_str);
         stream_ptr->println(command_buffer);
@@ -260,7 +259,7 @@ bool FTPBasicAPI::checkResult(const char* expected[],const char* command, bool w
     // consume all result lines
     bool ok = false;
     result_reply[0] = '\0';
-    Stream *stream_ptr = command_ptr->stream();
+    Stream *stream_ptr = command_ptr;
 
     char result_str[80];
     if (wait_for_data || stream_ptr->available()) {
@@ -310,8 +309,8 @@ bool FTPBasicAPI::checkResult(const char* expected[],const char* command, bool w
     return ok;    
 }
 
-void FTPBasicAPI::checkClosed(FtpIpClient *client){
-    if (!client->isConnected()){
+void FTPBasicAPI::checkClosed(Client *client){
+    if (!client->connected()){
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","checkClosed -> client is closed"); 
         // mark the actual command as completed     
         current_operation = NOP;
@@ -452,37 +451,21 @@ void FTPFile::setEOL(char* eol){
  * @brief FTPClient 
  * Basic FTP access class which supports directory operatations and the opening of a files 
  */
-FTPClient::FTPClient(FtpIpClient &command, FtpIpClient &data,int port, int data_port){
+FTPClient::FTPClient(Client &command, Client &data, int port, int data_port){
     FTPLogger::writeLog( LOG_INFO, "FTPClient()");
     init(&command, &data, port, data_port);
 }
 
-FTPClient::FTPClient(int port, int data_port ){
+#if defined(FTP_DEFAULT_CLIENT)
+FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT ){
     FTPLogger::writeLog( LOG_INFO, "FTPClient()");
-    FtpIpClient *command;
-    FtpIpClient *data; 
-
-#ifdef ESP32 
-    command = new FtpIpClientWifi();
-    data = new FtpIpClientWifi();
-    cleanup_clients = true;
-#else
-    command = new IPConnectEthernet();
-    data = new IPConnectEthernet();
-    cleanup_clients = true;
+    init(command_ptr, data_ptr, &command, &data, port, data_port);
+}
 #endif
 
-    init(command, data, port, data_port);
-}
 
-FTPClient::~FTPClient(){
-    if (cleanup_clients)   {
-        delete command_ptr;
-        delete data_ptr;
-    } 
-}
 
-void FTPClient::init(FtpIpClient *command, FtpIpClient *data, int port, int data_port){
+void FTPClient::init(Client *command, Client *data, int port, int data_port){
     FTPLogger::writeLog( LOG_DEBUG, "FTPClient");
     this->command_ptr = command;
     this->data_ptr = data;

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ipconnectethernet_0',['IPConnectEthernet',['../class_i_p_connect_ethernet.html',1,'']]]
+  ['setloglevel_7',['setLogLevel',['../class_f_t_p_logger.html#a0f6755c7939b750537b29bce4fc15cca',1,'FTPLogger']]]
 ];

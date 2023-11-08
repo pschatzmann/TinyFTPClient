@@ -30,8 +30,10 @@
 #ifndef ARDUINOFTPCLIENT_H
 #define ARDUINOFTPCLIENT_H
 
+#include "Arduino.h"
 #include "Stream.h"
 #include "IPAddress.h"
+#include "Client.h"
 
 // Common Constants
 static const int MAXFILE_NAME_LENGTH = 512;
@@ -44,84 +46,11 @@ enum CurrentOperation  { READ_OP, WRITE_OP, LS_OP, NOP };
 enum LogLevel  { LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR };
 enum ObjectType { TypeFile, TypeDirectory, TypeUndefined };
 
-/**
- * @brief FtpIpClient
- * Unfortunatly there are different TCP/IP APIs in Arduino. We currently support
- * Ethernet and WiFi
- */
-
-class FtpIpClient {
-  public:
-    virtual bool connect(IPAddress address, int port) = 0;
-    virtual bool isConnected() = 0;
-    virtual IPAddress localAddress() = 0;
-    virtual Stream* stream() = 0;
-    virtual void stop() = 0;
-};
-
-#include <Ethernet.h>
-/**
- * @brief FtpIpClient for Ethernet
- */
-class IPConnectEthernet : public FtpIpClient {
-    virtual bool connect(IPAddress address, int port){
-       bool ok = client.connect(address, port);
-       return ok;
-    }
-
-    virtual IPAddress localAddress(){
-      return Ethernet.localIP();
-    }
-
-    virtual bool isConnected(){
-      return client.connected();
-    }
-
-    virtual Stream* stream() {
-      return &client;
-    }
-
-    virtual void stop() {
-      client.stop();
-    }  
-
-    EthernetClient client;
-};
-
-#if defined(ESP32) || defined(ESP8266) 
-#include <WiFi.h>
-#define USE_ESP
-/**
- * @brief FtpIpClient for ESP Wifi
- */
-
-class FtpIpClientWifi : public FtpIpClient {
-  public:
-    virtual bool connect(IPAddress address, int port){
-       bool ok = client.connect(address, port);
-       return ok;
-    }
-
-    virtual IPAddress localAddress(){
-      return WiFi.localIP();
-    }
-
-    virtual bool isConnected(){
-      return client.available() || client.connected();
-    }
-
-    virtual Stream* stream() {
-      return &client;
-    }
-
-    virtual void stop() {
-      client.stop();
-    }
-
-    WiFiClient client;
-};
-
-#endif
+// // Allow simple constructor on ESP32
+// #if defined(ESP32)
+//   #include "WiFi.h"
+//   #define FTP_DEFAULT_CLIENT WiFiClient
+// #endif
 
 /**
  * @brief CStringFunctions
@@ -190,9 +119,9 @@ class FTPBasicAPI {
   public:
     FTPBasicAPI();
     ~FTPBasicAPI();
-    virtual  bool open(FtpIpClient *cmd, FtpIpClient *dat, IPAddress &address, int port, int data_port, const char* username, const char *password);
+    virtual  bool open(Client *cmd, Client *dat, IPAddress &address, int port, int data_port, const char* username, const char *password);
     virtual  bool quit();
-    virtual  bool isConnected();
+    virtual  bool connected();
     virtual  bool passv()  ;
     virtual  bool del(const char * file)  ;
     virtual  bool mkdir(const char * dir)  ;
@@ -209,15 +138,22 @@ class FTPBasicAPI {
     virtual ObjectType objectType(const char * file);
 
   protected:
-    virtual bool connect(IPAddress adr, int port, FtpIpClient *client, bool doCheckResult=false);
+    virtual bool connect(IPAddress adr, int port, Client *client, bool doCheckResult=false);
     virtual bool cmd(const char* command, const char* par, const char* expected, bool wait_for_data=true);
     virtual bool cmd(const char* command_str, const char* par, const char* expected[], bool wait_for_data=true);
-    virtual void checkClosed(FtpIpClient *stream) ;
+    virtual void checkClosed(Client *stream) ;
     virtual bool checkResult(const char* expected[], const char* command_for_log, bool wait_for_data=true);
 
     CurrentOperation current_operation = NOP; // currently running op -> do we need to cancel ?
-    FtpIpClient *command_ptr; // Client for commands
-    FtpIpClient *data_ptr; // Client for upload and download of files
+#if defined(FTP_DEFAULT_CLIENT)
+    FTP_DEFAULT_CLIENT default_cmd;
+    FTP_DEFAULT_CLIENT default_data;
+    Client *command_ptr = &default_cmd; // Client for commands
+    Client *data_ptr = &default_data; // Client for upload and download of files
+#else
+    Client *command_ptr = nullptr; // Client for commands
+    Client *data_ptr = nullptr; // Client for upload and download of files
+#endif
     IPAddress remote_address;
     bool is_open;
     char result_reply[80];
@@ -303,11 +239,11 @@ class FTPFileIterator {
 class FTPClient {
   public:
     // default construcotr
-    FTPClient(FtpIpClient &command, FtpIpClient &data, int port = COMMAND_PORT, int data_port = DATA_PORT ) ;
-    // plotform specific easy constructor
-    FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT);
-    // destructor to clean up memory
-     ~FTPClient();
+    FTPClient(Client &command, Client &data, int port = COMMAND_PORT, int data_port = DATA_PORT ) ;
+ #if defined(FTP_DEFAULT_CLIENT)
+     // simplified constructor
+     FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT ) ;
+ #endif
     // opens the ftp connection  
     virtual  bool begin(IPAddress remote_addr, const char* user="anonymous", const char* password=nullptr);
     //call this when a card is removed. It will allow you to inster and initialise a new card.
@@ -325,13 +261,13 @@ class FTPClient {
     virtual FTPFileIterator ls(const char* path, FileMode mode = WRITE_MODE);
 
   protected:
-    void init(FtpIpClient *command, FtpIpClient *data, int port = COMMAND_PORT, int data_port = DATA_PORT) ;
+    void init(Client *command, Client *data, int port = COMMAND_PORT, int data_port = DATA_PORT) ;
     FTPBasicAPI api;    
-    FtpIpClient *command_ptr;
-    FtpIpClient *data_ptr;
+    Client *command_ptr = nullptr;
+    Client *data_ptr = nullptr;
     IPAddress remote_addr;
-    const char* userid;
-    const char* password;
+    const char* userid = nullptr;
+    const char* password = nullptr;
     int port;
     int data_port;
     bool cleanup_clients;

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arduino TinyFTP: FtpIpClientWifi Class Reference</title>
+<title>Arduino TinyFTP: ClientWifi Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,21 +73,21 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_ftp_ip_client_wifi-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">FtpIpClientWifi Class Reference</div></div>
+  <div class="headertitle"><div class="title">ClientWifi Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_ftp_ip_client.html" title="FtpIpClient Unfortunatly there are different TCP/IP APIs in Arduino. We currently support Ethernet an...">FtpIpClient</a> for ESP Wifi.  
+<p><a class="el" href="class_ftp_ip_client.html" title="Client Unfortunatly there are different TCP/IP APIs in Arduino. We currently support Ethernet an...">Client</a> for ESP Wifi.  
  <a href="class_ftp_ip_client_wifi.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for FtpIpClientWifi:</div>
+Inheritance diagram for ClientWifi:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_ftp_ip_client_wifi.png" usemap="#FtpIpClientWifi_map" alt=""/>
-  <map id="FtpIpClientWifi_map" name="FtpIpClientWifi_map">
-<area href="class_ftp_ip_client.html" title="FtpIpClient Unfortunatly there are different TCP/IP APIs in Arduino. We currently support Ethernet an..." alt="FtpIpClient" shape="rect" coords="0,0,93,24"/>
+  <img src="class_ftp_ip_client_wifi.png" usemap="#ClientWifi_map" alt=""/>
+  <map id="ClientWifi_map" name="ClientWifi_map">
+<area href="class_ftp_ip_client.html" title="Client Unfortunatly there are different TCP/IP APIs in Arduino. We currently support Ethernet an..." alt="Client" shape="rect" coords="0,0,93,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -97,7 +97,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af37d9331baf700b6f4b104820eb02e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5113aad6d5dc403f00ed064f18e18a30"><td class="memItemLeft" align="right" valign="top">virtual IPAddress&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ftp_ip_client_wifi.html#a5113aad6d5dc403f00ed064f18e18a30">localAddress</a> ()</td></tr>
 <tr class="separator:a5113aad6d5dc403f00ed064f18e18a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fa2572e3c168a81ba9c8db5335e65ae"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ftp_ip_client_wifi.html#a7fa2572e3c168a81ba9c8db5335e65ae">isConnected</a> ()</td></tr>
+<tr class="memitem:a7fa2572e3c168a81ba9c8db5335e65ae"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ftp_ip_client_wifi.html#a7fa2572e3c168a81ba9c8db5335e65ae">connected</a> ()</td></tr>
 <tr class="separator:a7fa2572e3c168a81ba9c8db5335e65ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fc83891ab52a345d26c8f39ba1ea9ee"><td class="memItemLeft" align="right" valign="top">virtual Stream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ftp_ip_client_wifi.html#a7fc83891ab52a345d26c8f39ba1ea9ee">stream</a> ()</td></tr>
 <tr class="separator:a7fc83891ab52a345d26c8f39ba1ea9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,7 +111,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
 <tr class="separator:ae5e010d15a39bd95ff05f0862493411d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_ftp_ip_client.html" title="FtpIpClient Unfortunatly there are different TCP/IP APIs in Arduino. We currently support Ethernet an...">FtpIpClient</a> for ESP Wifi. </p>
+<div class="textblock"><p><a class="el" href="class_ftp_ip_client.html" title="Client Unfortunatly there are different TCP/IP APIs in Arduino. We currently support Ethernet an...">Client</a> for ESP Wifi. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af37d9331baf700b6f4b104820eb02e89" name="af37d9331baf700b6f4b104820eb02e89"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af37d9331baf700b6f4b104820eb02e89">&#9670;&#160;</a></span>connect()</h2>
@@ -123,7 +123,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool FtpIpClientWifi::connect </td>
+          <td class="memname">virtual bool ClientWifi::connect </td>
           <td>(</td>
           <td class="paramtype">IPAddress&#160;</td>
           <td class="paramname"><em>address</em>, </td>
@@ -147,12 +147,12 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_ftp_ip_client.html">FtpIpClient</a>.</p>
+<p>Implements <a class="el" href="class_ftp_ip_client.html">Client</a>.</p>
 
 </div>
 </div>
 <a id="a7fa2572e3c168a81ba9c8db5335e65ae" name="a7fa2572e3c168a81ba9c8db5335e65ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fa2572e3c168a81ba9c8db5335e65ae">&#9670;&#160;</a></span>isConnected()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fa2572e3c168a81ba9c8db5335e65ae">&#9670;&#160;</a></span>connected()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +161,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool FtpIpClientWifi::isConnected </td>
+          <td class="memname">virtual bool ClientWifi::connected </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -174,7 +174,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_ftp_ip_client.html">FtpIpClient</a>.</p>
+<p>Implements <a class="el" href="class_ftp_ip_client.html">Client</a>.</p>
 
 </div>
 </div>
@@ -188,7 +188,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual IPAddress FtpIpClientWifi::localAddress </td>
+          <td class="memname">virtual IPAddress ClientWifi::localAddress </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -201,7 +201,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_ftp_ip_client.html">FtpIpClient</a>.</p>
+<p>Implements <a class="el" href="class_ftp_ip_client.html">Client</a>.</p>
 
 </div>
 </div>
@@ -215,7 +215,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void FtpIpClientWifi::stop </td>
+          <td class="memname">virtual void ClientWifi::stop </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -228,7 +228,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_ftp_ip_client.html">FtpIpClient</a>.</p>
+<p>Implements <a class="el" href="class_ftp_ip_client.html">Client</a>.</p>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Stream * FtpIpClientWifi::stream </td>
+          <td class="memname">virtual Stream * ClientWifi::stream </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -255,7 +255,7 @@ WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b></td>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_ftp_ip_client.html">FtpIpClient</a>.</p>
+<p>Implements <a class="el" href="class_ftp_ip_client.html">Client</a>.</p>
 
 </div>
 </div>

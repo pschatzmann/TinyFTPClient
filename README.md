@@ -19,15 +19,59 @@ We support
 - Deletion of remote files
 
 ## TCP IP
-The initialization of TCP/IP is pretty much platform dependent. The library currently supports
-the following TCP/IP client implementations
 
-- Ethernet
-- Wifi (for ESP32 and ESP8266)
+The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implemenation. 
 
-If you want to use it with any other functionality you will need to implement your own FtpIpClient subclass.
+To set up the FTPClient you need to provide a network client for the commands and one for the data to the constructor: 
 
-On a ESP32 or ESP8266 e.g. the following initialization is working:
+### ESP32
+
+```
+    #include "WiFi.h"
+
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+```
+
+### ESP8266
+
+```
+    #include <ESP8266WiFi.h>
+
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+```
+
+### RP2040
+
+```
+    #include <WiFiNINA.h>
+
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+```
+
+### Ethernet Client
+
+```
+    #include <Ethernet.h>
+
+    EthernetClient cmd;
+    EthernetClient data;
+    FTPClient client(cmd, data);
+```
+
+### Other Platforms
+
+The initialization of TCP/IP is pretty much platform dependent. I suggest that you have a look at the network specific examples provided by Arduino, in order to find what includes and classes you need to use on your platform.
+
+
+### Connecting
+
+This is platform specific as well. On a ESP32 or ESP8266 e.g. the following login into the WiFi network is working:
 
 ```
     Serial.begin(115200);
@@ -45,8 +89,8 @@ On a ESP32 or ESP8266 e.g. the following initialization is working:
 
 ```
 
-
 ## File Download - Reading Remote Files
+
 You open a FTP connection to a remote host by calling the begin() method on a ArduinoFTPClient object where you pass
 - the IP address of your server
 - the userid to log into your server and 
@@ -56,7 +100,10 @@ The open method provides a FTPFile for the indicated file name. The FTPFile is j
 you have all reading and writing functionality available that you already know e.g. from Serial.
 
 ```
-    FTPClient client;
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt");
     byte buffer[100];
@@ -73,7 +120,10 @@ the resources.
 ## File Download - Line Based
 Instead of reading a bock of characters we can request to read a line (which is delimited with LF)
 ```
-    FTPClient client;
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt");
     char buffer[100];
@@ -90,7 +140,10 @@ You can write to a file on a remote system by using the regular Stream write() o
 the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.
 
 ```
-    FTPClient client;
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt", WRITE);
     char buffer[100];
@@ -105,7 +158,10 @@ the file alreay exists it will be replaced with the new content if you use the F
 ## File Upload - Appending
 You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND
 ```
-    FTPClient client;
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt", WRITE_APPEND);
     char buffer[100];
@@ -129,7 +185,10 @@ The ArduinoFTPClient supports the following directory operations:
 The files of a directory are listed with the help of an Iterator. 
 
 ```
-    FTPClient client;
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+    
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FileIterator it = client.ls("/directory");
     for (fileIt = ar.begin(); fileIt != ar.end(); fileIt++)  {
@@ -149,8 +208,7 @@ Supported log levels are LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR
 ```
 
 ## Limitations
-We currently support only one open control session with one open data session. This means that you can not run multiple operations
-in parallel. E.g doing a download while the list directory is still in process. 
+We currently support only one open control session with one open data session. This means that you can not run multiple operations in parallel. E.g doing a download while the list directory is still in process. 
 
 If you execute a new command any existing running command is cancelled.
 
@@ -159,6 +217,7 @@ If you execute a new command any existing running command is cancelled.
 - [Class Documentation](https://pschatzmann.github.io/TinyFTPClient/docs/html/annotated.html)
 
 ## Installation
+
 You can download the library as zip and call include Library -> zip library. Or you can git clone this project into the Arduino libraries folder e.g. with
 ```
 cd  ~/Documents/Arduino/libraries
