@@ -44,7 +44,18 @@ To set up the FTPClient you need to provide a network client for the commands an
     FTPClient client(cmd, data);
 ```
 
-### RP2040
+### RP2040 W
+
+```
+    #include <WiFi.h>
+
+    WiFiClient cmd;
+    WiFiClient data;
+    FTPClient client(cmd, data);
+```
+
+
+### Arduino Uno WiFi Rev.2, Arduino Nano 33 IoT etc
 
 ```
     #include <WiFiNINA.h>
@@ -54,7 +65,7 @@ To set up the FTPClient you need to provide a network client for the commands an
     FTPClient client(cmd, data);
 ```
 
-### Ethernet Client
+### Ethernet Shield
 
 ```
     #include <Ethernet.h>
