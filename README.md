@@ -251,7 +251,3 @@ cd  ~/Documents/Arduino/libraries
 git clone https://github.com/pschatzmann/TinyFTPClient.git
 ```
 
-## Change History
-- Main - Replaced custom abstraction with Arduino Client
-- V.1.0.0 - Initial Release
-
