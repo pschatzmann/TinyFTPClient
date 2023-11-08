@@ -237,7 +237,7 @@ Finally, __don't__ send me any e-mails or post questions on my personal website!
 You can download the library as zip and call include Library -> zip library. Or you can git clone this project into the Arduino libraries folder e.g. with
 ```
 cd  ~/Documents/Arduino/libraries
-git clone pschatzmann/TinyFTPClient.git
+git clone https://github.com/pschatzmann/TinyFTPClient.git
 ```
 
 ## Change History
