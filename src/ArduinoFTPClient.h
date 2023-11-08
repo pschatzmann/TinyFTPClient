@@ -173,8 +173,8 @@ class FTPFile : public Stream {
     FTPFile(FTPBasicAPI *api_ptr, const char* name, FileMode mode);
     FTPFile(FTPFile &cpy);
     FTPFile(FTPFile &&move);
-    FTPFile& operator=(const FTPFile&);
     ~FTPFile();
+    FTPFile& operator=(const FTPFile&);
     virtual size_t write(uint8_t data);
     virtual size_t write(char* data, int len);
     virtual  int read();
