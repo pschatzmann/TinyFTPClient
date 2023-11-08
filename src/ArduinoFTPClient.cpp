@@ -536,28 +536,20 @@ FTPFileIterator::FTPFileIterator(FTPBasicAPI *api, const char* dir, FileMode mod
 }
 FTPFileIterator::FTPFileIterator(FTPFileIterator &copy) {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator()-copy");
-    if (&copy!=nullptr){
-        this->api_ptr = copy.api_ptr;
-        this->stream_ptr = copy.stream_ptr;
-        this->directory_name = copy.directory_name;  
-        this->file_mode = copy.file_mode;
-    } else {
-        FTPLogger::writeLog( LOG_ERROR, "FTPFileIterator","nullpointer source");      
-    }    
+    this->api_ptr = copy.api_ptr;
+    this->stream_ptr = copy.stream_ptr;
+    this->directory_name = copy.directory_name;  
+    this->file_mode = copy.file_mode;
 }    
 FTPFileIterator::FTPFileIterator(FTPFileIterator &&copy) {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator()-move");
-    if (&copy!=nullptr){
-        this->api_ptr = copy.api_ptr;
-        this->stream_ptr = copy.stream_ptr;
-        this->directory_name = copy.directory_name;  
-        this->file_mode = copy.file_mode;
-        copy.api_ptr = nullptr;
-        copy.stream_ptr = nullptr;
-        copy.directory_name = nullptr;
-    } else {
-        FTPLogger::writeLog( LOG_ERROR, "FTPFileIterator()-move","nullpointer source");      
-    }    
+    this->api_ptr = copy.api_ptr;
+    this->stream_ptr = copy.stream_ptr;
+    this->directory_name = copy.directory_name;  
+    this->file_mode = copy.file_mode;
+    copy.api_ptr = nullptr;
+    copy.stream_ptr = nullptr;
+    copy.directory_name = nullptr;
 }    
 FTPFileIterator::~FTPFileIterator() {
     FTPLogger::writeLog( LOG_DEBUG, "~FTPFileIterator()");
