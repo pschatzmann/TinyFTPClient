@@ -216,6 +216,22 @@ If you execute a new command any existing running command is cancelled.
 
 - [Class Documentation](https://pschatzmann.github.io/TinyFTPClient/docs/html/annotated.html)
 
+## Support
+
+Please read the documentation first and check the issues and discussions before posting any new ones on Github.
+
+Open issues only for bugs and if it is not a bug, use a discussion: Provide enough information about 
+- the selected scenario/sketch 
+- what exactly you are trying to do
+- your hardware
+- your software version (from the Boards Manager) and library versions
+- what exactly your problem is
+
+to enable others to understand and reproduce your issue.
+
+Finally, __don't__ send me any e-mails or post questions on my personal website! 
+
+
 ## Installation
 
 You can download the library as zip and call include Library -> zip library. Or you can git clone this project into the Arduino libraries folder e.g. with
