@@ -81,8 +81,6 @@ bool FTPBasicAPI::open(Client *cmdPar, Client *dataPar, IPAddress &address, int 
     // set passive mode
     if (!passv()) return false;
     
-    // set binary mode
-    if (!binary()) return false;
     is_open = true;;
     return true;
 }
@@ -171,11 +169,18 @@ bool FTPBasicAPI::abort() {
 }
 
 bool FTPBasicAPI::binary() {
+    FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","binary");      
     return cmd("BIN", nullptr, "200");
 }
 
 bool FTPBasicAPI::ascii() {
+    FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","ascii");      
     return cmd("ASC", nullptr, "200");
+}
+
+bool FTPBasicAPI::type(const char* txt) {
+    FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","type");      
+    return cmd("TYPE", txt, "200");
 }
 
 
