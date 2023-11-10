@@ -69,20 +69,22 @@ bool FTPBasicAPI::open(Client *cmdPar, Client *dataPar, IPAddress &address, int 
     data_ptr = dataPar;  
     remote_address = address;
 
-    bool ok = connect( address, port, command_ptr, true);
-    if (ok && username!=nullptr) {
+    if(!connect( address, port, command_ptr, true)) return false;
+    if (username!=nullptr) {
         const char* ok_result[] = {"331","230","530", nullptr};
-        ok = cmd("USER", username, ok_result);
+        if(!cmd("USER", username, ok_result)) return false;
     }
-    if (ok && password!=nullptr) {
+    if (password!=nullptr) {
         const char* ok_result[] = {"230","202",nullptr};
-        ok = cmd("PASS", password, ok_result);
+        if(!cmd("PASS", password, ok_result)) return false;
     }
-    if (ok) {
-        ok = passv();
-    }
-    is_open = ok;
-    return ok;
+    // set passive mode
+    if (!passv()) return false;
+    
+    // set binary mode
+    if (!binary()) return false;
+    is_open = true;;
+    return true;
 }
 
 bool FTPBasicAPI::quit() {
@@ -94,7 +96,6 @@ bool FTPBasicAPI::quit() {
 bool FTPBasicAPI::connected(){
     return is_open;
 }
-
 
 bool FTPBasicAPI::passv() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","passv");      
@@ -168,6 +169,15 @@ bool FTPBasicAPI::abort() {
     }
     return true;
 }
+
+bool FTPBasicAPI::binary() {
+    return cmd("BIN", nullptr, "200");
+}
+
+bool FTPBasicAPI::ascii() {
+    return cmd("ASC", nullptr, "200");
+}
+
 
 Stream *FTPBasicAPI::read(const char* file_name ) {
     if (current_operation!=READ_OP) {

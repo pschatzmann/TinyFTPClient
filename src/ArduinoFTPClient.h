@@ -62,7 +62,7 @@ class CStringFunctions {
         int occur = 0; 
         // Loop to find the Nth 
         // occurence of the character 
-        for (int i = 0; i < strlen(str); i++) { 
+        for (unsigned int i = 0; i < strlen(str); i++) { 
             if (str[i] == ch) { 
                 occur += 1; 
             } 
@@ -121,7 +121,9 @@ class FTPBasicAPI {
     virtual  bool open(Client *cmd, Client *dat, IPAddress &address, int port, int data_port, const char* username, const char *password);
     virtual  bool quit();
     virtual  bool connected();
-    virtual  bool passv()  ;
+    virtual  bool passv();
+    virtual  bool binary();
+    virtual  bool ascii();
     virtual  bool del(const char * file)  ;
     virtual  bool mkdir(const char * dir)  ;
     virtual  bool rmd(const char * dir) ;
