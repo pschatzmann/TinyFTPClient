@@ -288,6 +288,12 @@ public:
   virtual bool rmdir(const char *filepath);
   // lists all file names in the specified directory
   virtual FTPFileIterator ls(const char *path, FileMode mode = WRITE_MODE);
+  // Switch to binary mode
+  virtual bool binary() { return api.binary();}
+  // Switch to ascii mode
+  virtual bool ascii() { return api.ascii();}
+  // Binary or ascii with type command
+  virtual bool type(const char *str) { return api.type(str);}
 
 protected:
   void init(Client *command, Client *data, int port = COMMAND_PORT,
