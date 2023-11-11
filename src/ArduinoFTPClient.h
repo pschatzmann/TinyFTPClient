@@ -159,15 +159,15 @@ protected:
 
   CurrentOperation current_operation =
       NOP; // currently running op -> do we need to cancel ?
-#if defined(FTP_DEFAULT_CLIENT)
-  FTP_DEFAULT_CLIENT default_cmd;
-  FTP_DEFAULT_CLIENT default_data;
-  Client *command_ptr = &default_cmd; // Client for commands
-  Client *data_ptr = &default_data;   // Client for upload and download of files
-#else
+// #if defined(FTP_DEFAULT_CLIENT)
+//   FTP_DEFAULT_CLIENT default_cmd;
+//   FTP_DEFAULT_CLIENT default_data;
+//   Client *command_ptr = &default_cmd; // Client for commands
+//   Client *data_ptr = &default_data;   // Client for upload and download of files
+// #else
   Client *command_ptr = nullptr; // Client for commands
   Client *data_ptr = nullptr;    // Client for upload and download of files
-#endif
+//#endif
   IPAddress remote_address;
   bool is_open;
   char result_reply[80];
@@ -264,11 +264,11 @@ protected:
  */
 class FTPClient {
 public:
-  // default construcotr
+  /// default construcotr
   FTPClient(Client &command, Client &data, int port = COMMAND_PORT,
             int data_port = DATA_PORT);
 #if defined(FTP_DEFAULT_CLIENT)
-  // simplified constructor
+  /// simplified constructor
   FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT);
 #endif
   /// opens the ftp connection

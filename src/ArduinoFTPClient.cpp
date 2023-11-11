@@ -479,12 +479,12 @@ FTPClient::FTPClient(Client &command, Client &data, int port, int data_port){
     init(&command, &data, port, data_port);
 }
 
-#if defined(FTP_DEFAULT_CLIENT)
-FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT ){
-    FTPLogger::writeLog( LOG_INFO, "FTPClient()");
-    init(command_ptr, data_ptr, &command, &data, port, data_port);
-}
-#endif
+// #if defined(FTP_DEFAULT_CLIENT)
+// FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT ){
+//     FTPLogger::writeLog( LOG_INFO, "FTPClient()");
+//     init(command_ptr, data_ptr, &command, &data, port, data_port);
+// }
+// #endif
 
 
 
