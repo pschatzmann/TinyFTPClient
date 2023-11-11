@@ -267,10 +267,10 @@ public:
   /// default construcotr
   FTPClient(Client &command, Client &data, int port = COMMAND_PORT,
             int data_port = DATA_PORT);
-#if defined(FTP_DEFAULT_CLIENT)
-  /// simplified constructor
-  FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT);
-#endif
+// #if defined(FTP_DEFAULT_CLIENT)
+//   /// simplified constructor
+//   FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT);
+// #endif
   /// opens the ftp connection
   virtual bool begin(IPAddress remote_addr, const char *user = "anonymous",
                      const char *password = nullptr);
