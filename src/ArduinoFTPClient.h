@@ -271,28 +271,28 @@ public:
   // simplified constructor
   FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT);
 #endif
-  // opens the ftp connection
+  /// opens the ftp connection
   virtual bool begin(IPAddress remote_addr, const char *user = "anonymous",
                      const char *password = nullptr);
-  // call this when a card is removed. It will allow you to inster and
-  // initialise a new card.
+  /// call this when a card is removed. It will allow you to inster and
+  /// initialise a new card.
   virtual bool end();
-  // get the file
+  /// get the file
   virtual FTPFile &open(const char *filename, FileMode mode = READ_MODE);
-  // Create the requested directory heirarchy--if intermediate directories
-  // do not exist they will be created.
+  /// Create the requested directory heirarchy--if intermediate directories
+  /// do not exist they will be created.
   virtual bool mkdir(const char *filepath);
-  // Delete the file.
+  /// Delete the file.
   virtual bool remove(const char *filepath);
-  // Removes a directory
+  /// Removes a directory
   virtual bool rmdir(const char *filepath);
-  // lists all file names in the specified directory
+  /// lists all file names in the specified directory
   virtual FTPFileIterator ls(const char *path, FileMode mode = WRITE_MODE);
-  // Switch to binary mode
+  /// Switch to binary mode
   virtual bool binary() { return api.binary();}
-  // Switch to ascii mode
+  /// Switch to ascii mode
   virtual bool ascii() { return api.ascii();}
-  // Binary or ascii with type command
+  /// Binary or ascii with type command
   virtual bool type(const char *str) { return api.type(str);}
 
 protected:

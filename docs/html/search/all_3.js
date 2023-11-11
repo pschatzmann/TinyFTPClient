@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setloglevel_7',['setLogLevel',['../class_f_t_p_logger.html#a0f6755c7939b750537b29bce4fc15cca',1,'FTPLogger']]]
+  ['end_5',['end',['../class_f_t_p_client.html#a8b3b72b4b38cd80097f4687d048529f3',1,'FTPClient']]]
 ];
