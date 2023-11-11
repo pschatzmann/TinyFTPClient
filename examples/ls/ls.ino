@@ -27,9 +27,8 @@ void setup() {
     // open connection
     client.begin(IPAddress(192,168,1,10), "user", "password");
 
-    FTPFileIterator it = client.ls("/");
-    for (auto fileIt = it.begin(); fileIt != it.end(); fileIt++)  {
-        FTPFile file = *fileIt;
+    // list files
+    for (auto file : client.ls("/"))  {
         Serial.println(file.name());
     }
     

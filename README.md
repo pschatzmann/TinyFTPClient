@@ -201,10 +201,10 @@ The files of a directory are listed with the help of an Iterator.
     FTPClient client(cmd, data);
     
     client.begin(IPAddress(192,168,1,10), "user", "password");
-    FileIterator it = client.ls("/directory");
-    for (fileIt = ar.begin(); fileIt != ar.end(); fileIt++)  {
-        FTPFile file = *fileIt;
-        Serial.println(file.name())
+
+    // list files
+    for (auto file : client.ls("/"))  {
+        Serial.println(file.name());
     }
 ```
 
