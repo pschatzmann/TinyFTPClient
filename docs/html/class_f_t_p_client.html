@@ -82,6 +82,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_t_p_client.html#a97dc4d34bbeafdf909062cf0c960b2da">FTPClient</a> (Client &amp;command, Client &amp;data, int port=COMMAND_PORT, int data_port=DATA_PORT)</td></tr>
 <tr class="memdesc:a97dc4d34bbeafdf909062cf0c960b2da"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_t_p_client.html" title="FTPClient Basic FTP access class which supports directory operatations and the opening of a files.">FTPClient</a> Basic FTP access class which supports directory operatations and the opening of a files. <br /></td></tr>
 <tr class="separator:a97dc4d34bbeafdf909062cf0c960b2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e2691ea9d566af927863e9492c293f"><td class="memItemLeft" align="right" valign="top"><a id="aa8e2691ea9d566af927863e9492c293f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>FTPClient</b> (int port=COMMAND_PORT, int data_port=DATA_PORT)</td></tr>
+<tr class="separator:aa8e2691ea9d566af927863e9492c293f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a603d82a6117c818a17721a512b791720"><td class="memItemLeft" align="right" valign="top"><a id="a603d82a6117c818a17721a512b791720"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (IPAddress remote_addr, const char *user=&quot;anonymous&quot;, const char *password=nullptr)</td></tr>
 <tr class="separator:a603d82a6117c818a17721a512b791720"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,6 +106,15 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>rmdir</b> (co
 <tr class="memitem:a219c27f88e3152153b63eede97524284"><td class="memItemLeft" align="right" valign="top"><a id="a219c27f88e3152153b63eede97524284"></a>
 virtual <a class="el" href="class_f_t_p_file_iterator.html">FTPFileIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ls</b> (const char *path, FileMode mode=WRITE_MODE)</td></tr>
 <tr class="separator:a219c27f88e3152153b63eede97524284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2c72b9c9bc02a4d13909895668f37f"><td class="memItemLeft" align="right" valign="top"><a id="abe2c72b9c9bc02a4d13909895668f37f"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>binary</b> ()</td></tr>
+<tr class="separator:abe2c72b9c9bc02a4d13909895668f37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a4069b9bf0cf18476793ffe62ab7c01"><td class="memItemLeft" align="right" valign="top"><a id="a3a4069b9bf0cf18476793ffe62ab7c01"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>ascii</b> ()</td></tr>
+<tr class="separator:a3a4069b9bf0cf18476793ffe62ab7c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b35fcf1756e9faeb1761560f9ec3d9"><td class="memItemLeft" align="right" valign="top"><a id="ae6b35fcf1756e9faeb1761560f9ec3d9"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> (const char *str)</td></tr>
+<tr class="separator:ae6b35fcf1756e9faeb1761560f9ec3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>

@@ -95,23 +95,30 @@ ESP8266</h2>
 <div class="line">WiFiClient data;</div>
 <div class="line">FTPClient client(cmd, data);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
-RP2040</h2>
-<div class="fragment"><div class="line">#include &lt;WiFiNINA.h&gt;</div>
+RP2040 W</h2>
+<div class="fragment"><div class="line">#include &lt;WiFi.h&gt;</div>
 <div class="line"> </div>
 <div class="line">WiFiClient cmd;</div>
 <div class="line">WiFiClient data;</div>
 <div class="line">FTPClient client(cmd, data);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
-Ethernet Client</h2>
+Arduino Uno WiFi Rev.2, Arduino Nano 33 IoT etc</h2>
+<div class="fragment"><div class="line">#include &lt;WiFiNINA.h&gt;</div>
+<div class="line"> </div>
+<div class="line">WiFiClient cmd;</div>
+<div class="line">WiFiClient data;</div>
+<div class="line">FTPClient client(cmd, data);</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
+Ethernet Shield</h2>
 <div class="fragment"><div class="line">#include &lt;Ethernet.h&gt;</div>
 <div class="line"> </div>
 <div class="line">EthernetClient cmd;</div>
 <div class="line">EthernetClient data;</div>
 <div class="line">FTPClient client(cmd, data);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
 Other Platforms</h2>
 <p>The initialization of TCP/IP is pretty much platform dependent. I suggest that you have a look at the network specific examples provided by Arduino, in order to find what includes and classes you need to use on your platform.</p>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Connecting</h2>
 <p>This is platform specific as well. On a ESP32 or ESP8266 e.g. the following login into the WiFi network is working:</p>
 <div class="fragment"><div class="line">Serial.begin(115200);</div>
@@ -126,7 +133,7 @@ Connecting</h2>
 <div class="line">Serial.println();</div>
 <div class="line">Serial.print(&quot;Started with address &quot;);</div>
 <div class="line">Serial.println(localAddress.toString());</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
 File Download - Reading Remote Files</h1>
 <p>You open a FTP connection to a remote host by calling the begin() method on a ArduinoFTPClient object where you pass</p><ul>
 <li>the IP address of your server</li>
@@ -149,7 +156,7 @@ File Download - Reading Remote Files</h1>
 <div class="line">file.close();</div>
 <div class="line">client.end();</div>
 </div><!-- fragment --><p> After the processing you need to close the file with close() and the client with end() to release the resources.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 File Download - Line Based</h1>
 <p>Instead of reading a bock of characters we can request to read a line (which is delimited with LF) </p><div class="fragment"><div class="line">WiFiClient cmd;</div>
 <div class="line">WiFiClient data;</div>
@@ -164,7 +171,7 @@ File Download - Line Based</h1>
 <div class="line">}</div>
 <div class="line">file.close();</div>
 <div class="line">client.end();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
 File Upload - Writing to Remote Files</h1>
 <p>You can write to a file on a remote system by using the regular Stream write() or print() methods. If the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.</p>
 <div class="fragment"><div class="line">WiFiClient cmd;</div>
@@ -180,7 +187,7 @@ File Upload - Writing to Remote Files</h1>
 <div class="line">}</div>
 <div class="line">file.close();</div>
 <div class="line">client.end();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
 File Upload - Appending</h1>
 <p>You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND </p><div class="fragment"><div class="line">WiFiClient cmd;</div>
 <div class="line">WiFiClient data;</div>
@@ -195,7 +202,7 @@ File Upload - Appending</h1>
 <div class="line">}</div>
 <div class="line">file.close();</div>
 <div class="line">client.end();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
 Directory operatrions</h1>
 <p>The ArduinoFTPClient supports the following directory operations:</p>
 <ul>
@@ -204,7 +211,7 @@ Directory operatrions</h1>
 <li>bool rmdir(char *filepath)</li>
 <li>FileIterator ls(char*directoryPath)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 List Directory</h2>
 <p>The files of a directory are listed with the help of an Iterator.</p>
 <div class="fragment"><div class="line">WiFiClient cmd;</div>
@@ -217,31 +224,38 @@ List Directory</h2>
 <div class="line">    FTPFile file = *fileIt;</div>
 <div class="line">    Serial.println(file.name())</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
 Logging</h1>
 <p>You can activate the logging by defining the Stream which should be used for logging and setting the log level. Supported log levels are LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR</p>
 <div class="fragment"><div class="line">Serial.begin(9600);</div>
 <div class="line">FTPLogger::setOutput(Serial);</div>
 <div class="line">FTPLogger::setLogLevel(LOG_DEBUG);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md16"></a>
 Limitations</h1>
 <p>We currently support only one open control session with one open data session. This means that you can not run multiple operations in parallel. E.g doing a download while the list directory is still in process.</p>
 <p>If you execute a new command any existing running command is cancelled.</p>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Documentation</h1>
 <ul>
 <li><a href="https://pschatzmann.github.io/TinyFTPClient/docs/html/annotated.html">Class Documentation</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Support</h1>
+<p>Please read the documentation first and check the issues and discussions before posting any new ones on Github.</p>
+<p>Open issues only for bugs and if it is not a bug, use a discussion: Provide enough information about</p><ul>
+<li>the selected scenario/sketch</li>
+<li>what exactly you are trying to do</li>
+<li>your hardware</li>
+<li>your software version (from the Boards Manager) and library versions</li>
+<li>what exactly your problem is</li>
+</ul>
+<p>to enable others to understand and reproduce your issue.</p>
+<p>Finally, <b>don't</b> send me any e-mails or post questions on my personal website!</p>
+<h1><a class="anchor" id="autotoc_md19"></a>
 Installation</h1>
 <p>You can download the library as zip and call include Library -&gt; zip library. Or you can git clone this project into the Arduino libraries folder e.g. with </p><div class="fragment"><div class="line">cd  ~/Documents/Arduino/libraries</div>
-<div class="line">git clone pschatzmann/TinyFTPClient.git</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
-Change History</h1>
-<p>V.1.0.0</p><ul>
-<li>Initial Release </li>
-</ul>
-</div></div><!-- PageDoc -->
+<div class="line">git clone https://github.com/pschatzmann/TinyFTPClient.git</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
