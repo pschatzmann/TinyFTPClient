@@ -179,7 +179,7 @@ File Upload - Writing to Remote Files</h1>
 <div class="line">FTPClient client(cmd, data);</div>
 <div class="line"> </div>
 <div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;, WRITE);</div>
+<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;, WRITE_MODE);</div>
 <div class="line">char buffer[100];</div>
 <div class="line">for (int j=0;j&lt;100;j++){</div>
 <div class="line">    sprintf(buffer, &quot;test %d&quot;, j);</div>
@@ -194,7 +194,7 @@ File Upload - Appending</h1>
 <div class="line">FTPClient client(cmd, data);</div>
 <div class="line"> </div>
 <div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;, WRITE_APPEND);</div>
+<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;, WRITE_APPEND_MODE);</div>
 <div class="line">char buffer[100];</div>
 <div class="line">for (int j=0;j&lt;100;j++){</div>
 <div class="line">    sprintf(buffer, &quot;test %d&quot;, j);</div>
@@ -219,10 +219,10 @@ List Directory</h2>
 <div class="line">FTPClient client(cmd, data);</div>
 <div class="line"> </div>
 <div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line">FileIterator it = client.ls(&quot;/directory&quot;);</div>
-<div class="line">for (fileIt = ar.begin(); fileIt != ar.end(); fileIt++)  {</div>
-<div class="line">    FTPFile file = *fileIt;</div>
-<div class="line">    Serial.println(file.name())</div>
+<div class="line"> </div>
+<div class="line">// list files</div>
+<div class="line">for (auto file : client.ls(&quot;/&quot;))  {</div>
+<div class="line">    Serial.println(file.name());</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
 Logging</h1>

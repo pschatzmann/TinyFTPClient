@@ -42,7 +42,7 @@ static const int MAXFILE_NAME_LENGTH = 512;
 static const int COMMAND_PORT = 21;
 static const int DATA_PORT = 1000;
 
-// Common Enums
+/// @brief File Mode
 enum FileMode { READ_MODE, WRITE_MODE, WRITE_APPEND_MODE };
 enum CurrentOperation { READ_OP, WRITE_OP, LS_OP, NOP };
 enum LogLevel { LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR };

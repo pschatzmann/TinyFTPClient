@@ -156,7 +156,7 @@ the file alreay exists it will be replaced with the new content if you use the F
     FTPClient client(cmd, data);
 
     client.begin(IPAddress(192,168,1,10), "user", "password");
-    FTPFile file = client.open("/test.txt", WRITE);
+    FTPFile file = client.open("/test.txt", WRITE_MODE);
     char buffer[100];
     for (int j=0;j<100;j++){
         sprintf(buffer, "test %d", j);
@@ -174,7 +174,7 @@ You can also append information to an existing remote file by indicating the Fil
     FTPClient client(cmd, data);
 
     client.begin(IPAddress(192,168,1,10), "user", "password");
-    FTPFile file = client.open("/test.txt", WRITE_APPEND);
+    FTPFile file = client.open("/test.txt", WRITE_APPEND_MODE);
     char buffer[100];
     for (int j=0;j<100;j++){
         sprintf(buffer, "test %d", j);
