@@ -26,7 +26,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ### ESP32
 
-```
+```C++
     #include "WiFi.h"
 
     WiFiClient cmd;
@@ -36,7 +36,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ### ESP8266
 
-```
+```C++
     #include <ESP8266WiFi.h>
 
     WiFiClient cmd;
@@ -46,7 +46,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ### RP2040 W
 
-```
+```C++
     #include <WiFi.h>
 
     WiFiClient cmd;
@@ -57,7 +57,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ### Arduino Uno WiFi Rev.2, Arduino Nano 33 IoT etc
 
-```
+```C++
     #include <WiFiNINA.h>
 
     WiFiClient cmd;
@@ -67,7 +67,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ### Ethernet Shield
 
-```
+```C++
     #include <Ethernet.h>
 
     EthernetClient cmd;
@@ -84,7 +84,7 @@ The initialization of TCP/IP is pretty much platform dependent. I suggest that y
 
 This is platform specific as well. On a ESP32 or ESP8266 e.g. the following login into the WiFi network is working:
 
-```
+```C++
     Serial.begin(115200);
     // connect to WIFI
     WiFi.begin("Network name, "wifi password");
@@ -110,7 +110,7 @@ You open a FTP connection to a remote host by calling the begin() method on a Ar
 The open method provides a FTPFile for the indicated file name. The FTPFile is just a Stream so
 you have all reading and writing functionality available that you already know e.g. from Serial.
 
-```
+```C++
     WiFiClient cmd;
     WiFiClient data;
     FTPClient client(cmd, data);
@@ -130,7 +130,8 @@ the resources.
 
 ## File Download - Line Based
 Instead of reading a bock of characters we can request to read a line (which is delimited with LF)
-```
+
+```C++
     WiFiClient cmd;
     WiFiClient data;
     FTPClient client(cmd, data);
@@ -150,7 +151,7 @@ Instead of reading a bock of characters we can request to read a line (which is 
 You can write to a file on a remote system by using the regular Stream write() or print() methods. If
 the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.
 
-```
+```C++
     WiFiClient cmd;
     WiFiClient data;
     FTPClient client(cmd, data);
@@ -168,7 +169,8 @@ the file alreay exists it will be replaced with the new content if you use the F
 
 ## File Upload - Appending
 You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND
-```
+
+```C++
     WiFiClient cmd;
     WiFiClient data;
     FTPClient client(cmd, data);
@@ -195,7 +197,7 @@ The ArduinoFTPClient supports the following directory operations:
 ### List Directory
 The files of a directory are listed with the help of an Iterator. 
 
-```
+```C++
     WiFiClient cmd;
     WiFiClient data;
     FTPClient client(cmd, data);
@@ -212,7 +214,7 @@ The files of a directory are listed with the help of an Iterator.
 You can activate the logging by defining the Stream which should be used for logging and setting the log level. 
 Supported log levels are LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR
 
-```
+```C++
     Serial.begin(9600);
     FTPLogger::setOutput(Serial);
     FTPLogger::setLogLevel(LOG_DEBUG);
