@@ -79,7 +79,7 @@ $(function() {
 <h1><a class="anchor" id="autotoc_md1"></a>
 TCP IP</h1>
 <p>The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implemenation.</p>
-<p>To set up the <a class="el" href="class_f_t_p_client.html" title="FTPClient Basic FTP access class which supports directory operatations and the opening of a files.">FTPClient</a> you need to provide a network client for the commands and one for the data to the constructor:</p>
+<p>To set up the FTPClient you need to provide a network client for the commands and one for the data to the constructor:</p>
 <h2><a class="anchor" id="autotoc_md2"></a>
 ESP32</h2>
 <div class="fragment"><div class="line">#include &quot;WiFi.h&quot;</div>
@@ -141,7 +141,7 @@ File Download - Reading Remote Files</h1>
 <li>the related password <br  />
 </li>
 </ul>
-<p>The open method provides a <a class="el" href="class_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> for the indicated file name. The <a class="el" href="class_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> is just a Stream so you have all reading and writing functionality available that you already know e.g. from Serial.</p>
+<p>The open method provides a FTPFile for the indicated file name. The FTPFile is just a Stream so you have all reading and writing functionality available that you already know e.g. from Serial.</p>
 <div class="fragment"><div class="line">WiFiClient cmd;</div>
 <div class="line">WiFiClient data;</div>
 <div class="line">FTPClient client(cmd, data);</div>

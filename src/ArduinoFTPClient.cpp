@@ -1,6 +1,8 @@
 #include "ArduinoFTPClient.h"
 #include <stdio.h>
 
+namespace ftp_client {
+
 /**
  * @brief FTPLogger
  * To activate logging define the output stream e.g. with FTPLogger.setOutput(Serial);
@@ -627,5 +629,5 @@ void FTPFileIterator::readLine() {
     }
 }
 
-
+} // ns
 

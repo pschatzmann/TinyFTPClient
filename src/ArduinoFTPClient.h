@@ -37,6 +37,12 @@
 #include "IPAddress.h"
 #include "Stream.h"
 
+#ifndef FTP_USE_NAMESPACE
+#  define FTP_USE_NAMESPACE true
+#endif
+
+namespace ftp_client {
+
 // Common Constants
 static const int MAXFILE_NAME_LENGTH = 512;
 static const int COMMAND_PORT = 21;
@@ -308,3 +314,9 @@ protected:
   int data_port;
   bool cleanup_clients;
 };
+
+} // ns
+
+#if FTP_USE_NAMESPACE
+using namespace ftp_client;
+#endif

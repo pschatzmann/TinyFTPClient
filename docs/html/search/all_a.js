@@ -1,5 +1,5 @@
 var searchData=
 [
   ['tinyftpclient_18',['TinyFTPClient',['../index.html',1,'']]],
-  ['type_19',['type',['../class_f_t_p_client.html#ae6b35fcf1756e9faeb1761560f9ec3d9',1,'FTPClient']]]
+  ['type_19',['type',['../classftp__client_1_1_f_t_p_client.html#a180432a1014f1ea42858133632c6e1df',1,'ftp_client::FTPClient']]]
 ];

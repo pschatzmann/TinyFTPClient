@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['filemode_6',['FileMode',['../_arduino_f_t_p_client_8h.html#a031770da453a180e21dcbef5cf5aeab6',1,'ArduinoFTPClient.h']]],
-  ['ftpbasicapi_7',['FTPBasicAPI',['../class_f_t_p_basic_a_p_i.html',1,'FTPBasicAPI'],['../class_f_t_p_basic_a_p_i.html#a53fa3f8233411096ddfc3576b5981c23',1,'FTPBasicAPI::FTPBasicAPI()']]],
-  ['ftpclient_8',['FTPClient',['../class_f_t_p_client.html',1,'FTPClient'],['../class_f_t_p_client.html#a97dc4d34bbeafdf909062cf0c960b2da',1,'FTPClient::FTPClient()']]],
-  ['ftpfile_9',['FTPFile',['../class_f_t_p_file.html',1,'FTPFile'],['../class_f_t_p_file.html#ad0964be11cbb2ee9365269305d89c11e',1,'FTPFile::FTPFile()']]],
-  ['ftpfileiterator_10',['FTPFileIterator',['../class_f_t_p_file_iterator.html',1,'FTPFileIterator'],['../class_f_t_p_file_iterator.html#aada56d57e63ac7d90bf5e82cf7e6efda',1,'FTPFileIterator::FTPFileIterator()']]],
-  ['ftplogger_11',['FTPLogger',['../class_f_t_p_logger.html',1,'']]]
+  ['filemode_6',['FileMode',['../_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec',1,'ftp_client']]],
+  ['ftpbasicapi_7',['FTPBasicAPI',['../classftp__client_1_1_f_t_p_basic_a_p_i.html',1,'ftp_client::FTPBasicAPI'],['../classftp__client_1_1_f_t_p_basic_a_p_i.html#a0fa24346d00df0dbc05fcc65f8a23ddf',1,'ftp_client::FTPBasicAPI::FTPBasicAPI()']]],
+  ['ftpclient_8',['FTPClient',['../classftp__client_1_1_f_t_p_client.html',1,'ftp_client::FTPClient'],['../classftp__client_1_1_f_t_p_client.html#a7d5afe4ed303e1ba2d547302c5e795b8',1,'ftp_client::FTPClient::FTPClient()']]],
+  ['ftpfile_9',['FTPFile',['../classftp__client_1_1_f_t_p_file.html',1,'ftp_client::FTPFile'],['../classftp__client_1_1_f_t_p_file.html#a2fcf12c263b0828765e1bc2b6e098cf6',1,'ftp_client::FTPFile::FTPFile()']]],
+  ['ftpfileiterator_10',['FTPFileIterator',['../classftp__client_1_1_f_t_p_file_iterator.html',1,'ftp_client::FTPFileIterator'],['../classftp__client_1_1_f_t_p_file_iterator.html#a75007c8375020fc2ab3b68f7b75b549d',1,'ftp_client::FTPFileIterator::FTPFileIterator()']]],
+  ['ftplogger_11',['FTPLogger',['../classftp__client_1_1_f_t_p_logger.html',1,'ftp_client']]]
 ];
