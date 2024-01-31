@@ -90,7 +90,14 @@ bool FTPBasicAPI::open(Client *cmdPar, Client *dataPar, IPAddress &address, int 
 bool FTPBasicAPI::quit() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "quit");      
     const char* ok_result[] = {"221","226", nullptr};
-    return cmd("QUIT", nullptr, ok_result, false);    
+    bool result = cmd("QUIT", nullptr, ok_result, false);  
+    if (!result) {
+        result = cmd("BYE", nullptr, ok_result, false);  
+    }
+    if (!result) {
+        result = cmd("DISCONNECT", nullptr, ok_result, false);  
+    }
+    return result;  
 }
 
 bool FTPBasicAPI::connected(){
@@ -508,10 +515,13 @@ bool FTPClient::begin(IPAddress remote_addr, const char* user, const char* passw
     return api.open(this->command_ptr, this->data_ptr, remote_addr, this->port, this->data_port, user, password);
 }
 
-//call this when a card is removed. It will allow you to inster and initialise a new card.
+//call this when a card is removed. It will allow you to instert and initialise a new card.
 bool FTPClient::end() {
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "end");
-    return api.quit();
+    bool result = api.quit();
+    if (command_ptr) command_ptr->stop();
+    if (data_ptr) data_ptr->stop();
+    return result;
 }
 
 // get the file 

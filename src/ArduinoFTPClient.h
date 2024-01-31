@@ -280,8 +280,7 @@ public:
   /// opens the ftp connection
   virtual bool begin(IPAddress remote_addr, const char *user = "anonymous",
                      const char *password = nullptr);
-  /// call this when a card is removed. It will allow you to inster and
-  /// initialise a new card.
+  /// Close the sessions by calling QUIT or BYE
   virtual bool end();
   /// get the file
   virtual FTPFile &open(const char *filename, FileMode mode = READ_MODE);
