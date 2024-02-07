@@ -253,3 +253,16 @@ cd  ~/Documents/Arduino/libraries
 git clone https://github.com/pschatzmann/TinyFTPClient.git
 ```
 
+I recommend to use git because you can easily update to the latest version just by executing the git pull command in the project folder. 
+
+
+## Sponsor Me
+
+This software is totally free, but you can make me happy by rewarding me with a treat
+
+- [Buy me a coffee](https://www.buymeacoffee.com/philschatzh)
+- [Paypal me](https://paypal.me/pschatzmann?country.x=CH&locale.x=en_US)
+
+
+
+
