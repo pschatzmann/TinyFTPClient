@@ -386,11 +386,14 @@ FTPFile& FTPFile::operator=(const FTPFile &cpy) {
 }
 
 FTPFile::~FTPFile(){
-    if (this->file_name!=nullptr)
+    if (this->file_name!=nullptr){
+        close();
         free((void*)this->file_name);
+    }
 }
 
 size_t FTPFile::write(uint8_t data) {
+    if (!is_open) return 0;
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "write");
     if (mode==READ_MODE) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "Can not write - File has been opened in READ_MODE");
@@ -401,6 +404,7 @@ size_t FTPFile::write(uint8_t data) {
 }
 
 size_t FTPFile::write(char* data, int len) {
+    if (!is_open) return 0;
     int count = 0;
     for (int j=0;j<len;j++){
         count += write(data[j]);
@@ -409,28 +413,33 @@ size_t FTPFile::write(char* data, int len) {
 }
 
 int FTPFile::read() {
+    if (!is_open) return -1;
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "read");
     Stream *result_ptr =  api_ptr->read(file_name);
     return result_ptr->read();
 }
 int FTPFile::read(void *buf, size_t nbyte) {
+    if (!is_open) return 0;
     FTPLogger::writeLog( LOG_INFO, "FTPFile", "read-n");
     memset(buf,0, nbyte);
     Stream *result_ptr =  api_ptr->read(file_name);
     return result_ptr->readBytes((char*)buf, nbyte);
 }
 int FTPFile::readln(void *buf, size_t nbyte) {
+    if (!is_open) return 0;
     FTPLogger::writeLog( LOG_INFO, "FTPFile", "readln");
     memset(buf,0, nbyte);
     Stream *result_ptr =  api_ptr->read(file_name);
     return result_ptr->readBytesUntil(eol[0], (char*)buf, nbyte );
 }
 int FTPFile::peek() {
+    if (!is_open) return -1;
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "peek");
     Stream *result_ptr =  api_ptr->read(file_name);
     return result_ptr->peek();
 }
 int FTPFile::available(){
+    if (!is_open) return 0;
     char msg[80];
     Stream *result_ptr =  api_ptr->read(file_name);
     int len = result_ptr->available();
@@ -440,6 +449,7 @@ int FTPFile::available(){
 }
 
 size_t FTPFile::size(){
+    if (!is_open) return 0;
     char msg[80];
     size_t size =  api_ptr->size(file_name);
     sprintf(msg,"size: %d", size);
@@ -448,11 +458,13 @@ size_t FTPFile::size(){
 }
 
 bool FTPFile::isDirectory(){
+    if (!is_open) return false;
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "isDirectory");
     return  api_ptr->objectType(file_name)==TypeDirectory;
 }
 
 void FTPFile::flush() {
+    if (!is_open) return;
     if (api_ptr->currentOperation()==WRITE_OP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "flush");
         Stream *result_ptr =  api_ptr->write(file_name, mode);
@@ -461,13 +473,16 @@ void FTPFile::flush() {
 }
 
 void FTPFile::close() {
-    FTPLogger::writeLog( LOG_INFO, "FTPFile", "close");
-    const char* ok[] = {"226", nullptr};
-    api_ptr->checkResult(ok, "close", false);
-    if (api_ptr->currentOperation()==WRITE_OP) {
-        flush();
+    if (is_open){
+        FTPLogger::writeLog( LOG_INFO, "FTPFile", "close");
+        const char* ok[] = {"226", nullptr};
+        api_ptr->checkResult(ok, "close", false);
+        if (api_ptr->currentOperation()==WRITE_OP) {
+            flush();
+        }
+        api_ptr->closeData();
+        is_open = false;
     }
-    api_ptr->closeData();
 }
 
 const char * FTPFile::name() {
@@ -515,7 +530,7 @@ bool FTPClient::begin(IPAddress remote_addr, const char* user, const char* passw
     return api.open(this->command_ptr, this->data_ptr, remote_addr, this->port, this->data_port, user, password);
 }
 
-//call this when a card is removed. It will allow you to instert and initialise a new card.
+//call this when a card is removed. It will allow you to insert and initialise a new card.
 bool FTPClient::end() {
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "end");
     bool result = api.quit();
@@ -525,9 +540,9 @@ bool FTPClient::end() {
 }
 
 // get the file 
-FTPFile& FTPClient::open(const char *filename, FileMode mode) {
+FTPFile FTPClient::open(const char *filename, FileMode mode) {
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "open");
-    return *(new FTPFile(&api, filename, mode ));
+    return FTPFile(&api, filename, mode );
 }
 
 // Create the requested directory heirarchy--if intermediate directories

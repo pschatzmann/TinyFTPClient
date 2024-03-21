@@ -210,12 +210,15 @@ public:
   virtual void setEOL(char *eol);
   virtual bool isDirectory();
 
+  operator bool() { return is_open; }
+
 protected:
   const char *file_name;
   const char *eol = "\n";
   FileMode mode;
   FTPBasicAPI *api_ptr;
   ObjectType object_type = TypeUndefined;
+  bool is_open = true;
 };
 
 /**
@@ -283,7 +286,7 @@ public:
   /// Close the sessions by calling QUIT or BYE
   virtual bool end();
   /// get the file
-  virtual FTPFile &open(const char *filename, FileMode mode = READ_MODE);
+  virtual FTPFile open(const char *filename, FileMode mode = READ_MODE);
   /// Create the requested directory heirarchy--if intermediate directories
   /// do not exist they will be created.
   virtual bool mkdir(const char *filepath);
