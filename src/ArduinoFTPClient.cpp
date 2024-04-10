@@ -252,6 +252,12 @@ bool FTPBasicAPI::connect(IPAddress adr, int port, Client *client_ptr, bool doCh
     if (ok && doCheckResult){
         const char* ok_result[] = {"220","200",nullptr};
         ok = checkResult(ok_result, "connect");
+
+        // there might be some more messages: e.g. in FileZilla: we just ignore them
+        while(command_ptr->available() > 0){
+            command_ptr->read();
+        }
+
     }
     if (!ok){
         FTPLogger::writeLog( LOG_ERROR, "FTPBasicAPI::connect", buffer);      
