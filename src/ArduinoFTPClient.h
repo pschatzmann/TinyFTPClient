@@ -205,7 +205,7 @@ public:
   virtual int available();
   virtual void flush();
   virtual void close();
-  virtual const char *name();
+  virtual const char *name() const;
   virtual size_t size();
   virtual void setEOL(char *eol);
   virtual bool isDirectory();
@@ -239,7 +239,7 @@ public:
   virtual FTPFileIterator end();
   virtual FTPFileIterator &operator++();
   virtual FTPFileIterator &operator++(int _na);
-  virtual FTPFile operator*();
+  virtual FTPFile operator* ();
   virtual bool operator!=(const FTPFileIterator &comp) {
     return strcmp(this->buffer.c_str(), comp.buffer.c_str()) != 0;
   }

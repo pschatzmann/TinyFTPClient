@@ -492,7 +492,7 @@ void FTPFile::close() {
     }
 }
 
-const char * FTPFile::name() {
+const char * FTPFile::name() const {
     return file_name;
 }
 
