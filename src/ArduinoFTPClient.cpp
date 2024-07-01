@@ -355,8 +355,9 @@ void FTPBasicAPI::checkClosed(Client *client){
  * 
  */
 
-FTPFile::FTPFile(FTPBasicAPI *api_ptr, const char* name, FileMode mode){
+FTPFile::FTPFile(FTPBasicAPI *api_ptr, const char* name, FileMode mode, bool autoClose){
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile");
+    auto_close = autoClose;
     if (name!=nullptr)
         this->file_name = strdup(name);
     this->mode = mode;
@@ -393,7 +394,7 @@ FTPFile& FTPFile::operator=(const FTPFile &cpy) {
 
 FTPFile::~FTPFile(){
     if (this->file_name!=nullptr){
-        close();
+        if (auto_close) close();
         free((void*)this->file_name);
     }
 }
@@ -596,6 +597,7 @@ FTPFileIterator::FTPFileIterator(FTPFileIterator &copy) {
     this->stream_ptr = copy.stream_ptr;
     this->directory_name = copy.directory_name;  
     this->file_mode = copy.file_mode;
+    this->buffer = copy.buffer;
 }    
 FTPFileIterator::FTPFileIterator(FTPFileIterator &&copy) {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator()-move");
@@ -603,6 +605,7 @@ FTPFileIterator::FTPFileIterator(FTPFileIterator &&copy) {
     this->stream_ptr = copy.stream_ptr;
     this->directory_name = copy.directory_name;  
     this->file_mode = copy.file_mode;
+    this->buffer = copy.buffer;
     copy.api_ptr = nullptr;
     copy.stream_ptr = nullptr;
     copy.directory_name = nullptr;
@@ -617,13 +620,14 @@ FTPFileIterator &FTPFileIterator::begin() {
         readLine();
     } else {
         FTPLogger::writeLog( LOG_ERROR, "FTPFileIterator", "api_ptr is null");
+        buffer = "";
     }
     return *this;
 }
 FTPFileIterator FTPFileIterator::end() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator", "end");
     FTPFileIterator end = *this;
-    end.buffer[0]=0;
+    end.buffer = "";
     return end;
 }
 FTPFileIterator &FTPFileIterator::operator++() {
@@ -633,30 +637,31 @@ FTPFileIterator &FTPFileIterator::operator++() {
 }
 FTPFileIterator &FTPFileIterator::operator++(int na) {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator", "++(1)");
-    readLine();
+    for (int j=0;j<na;j++)
+        readLine();
     return *this;
 }
 FTPFile FTPFileIterator::operator*() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator", "*");
-    //return buffer;
-    return FTPFile(api_ptr,buffer,file_mode);
+    // return file that does not autoclose
+    return FTPFile(api_ptr, buffer.c_str(), file_mode, false);
 }
 void FTPFileIterator::readLine() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator", "readLine");
+    buffer = "";
     if (stream_ptr!=nullptr) {
-        String str = stream_ptr->readStringUntil('\n');
-        strcpy(buffer, str.c_str());
-        if (strlen(buffer)){
-            api_ptr->setCurrentOperation(NOP);
-        }
-        if (strcmp(buffer, directory_name)==0){
-            // when ls is called on a file it returns the file itself
-            // which we just ignore
-            strcpy(buffer, "");
-        }
+        buffer = stream_ptr->readStringUntil('\n');
+        FTPLogger::writeLog( LOG_DEBUG, "line", buffer.c_str());
+        // if (strlen(buffer)){
+        //     api_ptr->setCurrentOperation(NOP);
+        // }
+        // if (strcmp(buffer, directory_name)==0){
+        //     // when ls is called on a file it returns the file itself
+        //     // which we just ignore
+        //     buffer[0] = 0;
+        // }
     } else {
         FTPLogger::writeLog( LOG_ERROR, "FTPFileIterator", "stream_ptr is null");
-        strcpy(buffer, "");
     }
 }
 

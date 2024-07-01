@@ -190,7 +190,7 @@ protected:
 class FTPFile : public Stream {
 public:
   FTPFile() = default;
-  FTPFile(FTPBasicAPI *api_ptr, const char *name, FileMode mode);
+  FTPFile(FTPBasicAPI *api_ptr, const char *name, FileMode mode, bool autoClose=true);
   FTPFile(FTPFile &cpy);
   FTPFile(FTPFile &&move);
   ~FTPFile();
@@ -213,12 +213,13 @@ public:
   operator bool() { return is_open; }
 
 protected:
-  const char *file_name;
+  const char *file_name = nullptr;
   const char *eol = "\n";
   FileMode mode;
   FTPBasicAPI *api_ptr;
   ObjectType object_type = TypeUndefined;
   bool is_open = true;
+  bool auto_close = true;
 };
 
 /**
@@ -240,29 +241,31 @@ public:
   virtual FTPFileIterator &operator++(int _na);
   virtual FTPFile operator*();
   virtual bool operator!=(const FTPFileIterator &comp) {
-    return strcmp(this->buffer, comp.buffer) != 0;
+    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) != 0;
   }
   virtual bool operator>(const FTPFileIterator &comp) {
-    return strcmp(this->buffer, comp.buffer) > 0;
+    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) > 0;
   }
   virtual bool operator<(const FTPFileIterator &comp) {
-    return strcmp(this->buffer, comp.buffer) < 0;
+    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) < 0;
   }
   virtual bool operator>=(const FTPFileIterator &comp) {
-    return strcmp(this->buffer, comp.buffer) >= 0;
+    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) >= 0;
   }
   virtual bool operator<=(const FTPFileIterator &comp) {
-    return strcmp(this->buffer, comp.buffer) <= 0;
+    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) <= 0;
   }
+
+  const char* fileName() {return buffer.c_str();}
 
 protected:
   virtual void readLine();
 
-  FTPBasicAPI *api_ptr;
-  Stream *stream_ptr;
+  FTPBasicAPI *api_ptr = nullptr;
+  Stream *stream_ptr = nullptr;
   FileMode file_mode;
   const char *directory_name = "";
-  char buffer[MAXFILE_NAME_LENGTH];
+  String buffer = "";
 };
 
 /**
@@ -315,6 +318,7 @@ protected:
   int port;
   int data_port;
   bool cleanup_clients;
+  bool auto_close = true;
 };
 
 } // ns
