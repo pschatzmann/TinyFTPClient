@@ -171,7 +171,7 @@ bool FTPBasicAPI::abort() {
     if (current_operation!=NOP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","abort");      
         const char* ok[] = {"225", "226",nullptr};
-        current_operation = NOP;
+        setCurrentOperation(NOP);
         return cmd("ABOR", nullptr, ok);
     }
     return true;
@@ -199,7 +199,7 @@ Stream *FTPBasicAPI::read(const char* file_name ) {
         abort();
         const char* ok[] = {"150","125", nullptr};
         cmd("RETR", file_name, ok);
-        current_operation = READ_OP;
+        setCurrentOperation(READ_OP);
     }
     checkClosed(data_ptr);
     return data_ptr;
@@ -211,7 +211,7 @@ Stream *FTPBasicAPI::write(const char* file_name, FileMode mode) {
         abort();
         const char* ok_write[] = {"125", "150", nullptr};
         cmd(mode == WRITE_APPEND_MODE ? "APPE": "STOR", file_name, ok_write);
-        current_operation = WRITE_OP;
+        setCurrentOperation(WRITE_OP);
     }
     checkClosed(data_ptr);
     return data_ptr;
@@ -222,7 +222,7 @@ Stream* FTPBasicAPI::ls(const char* file_name){
     abort();
     const char* ok[] = {"125", "150", nullptr};
     cmd("NLST",file_name, ok);
-    current_operation = LS_OP;
+    setCurrentOperation(LS_OP);
     return data_ptr;
 }
 
@@ -343,7 +343,7 @@ void FTPBasicAPI::checkClosed(Client *client){
     if (!client->connected()){
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","checkClosed -> client is closed"); 
         // mark the actual command as completed     
-        current_operation = NOP;
+        setCurrentOperation(NOP);
     }
 } 
 
@@ -510,14 +510,6 @@ FTPClient::FTPClient(Client &command, Client &data, int port, int data_port){
     init(&command, &data, port, data_port);
 }
 
-// #if defined(FTP_DEFAULT_CLIENT)
-// FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT ){
-//     FTPLogger::writeLog( LOG_INFO, "FTPClient()");
-//     init(command_ptr, data_ptr, &command, &data, port, data_port);
-// }
-// #endif
-
-
 
 void FTPClient::init(Client *command, Client *data, int port, int data_port){
     FTPLogger::writeLog( LOG_DEBUG, "FTPClient");
@@ -652,11 +644,11 @@ void FTPFileIterator::readLine() {
     if (stream_ptr!=nullptr) {
         buffer = stream_ptr->readStringUntil('\n');
         FTPLogger::writeLog( LOG_DEBUG, "line", buffer.c_str());
-        // if (strlen(buffer)){
-        //     api_ptr->setCurrentOperation(NOP);
-        // }
+        if (buffer.length() > 0){
+            api_ptr->setCurrentOperation(NOP);
+        }
+        //// when ls is called on a file it returns the file itself
         // if (strcmp(buffer, directory_name)==0){
-        //     // when ls is called on a file it returns the file itself
         //     // which we just ignore
         //     buffer[0] = 0;
         // }

@@ -54,11 +54,6 @@ enum CurrentOperation { READ_OP, WRITE_OP, LS_OP, NOP };
 enum LogLevel { LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR };
 enum ObjectType { TypeFile, TypeDirectory, TypeUndefined };
 
-// // Allow simple constructor on ESP32
-// #if defined(ESP32)
-//   #include "WiFi.h"
-//   #define FTP_DEFAULT_CLIENT WiFiClient
-// #endif
 
 /**
  * @brief CStringFunctions
@@ -162,18 +157,10 @@ protected:
   virtual void checkClosed(Client *stream);
   virtual bool checkResult(const char *expected[], const char *command_for_log,
                            bool wait_for_data = true);
-
-  CurrentOperation current_operation =
-      NOP; // currently running op -> do we need to cancel ?
-// #if defined(FTP_DEFAULT_CLIENT)
-//   FTP_DEFAULT_CLIENT default_cmd;
-//   FTP_DEFAULT_CLIENT default_data;
-//   Client *command_ptr = &default_cmd; // Client for commands
-//   Client *data_ptr = &default_data;   // Client for upload and download of files
-// #else
+// currently running op -> do we need to cancel ?
+  CurrentOperation current_operation = NOP; 
   Client *command_ptr = nullptr; // Client for commands
   Client *data_ptr = nullptr;    // Client for upload and download of files
-//#endif
   IPAddress remote_address;
   bool is_open;
   char result_reply[80];
@@ -279,10 +266,6 @@ public:
   /// default construcotr
   FTPClient(Client &command, Client &data, int port = COMMAND_PORT,
             int data_port = DATA_PORT);
-// #if defined(FTP_DEFAULT_CLIENT)
-//   /// simplified constructor
-//   FTPClient(int port = COMMAND_PORT, int data_port = DATA_PORT);
-// #endif
   /// opens the ftp connection
   virtual bool begin(IPAddress remote_addr, const char *user = "anonymous",
                      const char *password = nullptr);
