@@ -616,10 +616,10 @@ FTPFileIterator &FTPFileIterator::begin() {
     }
     return *this;
 }
-FTPFileIterator FTPFileIterator::end() {
+FTPFileIterator& FTPFileIterator::end() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator", "end");
-    FTPFileIterator end = *this;
-    end.buffer = "";
+    static FTPFileIterator end;
+    end.buffer[0] = 0; // empty buffer
     return end;
 }
 FTPFileIterator &FTPFileIterator::operator++() {

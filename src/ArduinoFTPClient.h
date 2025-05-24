@@ -218,12 +218,13 @@ protected:
  */
 class FTPFileIterator {
 public:
+  FTPFileIterator() = default;
   FTPFileIterator(FTPBasicAPI *api, const char *dir, FileMode mode);
   FTPFileIterator(FTPFileIterator &copy);
   FTPFileIterator(FTPFileIterator &&copy);
   ~FTPFileIterator();
   virtual FTPFileIterator &begin();
-  virtual FTPFileIterator end();
+  virtual FTPFileIterator &end();
   virtual FTPFileIterator &operator++();
   virtual FTPFileIterator &operator++(int _na);
   virtual FTPFile operator* ();
