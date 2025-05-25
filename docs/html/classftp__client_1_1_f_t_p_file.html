@@ -87,64 +87,64 @@ Inheritance diagram for ftp_client::FTPFile:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2fcf12c263b0828765e1bc2b6e098cf6"><td class="memItemLeft" align="right" valign="top"><a id="a2fcf12c263b0828765e1bc2b6e098cf6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_file.html#a2fcf12c263b0828765e1bc2b6e098cf6">FTPFile</a> (<a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a> *api_ptr, const char *name, <a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a> mode)</td></tr>
-<tr class="memdesc:a2fcf12c263b0828765e1bc2b6e098cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream. <br /></td></tr>
-<tr class="separator:a2fcf12c263b0828765e1bc2b6e098cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fea0ec9c5993cf570f60c9f323ad08e"><td class="memItemLeft" align="right" valign="top"><a id="a8fea0ec9c5993cf570f60c9f323ad08e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FTPFile</b> (<a class="el" href="classftp__client_1_1_f_t_p_file.html">FTPFile</a> &amp;cpy)</td></tr>
-<tr class="separator:a8fea0ec9c5993cf570f60c9f323ad08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fe89abe2d2524de95a18648305cf715"><td class="memItemLeft" align="right" valign="top"><a id="a2fe89abe2d2524de95a18648305cf715"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FTPFile</b> (<a class="el" href="classftp__client_1_1_f_t_p_file.html">FTPFile</a> &amp;&amp;move)</td></tr>
-<tr class="separator:a2fe89abe2d2524de95a18648305cf715"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a405d2ff0b203389691b90aa0fdfb0377"><td class="memItemLeft" align="right" valign="top"><a id="a405d2ff0b203389691b90aa0fdfb0377"></a>
-<a class="el" href="classftp__client_1_1_f_t_p_file.html">FTPFile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classftp__client_1_1_f_t_p_file.html">FTPFile</a> &amp;)</td></tr>
-<tr class="separator:a405d2ff0b203389691b90aa0fdfb0377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5e4f98b2d1548f5224e387066e2b60f"><td class="memItemLeft" align="right" valign="top"><a id="ab5e4f98b2d1548f5224e387066e2b60f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_file.html#ab5e4f98b2d1548f5224e387066e2b60f">FTPFile</a> (<a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a> *api_ptr, const char *name, <a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a> mode, bool autoClose=true)</td></tr>
+<tr class="memdesc:ab5e4f98b2d1548f5224e387066e2b60f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream. <br /></td></tr>
+<tr class="separator:ab5e4f98b2d1548f5224e387066e2b60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d629daaeff33a46385899863583bb0"><td class="memItemLeft" align="right" valign="top"><a id="a97d629daaeff33a46385899863583bb0"></a>
-virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (uint8_t data)</td></tr>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (uint8_t data)</td></tr>
 <tr class="separator:a97d629daaeff33a46385899863583bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7f50646cf2a3b7f822675a873a553e3"><td class="memItemLeft" align="right" valign="top"><a id="ab7f50646cf2a3b7f822675a873a553e3"></a>
-virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (char *data, int len)</td></tr>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (char *data, int len)</td></tr>
 <tr class="separator:ab7f50646cf2a3b7f822675a873a553e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0042b62b250a54ee50310ca226469755"><td class="memItemLeft" align="right" valign="top"><a id="a0042b62b250a54ee50310ca226469755"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
 <tr class="separator:a0042b62b250a54ee50310ca226469755"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfffac3b5cdb5e55ce89feecabe293a7"><td class="memItemLeft" align="right" valign="top"><a id="adfffac3b5cdb5e55ce89feecabe293a7"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (void *buf, size_t nbyte)</td></tr>
-<tr class="separator:adfffac3b5cdb5e55ce89feecabe293a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d66f8dfe0f409aa6fa1806c1509048f"><td class="memItemLeft" align="right" valign="top"><a id="a5d66f8dfe0f409aa6fa1806c1509048f"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>readln</b> (void *buf, size_t nbyte)</td></tr>
-<tr class="separator:a5d66f8dfe0f409aa6fa1806c1509048f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae27b371f25807c0029f605b7e98b349f"><td class="memItemLeft" align="right" valign="top"><a id="ae27b371f25807c0029f605b7e98b349f"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>readBytes</b> (char *buf, size_t nbyte)</td></tr>
+<tr class="separator:ae27b371f25807c0029f605b7e98b349f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93ba6421a9de3c38f37dd73cd6a737e1"><td class="memItemLeft" align="right" valign="top"><a id="a93ba6421a9de3c38f37dd73cd6a737e1"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>readBytes</b> (uint8_t *buf, size_t nbyte)</td></tr>
+<tr class="separator:a93ba6421a9de3c38f37dd73cd6a737e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a138b045a49524e890e020dce103c368c"><td class="memItemLeft" align="right" valign="top"><a id="a138b045a49524e890e020dce103c368c"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>readln</b> (char *buf, size_t nbyte)</td></tr>
+<tr class="separator:a138b045a49524e890e020dce103c368c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d23ba6fb407b7fdc28e745cae750304"><td class="memItemLeft" align="right" valign="top"><a id="a0d23ba6fb407b7fdc28e745cae750304"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>peek</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>peek</b> ()</td></tr>
 <tr class="separator:a0d23ba6fb407b7fdc28e745cae750304"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca5305a0b68dbf4f723415a32ed7b5c5"><td class="memItemLeft" align="right" valign="top"><a id="aca5305a0b68dbf4f723415a32ed7b5c5"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>available</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>available</b> ()</td></tr>
 <tr class="separator:aca5305a0b68dbf4f723415a32ed7b5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ff157c6803511e1ea9cc3111f4a2980"><td class="memItemLeft" align="right" valign="top"><a id="a2ff157c6803511e1ea9cc3111f4a2980"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> ()</td></tr>
 <tr class="separator:a2ff157c6803511e1ea9cc3111f4a2980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d34ae898870cbf61f87ec4026ca3e2e"><td class="memItemLeft" align="right" valign="top"><a id="a8d34ae898870cbf61f87ec4026ca3e2e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reopen</b> ()</td></tr>
+<tr class="separator:a8d34ae898870cbf61f87ec4026ca3e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a047ffd5f5cbe17d4bd2bedbea5b63705"><td class="memItemLeft" align="right" valign="top"><a id="a047ffd5f5cbe17d4bd2bedbea5b63705"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
 <tr class="separator:a047ffd5f5cbe17d4bd2bedbea5b63705"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf0d2236214430b4a106d25d2c220525"><td class="memItemLeft" align="right" valign="top"><a id="acf0d2236214430b4a106d25d2c220525"></a>
-virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> ()</td></tr>
-<tr class="separator:acf0d2236214430b4a106d25d2c220525"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f043a124650f904022e3090068e79b4"><td class="memItemLeft" align="right" valign="top"><a id="a4f043a124650f904022e3090068e79b4"></a>
-virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> ()</td></tr>
-<tr class="separator:a4f043a124650f904022e3090068e79b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a5f95cbd1dbbe83a114a0a045c25449"><td class="memItemLeft" align="right" valign="top"><a id="a9a5f95cbd1dbbe83a114a0a045c25449"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
+<tr class="separator:a9a5f95cbd1dbbe83a114a0a045c25449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9e7196d397964d7ceafa3de8a0efa65"><td class="memItemLeft" align="right" valign="top"><a id="ae9e7196d397964d7ceafa3de8a0efa65"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
+<tr class="separator:ae9e7196d397964d7ceafa3de8a0efa65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5f9fe0dd530b29f353d5dac1f5fdfb8"><td class="memItemLeft" align="right" valign="top"><a id="ab5f9fe0dd530b29f353d5dac1f5fdfb8"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setEOL</b> (char *eol)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setEOL</b> (char *eol)</td></tr>
 <tr class="separator:ab5f9fe0dd530b29f353d5dac1f5fdfb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d55a7ea7dccc358dd0ce52dd675e1b1"><td class="memItemLeft" align="right" valign="top"><a id="a1d55a7ea7dccc358dd0ce52dd675e1b1"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDirectory</b> ()</td></tr>
-<tr class="separator:a1d55a7ea7dccc358dd0ce52dd675e1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5bc8d6fc89a9dabd5d011200a399441"><td class="memItemLeft" align="right" valign="top"><a id="ac5bc8d6fc89a9dabd5d011200a399441"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDirectory</b> () const</td></tr>
+<tr class="separator:ac5bc8d6fc89a9dabd5d011200a399441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2e8cd3122e92d6c7dcf2f1e7528e419"><td class="memItemLeft" align="right" valign="top"><a id="ad2e8cd3122e92d6c7dcf2f1e7528e419"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>operator bool</b> ()</td></tr>
+<tr class="separator:ad2e8cd3122e92d6c7dcf2f1e7528e419"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a34d2a54e215c80600276406a3ae7d330"><td class="memItemLeft" align="right" valign="top"><a id="a34d2a54e215c80600276406a3ae7d330"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>file_name</b></td></tr>
-<tr class="separator:a34d2a54e215c80600276406a3ae7d330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29b34eb62766954aafdabeaa76753f9b"><td class="memItemLeft" align="right" valign="top"><a id="a29b34eb62766954aafdabeaa76753f9b"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>file_name</b></td></tr>
+<tr class="separator:a29b34eb62766954aafdabeaa76753f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74badfd974cfc5e1f70189a22cab3d3c"><td class="memItemLeft" align="right" valign="top"><a id="a74badfd974cfc5e1f70189a22cab3d3c"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>eol</b> = &quot;\n&quot;</td></tr>
 <tr class="separator:a74badfd974cfc5e1f70189a22cab3d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +157,12 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>eol</b> = &qu
 <tr class="memitem:a2b4967fd1035b8a4c24f74a10c4c0175"><td class="memItemLeft" align="right" valign="top"><a id="a2b4967fd1035b8a4c24f74a10c4c0175"></a>
 ObjectType&#160;</td><td class="memItemRight" valign="bottom"><b>object_type</b> = TypeUndefined</td></tr>
 <tr class="separator:a2b4967fd1035b8a4c24f74a10c4c0175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35910fbd525d405ccb818f7759f103ff"><td class="memItemLeft" align="right" valign="top"><a id="a35910fbd525d405ccb818f7759f103ff"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_open</b> = true</td></tr>
+<tr class="separator:a35910fbd525d405ccb818f7759f103ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a1148935db17a4fe18a4e4f470cccc5"><td class="memItemLeft" align="right" valign="top"><a id="a8a1148935db17a4fe18a4e4f470cccc5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>auto_close</b> = false</td></tr>
+<tr class="separator:a8a1148935db17a4fe18a4e4f470cccc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream and therfore provides all corresponding functionality. </p>

@@ -88,87 +88,88 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0fa24346d00df0dbc05fcc65f8a23ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html" title="FTPBasicAPI Implementation of Low Level FTP protocol. In order to simplify the logic we always use Pa...">FTPBasicAPI</a> Implementation of Low Level FTP protocol. In order to simplify the logic we always use Passive FTP where it is our responsibility to open the data conection. <br /></td></tr>
 <tr class="separator:a0fa24346d00df0dbc05fcc65f8a23ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b4dbdbb460fe6347f2042d5a506161e"><td class="memItemLeft" align="right" valign="top"><a id="a4b4dbdbb460fe6347f2042d5a506161e"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> (Client *cmd, Client *dat, IPAddress &amp;address, int port, int data_port, const char *username, const char *password)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> (Client *cmd, Client *dat, IPAddress &amp;address, int port, int data_port, const char *username, const char *password)</td></tr>
 <tr class="separator:a4b4dbdbb460fe6347f2042d5a506161e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88b8e68e3fa2be777489a9d562655b27"><td class="memItemLeft" align="right" valign="top"><a id="a88b8e68e3fa2be777489a9d562655b27"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>quit</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>quit</b> ()</td></tr>
 <tr class="separator:a88b8e68e3fa2be777489a9d562655b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5bd6090a3ccf3491627b980242b95d5"><td class="memItemLeft" align="right" valign="top"><a id="af5bd6090a3ccf3491627b980242b95d5"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>connected</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>connected</b> ()</td></tr>
 <tr class="separator:af5bd6090a3ccf3491627b980242b95d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bb5350c92353b33fbf4e43cab23c2be"><td class="memItemLeft" align="right" valign="top"><a id="a9bb5350c92353b33fbf4e43cab23c2be"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>passv</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>passv</b> ()</td></tr>
 <tr class="separator:a9bb5350c92353b33fbf4e43cab23c2be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73096385637b96a1e16a74f157d0eba6"><td class="memItemLeft" align="right" valign="top"><a id="a73096385637b96a1e16a74f157d0eba6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>binary</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>binary</b> ()</td></tr>
 <tr class="separator:a73096385637b96a1e16a74f157d0eba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3371aeed95d8199aad9dd2b51758348c"><td class="memItemLeft" align="right" valign="top"><a id="a3371aeed95d8199aad9dd2b51758348c"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>ascii</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ascii</b> ()</td></tr>
 <tr class="separator:a3371aeed95d8199aad9dd2b51758348c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a921dfd9eb57a8c0a69dab0b43af9068d"><td class="memItemLeft" align="right" valign="top"><a id="a921dfd9eb57a8c0a69dab0b43af9068d"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> (const char *type)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> (const char *type)</td></tr>
 <tr class="separator:a921dfd9eb57a8c0a69dab0b43af9068d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeca9b65d72d2fe991b1a5714107af234"><td class="memItemLeft" align="right" valign="top"><a id="aeca9b65d72d2fe991b1a5714107af234"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>del</b> (const char *file)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>del</b> (const char *file)</td></tr>
 <tr class="separator:aeca9b65d72d2fe991b1a5714107af234"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafcc538e3c6aaacda80e75625bfffa33"><td class="memItemLeft" align="right" valign="top"><a id="aafcc538e3c6aaacda80e75625bfffa33"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>mkdir</b> (const char *dir)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mkdir</b> (const char *dir)</td></tr>
 <tr class="separator:aafcc538e3c6aaacda80e75625bfffa33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a007f89745e7e08f03b329446de7fcde6"><td class="memItemLeft" align="right" valign="top"><a id="a007f89745e7e08f03b329446de7fcde6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>rmd</b> (const char *dir)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>rmd</b> (const char *dir)</td></tr>
 <tr class="separator:a007f89745e7e08f03b329446de7fcde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3384e394b13f0c10cd0e4de409a391b"><td class="memItemLeft" align="right" valign="top"><a id="ac3384e394b13f0c10cd0e4de409a391b"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>abort</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>abort</b> ()</td></tr>
 <tr class="separator:ac3384e394b13f0c10cd0e4de409a391b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50524678cf199aa0135d75d9915d320b"><td class="memItemLeft" align="right" valign="top"><a id="a50524678cf199aa0135d75d9915d320b"></a>
-virtual Stream *&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (const char *file_name)</td></tr>
+Stream *&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (const char *file_name)</td></tr>
 <tr class="separator:a50524678cf199aa0135d75d9915d320b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74b9ac1162913c45109681d2bfc3d565"><td class="memItemLeft" align="right" valign="top"><a id="a74b9ac1162913c45109681d2bfc3d565"></a>
-virtual Stream *&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const char *file_name, <a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a> mode)</td></tr>
+Stream *&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const char *file_name, <a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a> mode)</td></tr>
 <tr class="separator:a74b9ac1162913c45109681d2bfc3d565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5b0620b25ed2959f8de1521e88d3c46"><td class="memItemLeft" align="right" valign="top"><a id="aa5b0620b25ed2959f8de1521e88d3c46"></a>
-virtual Stream *&#160;</td><td class="memItemRight" valign="bottom"><b>ls</b> (const char *file_name)</td></tr>
+Stream *&#160;</td><td class="memItemRight" valign="bottom"><b>ls</b> (const char *file_name)</td></tr>
 <tr class="separator:aa5b0620b25ed2959f8de1521e88d3c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa989e7ffa9b0b60dc6daf897376e969e"><td class="memItemLeft" align="right" valign="top"><a id="aa989e7ffa9b0b60dc6daf897376e969e"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>closeData</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>closeData</b> ()</td></tr>
 <tr class="separator:aa989e7ffa9b0b60dc6daf897376e969e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82f079014b7224a71f2d5328ee667bc6"><td class="memItemLeft" align="right" valign="top"><a id="a82f079014b7224a71f2d5328ee667bc6"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setCurrentOperation</b> (CurrentOperation op)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCurrentOperation</b> (CurrentOperation op)</td></tr>
 <tr class="separator:a82f079014b7224a71f2d5328ee667bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa43bd7255b399a6c4f3b437a5daa8671"><td class="memItemLeft" align="right" valign="top"><a id="aa43bd7255b399a6c4f3b437a5daa8671"></a>
-virtual CurrentOperation&#160;</td><td class="memItemRight" valign="bottom"><b>currentOperation</b> ()</td></tr>
-<tr class="separator:aa43bd7255b399a6c4f3b437a5daa8671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef373ae61e25ec30b3ad18bc50a946c2"><td class="memItemLeft" align="right" valign="top"><a id="aef373ae61e25ec30b3ad18bc50a946c2"></a>
+CurrentOperation&#160;</td><td class="memItemRight" valign="bottom"><b>currentOperation</b> ()</td></tr>
+<tr class="separator:aef373ae61e25ec30b3ad18bc50a946c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5d165d53cb3970ac9b19eb1f2dbbe3a"><td class="memItemLeft" align="right" valign="top"><a id="aa5d165d53cb3970ac9b19eb1f2dbbe3a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> ()</td></tr>
 <tr class="separator:aa5d165d53cb3970ac9b19eb1f2dbbe3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dad90f79a53e5070af4d25cacc2448b"><td class="memItemLeft" align="right" valign="top"><a id="a7dad90f79a53e5070af4d25cacc2448b"></a>
-virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> (const char *dir)</td></tr>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> (const char *dir)</td></tr>
 <tr class="separator:a7dad90f79a53e5070af4d25cacc2448b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11f66f1c673986d34f6b62ec2d0e24d2"><td class="memItemLeft" align="right" valign="top"><a id="a11f66f1c673986d34f6b62ec2d0e24d2"></a>
-virtual ObjectType&#160;</td><td class="memItemRight" valign="bottom"><b>objectType</b> (const char *file)</td></tr>
+ObjectType&#160;</td><td class="memItemRight" valign="bottom"><b>objectType</b> (const char *file)</td></tr>
 <tr class="separator:a11f66f1c673986d34f6b62ec2d0e24d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af09a84be90b8ad7f6394b086f2215b58"><td class="memItemLeft" align="right" valign="top"><a id="af09a84be90b8ad7f6394b086f2215b58"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>checkResult</b> (const char *expected[], const char *command_for_log, bool wait_for_data=true)</td></tr>
+<tr class="separator:af09a84be90b8ad7f6394b086f2215b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a137f73ace2871f4ff4fde3ece202e10f"><td class="memItemLeft" align="right" valign="top"><a id="a137f73ace2871f4ff4fde3ece202e10f"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> (IPAddress adr, int port, Client *client, bool doCheckResult=false)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> (IPAddress adr, int port, Client *client, bool doCheckResult=false)</td></tr>
 <tr class="separator:a137f73ace2871f4ff4fde3ece202e10f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08b9cced87ae0dbfd26a175748a6e7af"><td class="memItemLeft" align="right" valign="top"><a id="a08b9cced87ae0dbfd26a175748a6e7af"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>cmd</b> (const char *command, const char *par, const char *expected, bool wait_for_data=true)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>cmd</b> (const char *command, const char *par, const char *expected, bool wait_for_data=true)</td></tr>
 <tr class="separator:a08b9cced87ae0dbfd26a175748a6e7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77349ff66f5384d86958c96727fceb56"><td class="memItemLeft" align="right" valign="top"><a id="a77349ff66f5384d86958c96727fceb56"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>cmd</b> (const char *command_str, const char *par, const char *expected[], bool wait_for_data=true)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>cmd</b> (const char *command_str, const char *par, const char *expected[], bool wait_for_data=true)</td></tr>
 <tr class="separator:a77349ff66f5384d86958c96727fceb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46e38753132a08fb0d3f68478fbef819"><td class="memItemLeft" align="right" valign="top"><a id="a46e38753132a08fb0d3f68478fbef819"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>checkClosed</b> (Client *stream)</td></tr>
-<tr class="separator:a46e38753132a08fb0d3f68478fbef819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af09a84be90b8ad7f6394b086f2215b58"><td class="memItemLeft" align="right" valign="top"><a id="af09a84be90b8ad7f6394b086f2215b58"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>checkResult</b> (const char *expected[], const char *command_for_log, bool wait_for_data=true)</td></tr>
-<tr class="separator:af09a84be90b8ad7f6394b086f2215b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac745ca911a988b45c137a63b1287e256"><td class="memItemLeft" align="right" valign="top"><a id="ac745ca911a988b45c137a63b1287e256"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>checkClosed</b> (Client *stream)</td></tr>
+<tr class="separator:ac745ca911a988b45c137a63b1287e256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a8a10d1a838b79f07e3c436a096d7e745"><td class="memItemLeft" align="right" valign="top">CurrentOperation&#160;</td><td class="memItemRight" valign="bottom"><b>current_operation</b></td></tr>
+<tr class="memitem:a8a10d1a838b79f07e3c436a096d7e745"><td class="memItemLeft" align="right" valign="top"><a id="a8a10d1a838b79f07e3c436a096d7e745"></a>
+CurrentOperation&#160;</td><td class="memItemRight" valign="bottom"><b>current_operation</b> = NOP</td></tr>
 <tr class="separator:a8a10d1a838b79f07e3c436a096d7e745"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97c6320e1ab8489afbb93684fb14f77a"><td class="memItemLeft" align="right" valign="top"><a id="a97c6320e1ab8489afbb93684fb14f77a"></a>
 Client *&#160;</td><td class="memItemRight" valign="bottom"><b>command_ptr</b> = nullptr</td></tr>
@@ -194,32 +195,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>FTPFile</b></td></tr
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html" title="FTPBasicAPI Implementation of Low Level FTP protocol. In order to simplify the logic we always use Pa...">FTPBasicAPI</a> Implementation of Low Level FTP protocol. In order to simplify the logic we always use Passive FTP where it is our responsibility to open the data conection. </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a8a10d1a838b79f07e3c436a096d7e745"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a10d1a838b79f07e3c436a096d7e745">&#9670;&nbsp;</a></span>current_operation</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">CurrentOperation ftp_client::FTPBasicAPI::current_operation</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">      NOP</div>
-</div><!-- fragment -->
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a></li>
 <li>src/ArduinoFTPClient.cpp</li>
 </ul>

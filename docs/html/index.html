@@ -82,57 +82,63 @@ TCP IP</h1>
 <p>To set up the FTPClient you need to provide a network client for the commands and one for the data to the constructor:</p>
 <h2><a class="anchor" id="autotoc_md2"></a>
 ESP32</h2>
-<div class="fragment"><div class="line">#include &quot;WiFi.h&quot;</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   #include &quot;WiFi.h&quot;</div>
 <div class="line"> </div>
-<div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 ESP8266</h2>
-<div class="fragment"><div class="line">#include &lt;ESP8266WiFi.h&gt;</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   #include &lt;ESP8266WiFi.h&gt;</div>
 <div class="line"> </div>
-<div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
 RP2040 W</h2>
-<div class="fragment"><div class="line">#include &lt;WiFi.h&gt;</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   #include &lt;WiFi.h&gt;</div>
 <div class="line"> </div>
-<div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
 Arduino Uno WiFi Rev.2, Arduino Nano 33 IoT etc</h2>
-<div class="fragment"><div class="line">#include &lt;WiFiNINA.h&gt;</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   #include &lt;WiFiNINA.h&gt;</div>
 <div class="line"> </div>
-<div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
 Ethernet Shield</h2>
-<div class="fragment"><div class="line">#include &lt;Ethernet.h&gt;</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   #include &lt;Ethernet.h&gt;</div>
 <div class="line"> </div>
-<div class="line">EthernetClient cmd;</div>
-<div class="line">EthernetClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="line">   EthernetClient cmd;</div>
+<div class="line">   EthernetClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
 Other Platforms</h2>
 <p>The initialization of TCP/IP is pretty much platform dependent. I suggest that you have a look at the network specific examples provided by Arduino, in order to find what includes and classes you need to use on your platform.</p>
 <h2><a class="anchor" id="autotoc_md8"></a>
 Connecting</h2>
 <p>This is platform specific as well. On a ESP32 or ESP8266 e.g. the following login into the WiFi network is working:</p>
-<div class="fragment"><div class="line">Serial.begin(115200);</div>
-<div class="line">// connect to WIFI</div>
-<div class="line">WiFi.begin(&quot;Network name, &quot;wifi password&quot;);</div>
-<div class="line">while (WiFi.status() != WL_CONNECTED) {</div>
-<div class="line">  delay(500);</div>
-<div class="line">  Serial.print(&quot;.&quot;);</div>
-<div class="line">}</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   Serial.begin(115200);</div>
+<div class="line">   // connect to WIFI</div>
+<div class="line">   WiFi.begin(&quot;Network name, &quot;wifi password&quot;);</div>
+<div class="line">   while (WiFi.status() != WL_CONNECTED) {</div>
+<div class="line">     delay(500);</div>
+<div class="line">     Serial.print(&quot;.&quot;);</div>
+<div class="line">   }</div>
 <div class="line"> </div>
-<div class="line">IPAddress localAddress = WiFi.localIP();</div>
-<div class="line">Serial.println();</div>
-<div class="line">Serial.print(&quot;Started with address &quot;);</div>
-<div class="line">Serial.println(localAddress.toString());</div>
+<div class="line">   IPAddress localAddress = WiFi.localIP();</div>
+<div class="line">   Serial.println();</div>
+<div class="line">   Serial.print(&quot;Started with address &quot;);</div>
+<div class="line">   Serial.println(localAddress.toString());</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
 File Download - Reading Remote Files</h1>
 <p>You open a FTP connection to a remote host by calling the begin() method on a ArduinoFTPClient object where you pass</p><ul>
@@ -142,66 +148,72 @@ File Download - Reading Remote Files</h1>
 </li>
 </ul>
 <p>The open method provides a FTPFile for the indicated file name. The FTPFile is just a Stream so you have all reading and writing functionality available that you already know e.g. from Serial.</p>
-<div class="fragment"><div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 <div class="line"> </div>
-<div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;);</div>
-<div class="line">byte buffer[100];</div>
-<div class="line">while (file.available()&gt;0){</div>
-<div class="line">    int len = file.read(buffer, 100);</div>
-<div class="line">    Serial.write(buffer, len);</div>
-<div class="line">}</div>
-<div class="line">file.close();</div>
-<div class="line">client.end();</div>
+<div class="line">   client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
+<div class="line">   FTPFile file = client.open(&quot;/test.txt&quot;);</div>
+<div class="line">   byte buffer[100];</div>
+<div class="line">   while (file.available()&gt;0){</div>
+<div class="line">       int len = file.read(buffer, 100);</div>
+<div class="line">       Serial.write(buffer, len);</div>
+<div class="line">   }</div>
+<div class="line">   file.close();</div>
+<div class="line">   client.end();</div>
 </div><!-- fragment --><p> After the processing you need to close the file with close() and the client with end() to release the resources.</p>
 <h1><a class="anchor" id="autotoc_md10"></a>
 File Download - Line Based</h1>
-<p>Instead of reading a bock of characters we can request to read a line (which is delimited with LF) </p><div class="fragment"><div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<p>Instead of reading a bock of characters we can request to read a line (which is delimited with LF)</p>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 <div class="line"> </div>
-<div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;);</div>
-<div class="line">char buffer[100];</div>
-<div class="line">while (file.available()&gt;0){</div>
-<div class="line">    file.readln(buffer, 100);</div>
-<div class="line">    Serial.println(buffer);</div>
-<div class="line">}</div>
-<div class="line">file.close();</div>
-<div class="line">client.end();</div>
+<div class="line">   client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
+<div class="line">   FTPFile file = client.open(&quot;/test.txt&quot;);</div>
+<div class="line">   char buffer[100];</div>
+<div class="line">   while (file.available()&gt;0){</div>
+<div class="line">       file.readln(buffer, 100);</div>
+<div class="line">       Serial.println(buffer);</div>
+<div class="line">   }</div>
+<div class="line">   file.close();</div>
+<div class="line">   client.end();</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
 File Upload - Writing to Remote Files</h1>
 <p>You can write to a file on a remote system by using the regular Stream write() or print() methods. If the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.</p>
-<div class="fragment"><div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 <div class="line"> </div>
-<div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;, WRITE_MODE);</div>
-<div class="line">char buffer[100];</div>
-<div class="line">for (int j=0;j&lt;100;j++){</div>
-<div class="line">    sprintf(buffer, &quot;test %d&quot;, j);</div>
-<div class="line">    file.println(buffer);</div>
-<div class="line">}</div>
-<div class="line">file.close();</div>
-<div class="line">client.end();</div>
+<div class="line">   client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
+<div class="line">   FTPFile file = client.open(&quot;/test.txt&quot;, WRITE_MODE);</div>
+<div class="line">   char buffer[100];</div>
+<div class="line">   for (int j=0;j&lt;100;j++){</div>
+<div class="line">       sprintf(buffer, &quot;test %d&quot;, j);</div>
+<div class="line">       file.println(buffer);</div>
+<div class="line">   }</div>
+<div class="line">   file.close();</div>
+<div class="line">   client.end();</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
 File Upload - Appending</h1>
-<p>You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND </p><div class="fragment"><div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<p>You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND</p>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
 <div class="line"> </div>
-<div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line">FTPFile file = client.open(&quot;/test.txt&quot;, WRITE_APPEND_MODE);</div>
-<div class="line">char buffer[100];</div>
-<div class="line">for (int j=0;j&lt;100;j++){</div>
-<div class="line">    sprintf(buffer, &quot;test %d&quot;, j);</div>
-<div class="line">    file.println(buffer);</div>
-<div class="line">}</div>
-<div class="line">file.close();</div>
-<div class="line">client.end();</div>
+<div class="line">   client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
+<div class="line">   FTPFile file = client.open(&quot;/test.txt&quot;, WRITE_APPEND_MODE);</div>
+<div class="line">   char buffer[100];</div>
+<div class="line">   for (int j=0;j&lt;100;j++){</div>
+<div class="line">       sprintf(buffer, &quot;test %d&quot;, j);</div>
+<div class="line">       file.println(buffer);</div>
+<div class="line">   }</div>
+<div class="line">   file.close();</div>
+<div class="line">   client.end();</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
 Directory operatrions</h1>
 <p>The ArduinoFTPClient supports the following directory operations:</p>
@@ -214,22 +226,24 @@ Directory operatrions</h1>
 <h2><a class="anchor" id="autotoc_md14"></a>
 List Directory</h2>
 <p>The files of a directory are listed with the help of an Iterator.</p>
-<div class="fragment"><div class="line">WiFiClient cmd;</div>
-<div class="line">WiFiClient data;</div>
-<div class="line">FTPClient client(cmd, data);</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   WiFiClient cmd;</div>
+<div class="line">   WiFiClient data;</div>
+<div class="line">   FTPClient client(cmd, data);</div>
+<div class="line">   </div>
+<div class="line">   client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
 <div class="line"> </div>
-<div class="line">client.begin(IPAddress(192,168,1,10), &quot;user&quot;, &quot;password&quot;);</div>
-<div class="line"> </div>
-<div class="line">// list files</div>
-<div class="line">for (auto file : client.ls(&quot;/&quot;))  {</div>
-<div class="line">    Serial.println(file.name());</div>
-<div class="line">}</div>
+<div class="line">   // list files</div>
+<div class="line">   for (auto file : client.ls(&quot;/&quot;))  {</div>
+<div class="line">       Serial.println(file.name());</div>
+<div class="line">   }</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
 Logging</h1>
 <p>You can activate the logging by defining the Stream which should be used for logging and setting the log level. Supported log levels are LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR</p>
-<div class="fragment"><div class="line">Serial.begin(9600);</div>
-<div class="line">FTPLogger::setOutput(Serial);</div>
-<div class="line">FTPLogger::setLogLevel(LOG_DEBUG);</div>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line">   Serial.begin(9600);</div>
+<div class="line">   FTPLogger::setOutput(Serial);</div>
+<div class="line">   FTPLogger::setLogLevel(LOG_DEBUG);</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md16"></a>
 Limitations</h1>
 <p>We currently support only one open control session with one open data session. This means that you can not run multiple operations in parallel. E.g doing a download while the list directory is still in process.</p>
@@ -255,7 +269,15 @@ Support</h1>
 Installation</h1>
 <p>You can download the library as zip and call include Library -&gt; zip library. Or you can git clone this project into the Arduino libraries folder e.g. with </p><div class="fragment"><div class="line">cd  ~/Documents/Arduino/libraries</div>
 <div class="line">git clone https://github.com/pschatzmann/TinyFTPClient.git</div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+</div><!-- fragment --><p>I recommend to use git because you can easily update to the latest version just by executing the git pull command in the project folder.</p>
+<h1><a class="anchor" id="autotoc_md20"></a>
+Sponsor Me</h1>
+<p>This software is totally free, but you can make me happy by rewarding me with a treat</p>
+<ul>
+<li><a href="https://www.buymeacoffee.com/philschatzh">Buy me a coffee</a></li>
+<li><a href="https://paypal.me/pschatzmann?country.x=CH&amp;locale.x=en_US">Paypal me</a> </li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
