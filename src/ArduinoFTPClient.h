@@ -38,8 +38,21 @@
 #include "Stream.h"
 
 #ifndef FTP_USE_NAMESPACE
-#  define FTP_USE_NAMESPACE true
+#define FTP_USE_NAMESPACE true
 #endif
+
+#ifndef FTP_ABPRT_DELAY_MS 
+#define FTP_ABORT_DELAY_MS 300
+#endif
+
+#ifndef FTP_COMMAND_BUFFER_SIZE 
+#define FTP_COMMAND_BUFFER_SIZE 300
+#endif
+
+#ifndef FTP_RESULT_BUFFER_SIZE 
+#define FTP_RESULT_BUFFER_SIZE 300
+#endif
+
 
 namespace ftp_client {
 
@@ -50,10 +63,9 @@ static const int DATA_PORT = 1000;
 
 /// @brief File Mode
 enum FileMode { READ_MODE, WRITE_MODE, WRITE_APPEND_MODE };
-enum CurrentOperation { READ_OP, WRITE_OP, LS_OP, NOP };
+enum CurrentOperation { READ_OP, WRITE_OP, LS_OP, NOP, IS_EOF };
 enum LogLevel { LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR };
 enum ObjectType { TypeFile, TypeDirectory, TypeUndefined };
-
 
 /**
  * @brief CStringFunctions
@@ -61,7 +73,7 @@ enum ObjectType { TypeFile, TypeDirectory, TypeUndefined };
  */
 
 class CStringFunctions {
-public:
+ public:
   static int findNthInStr(char *str, char ch, int n) {
     int occur = 0;
     // Loop to find the Nth
@@ -70,8 +82,7 @@ public:
       if (str[i] == ch) {
         occur += 1;
       }
-      if (occur == n)
-        return i;
+      if (occur == n) return i;
     }
     return -1;
   }
@@ -100,14 +111,14 @@ public:
  * FTPLogger.setOutput(Serial); and (optionally) set the log level
  */
 class FTPLogger {
-public:
+ public:
   static void setLogLevel(LogLevel level);
   static LogLevel getLogLevel();
   static void setOutput(Stream &out);
   static void writeLog(LogLevel level, const char *module,
                        const char *msg = nullptr);
 
-protected:
+ protected:
   static LogLevel min_log_level;
   static Stream *out_ptr;
 };
@@ -122,45 +133,45 @@ protected:
 class FTPBasicAPI {
   friend class FTPFile;
 
-public:
+ public:
   FTPBasicAPI();
   ~FTPBasicAPI();
-  virtual bool open(Client *cmd, Client *dat, IPAddress &address, int port,
-                    int data_port, const char *username, const char *password);
-  virtual bool quit();
-  virtual bool connected();
-  virtual bool passv();
-  virtual bool binary();
-  virtual bool ascii();
-  virtual bool type(const char *type);
-  virtual bool del(const char *file);
-  virtual bool mkdir(const char *dir);
-  virtual bool rmd(const char *dir);
-  virtual bool abort();
-  virtual Stream *read(const char *file_name);
-  virtual Stream *write(const char *file_name, FileMode mode);
-  virtual Stream *ls(const char *file_name);
-  virtual void closeData();
-  virtual void setCurrentOperation(CurrentOperation op);
-  virtual CurrentOperation currentOperation() { return current_operation; }
-  virtual void flush();
-  virtual size_t size(const char *dir);
-  virtual ObjectType objectType(const char *file);
-
-protected:
-  virtual bool connect(IPAddress adr, int port, Client *client,
-                       bool doCheckResult = false);
-  virtual bool cmd(const char *command, const char *par, const char *expected,
+  bool open(Client *cmd, Client *dat, IPAddress &address, int port,
+            int data_port, const char *username, const char *password);
+  bool quit();
+  bool connected();
+  bool passv();
+  bool binary();
+  bool ascii();
+  bool type(const char *type);
+  bool del(const char *file);
+  bool mkdir(const char *dir);
+  bool rmd(const char *dir);
+  bool abort();
+  Stream *read(const char *file_name);
+  Stream *write(const char *file_name, FileMode mode);
+  Stream *ls(const char *file_name);
+  void closeData();
+  void setCurrentOperation(CurrentOperation op);
+  CurrentOperation currentOperation() { return current_operation; }
+  void flush();
+  size_t size(const char *dir);
+  ObjectType objectType(const char *file);
+  bool checkResult(const char *expected[], const char *command_for_log,
                    bool wait_for_data = true);
-  virtual bool cmd(const char *command_str, const char *par,
-                   const char *expected[], bool wait_for_data = true);
-  virtual void checkClosed(Client *stream);
-  virtual bool checkResult(const char *expected[], const char *command_for_log,
-                           bool wait_for_data = true);
-// currently running op -> do we need to cancel ?
-  CurrentOperation current_operation = NOP; 
-  Client *command_ptr = nullptr; // Client for commands
-  Client *data_ptr = nullptr;    // Client for upload and download of files
+
+ protected:
+  bool connect(IPAddress adr, int port, Client *client,
+               bool doCheckResult = false);
+  bool cmd(const char *command, const char *par, const char *expected,
+           bool wait_for_data = true);
+  bool cmd(const char *command_str, const char *par, const char *expected[],
+           bool wait_for_data = true);
+  bool checkClosed(Client *stream);
+  // currently running op -> do we need to cancel ?
+  CurrentOperation current_operation = NOP;
+  Client *command_ptr = nullptr;  // Client for commands
+  Client *data_ptr = nullptr;     // Client for upload and download of files
   IPAddress remote_address;
   bool is_open;
   char result_reply[80];
@@ -175,38 +186,40 @@ protected:
  */
 
 class FTPFile : public Stream {
-public:
-  FTPFile() = default;
-  FTPFile(FTPBasicAPI *api_ptr, const char *name, FileMode mode, bool autoClose=true);
-  FTPFile(FTPFile &cpy);
-  FTPFile(FTPFile &&move);
+ public:
+  FTPFile() {is_open = false;}
+  FTPFile(FTPBasicAPI *api_ptr, const char *name, FileMode mode,
+          bool autoClose = true);
   ~FTPFile();
-  FTPFile &operator=(const FTPFile &);
-  virtual size_t write(uint8_t data);
-  virtual size_t write(char *data, int len);
-  virtual int read();
-  virtual int read(void *buf, size_t nbyte);
-  virtual int readln(void *buf, size_t nbyte);
+  size_t write(uint8_t data);
+  size_t write(char *data, int len);
+  int read();
+  size_t readBytes(char *buf, size_t nbyte) {
+    return readBytes((uint8_t *)buf, nbyte);
+  }
+  size_t readBytes(uint8_t *buf, size_t nbyte);
+  size_t readln(char *buf, size_t nbyte);
 
-  virtual int peek();
-  virtual int available();
-  virtual void flush();
-  virtual void close();
-  virtual const char *name() const;
-  virtual size_t size();
-  virtual void setEOL(char *eol);
-  virtual bool isDirectory();
+  int peek();
+  int available();
+  void flush();
+  void reopen() { is_open = true; }
+  void close();
+  const char *name() const;
+  size_t size() const;
+  void setEOL(char *eol);
+  bool isDirectory() const;
 
-  operator bool() { return is_open; }
+  operator bool() { return is_open && file_name.length() > 0; }
 
-protected:
-  const char *file_name = nullptr;
+ protected:
+  String file_name;
   const char *eol = "\n";
   FileMode mode;
   FTPBasicAPI *api_ptr;
   ObjectType object_type = TypeUndefined;
   bool is_open = true;
-  bool auto_close = true;
+  bool auto_close = false;
 };
 
 /**
@@ -217,37 +230,37 @@ protected:
  * it with read and write operations.
  */
 class FTPFileIterator {
-public:
+ public:
   FTPFileIterator() = default;
   FTPFileIterator(FTPBasicAPI *api, const char *dir, FileMode mode);
-  FTPFileIterator(FTPFileIterator &copy);
-  FTPFileIterator(FTPFileIterator &&copy);
-  ~FTPFileIterator();
-  virtual FTPFileIterator &begin();
-  virtual FTPFileIterator &end();
-  virtual FTPFileIterator &operator++();
-  virtual FTPFileIterator &operator++(int _na);
-  virtual FTPFile operator* ();
-  virtual bool operator!=(const FTPFileIterator &comp) {
-    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) != 0;
+  FTPFileIterator &begin();
+  FTPFileIterator &end();
+  FTPFileIterator &operator++();
+  FTPFileIterator &operator++(int _na);
+  FTPFile operator*();
+  bool operator!=(const FTPFileIterator &comp) {
+    return buffer != comp.buffer;
   }
-  virtual bool operator>(const FTPFileIterator &comp) {
-    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) > 0;
+  bool operator==(const FTPFileIterator &comp) {
+    return buffer == comp.buffer;
   }
-  virtual bool operator<(const FTPFileIterator &comp) {
-    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) < 0;
+  bool operator>(const FTPFileIterator &comp) {
+    return buffer > comp.buffer;
   }
-  virtual bool operator>=(const FTPFileIterator &comp) {
-    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) >= 0;
+  bool operator<(const FTPFileIterator &comp) {
+    return buffer < comp.buffer;
   }
-  virtual bool operator<=(const FTPFileIterator &comp) {
-    return strcmp(this->buffer.c_str(), comp.buffer.c_str()) <= 0;
+  bool operator>=(const FTPFileIterator &comp) {
+    return buffer >= comp.buffer;
+  }
+  bool operator<=(const FTPFileIterator &comp) {
+    return buffer <= comp.buffer;
   }
 
-  const char* fileName() {return buffer.c_str();}
+  const char *fileName() { return buffer.c_str(); }
 
-protected:
-  virtual void readLine();
+ protected:
+  void readLine();
 
   FTPBasicAPI *api_ptr = nullptr;
   Stream *stream_ptr = nullptr;
@@ -263,34 +276,39 @@ protected:
  *
  */
 class FTPClient {
-public:
+ public:
   /// default construcotr
   FTPClient(Client &command, Client &data, int port = COMMAND_PORT,
             int data_port = DATA_PORT);
   /// opens the ftp connection
-  virtual bool begin(IPAddress remote_addr, const char *user = "anonymous",
-                     const char *password = nullptr);
+  bool begin(IPAddress remote_addr, const char *user = "anonymous",
+             const char *password = nullptr);
   /// Close the sessions by calling QUIT or BYE
-  virtual bool end();
+  bool end();
   /// get the file
-  virtual FTPFile open(const char *filename, FileMode mode = READ_MODE);
+  FTPFile open(const char *filename, FileMode mode = READ_MODE,
+               bool autoClose = false);
   /// Create the requested directory heirarchy--if intermediate directories
   /// do not exist they will be created.
-  virtual bool mkdir(const char *filepath);
+  bool mkdir(const char *filepath);
   /// Delete the file.
-  virtual bool remove(const char *filepath);
+  bool remove(const char *filepath);
   /// Removes a directory
-  virtual bool rmdir(const char *filepath);
+  bool rmdir(const char *filepath);
   /// lists all file names in the specified directory
-  virtual FTPFileIterator ls(const char *path, FileMode mode = WRITE_MODE);
+  FTPFileIterator ls(const char *path, FileMode mode = WRITE_MODE);
   /// Switch to binary mode
-  virtual bool binary() { return api.binary();}
+  bool binary() { return api.binary(); }
   /// Switch to ascii mode
-  virtual bool ascii() { return api.ascii();}
+  bool ascii() { return api.ascii(); }
   /// Binary or ascii with type command
-  virtual bool type(const char *str) { return api.type(str);}
+  bool type(const char *str) { return api.type(str); }
+  /// Abort a current file transfer
+  bool abort() { 
+    return api.abort(); 
+}
 
-protected:
+ protected:
   void init(Client *command, Client *data, int port = COMMAND_PORT,
             int data_port = DATA_PORT);
   FTPBasicAPI api;
@@ -303,9 +321,10 @@ protected:
   int data_port;
   bool cleanup_clients;
   bool auto_close = true;
+
 };
 
-} // ns
+}  // namespace ftp_client
 
 #if FTP_USE_NAMESPACE
 using namespace ftp_client;

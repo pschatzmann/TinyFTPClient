@@ -80,8 +80,6 @@ bool FTPBasicAPI::open(Client *cmdPar, Client *dataPar, IPAddress &address, int 
         const char* ok_result[] = {"230","202",nullptr};
         if(!cmd("PASS", password, ok_result)) return false;
     }
-    // set passive mode
-    if (!passv()) return false;
     
     is_open = true;;
     return true;
@@ -168,13 +166,19 @@ ObjectType FTPBasicAPI::objectType(const char * file) {
 }
 
 bool FTPBasicAPI::abort() {
-    if (current_operation!=NOP) {
+    bool rc = true;
+    if (current_operation == READ_OP || current_operation == WRITE_OP || current_operation == LS_OP ) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","abort");      
-        const char* ok[] = {"225", "226",nullptr};
+        if (data_ptr->connected())data_ptr->stop();
+
+        const char* ok[] = {"426", "226", "225",nullptr};
         setCurrentOperation(NOP);
-        return cmd("ABOR", nullptr, ok);
+        rc = cmd("ABOR", nullptr, ok);
+        delay(FTP_ABORT_DELAY_MS);
+        while(command_ptr->available() > 0)
+           checkResult(ok, "ABOR", false);
     }
-    return true;
+    return rc;
 }
 
 bool FTPBasicAPI::binary() {
@@ -192,11 +196,9 @@ bool FTPBasicAPI::type(const char* txt) {
     return cmd("TYPE", txt, "200");
 }
 
-
 Stream *FTPBasicAPI::read(const char* file_name ) {
-    if (current_operation!=READ_OP) {
+    if (current_operation != READ_OP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "read");      
-        abort();
         const char* ok[] = {"150","125", nullptr};
         cmd("RETR", file_name, ok);
         setCurrentOperation(READ_OP);
@@ -208,7 +210,6 @@ Stream *FTPBasicAPI::read(const char* file_name ) {
 Stream *FTPBasicAPI::write(const char* file_name, FileMode mode) {
     if (current_operation!=WRITE_OP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "write");      
-        abort();
         const char* ok_write[] = {"125", "150", nullptr};
         cmd(mode == WRITE_APPEND_MODE ? "APPE": "STOR", file_name, ok_write);
         setCurrentOperation(WRITE_OP);
@@ -219,7 +220,6 @@ Stream *FTPBasicAPI::write(const char* file_name, FileMode mode) {
 
 Stream* FTPBasicAPI::ls(const char* file_name){
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", "ls");      
-    abort();
     const char* ok[] = {"125", "150", nullptr};
     cmd("NLST",file_name, ok);
     setCurrentOperation(LS_OP);
@@ -227,12 +227,14 @@ Stream* FTPBasicAPI::ls(const char* file_name){
 }
 
 void FTPBasicAPI::closeData() {
-    FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","closeData");      
+    FTPLogger::writeLog( LOG_INFO, "FTPBasicAPI","closeData");      
     data_ptr->stop();
-    setCurrentOperation(NOP);
 }
 
 void FTPBasicAPI::setCurrentOperation(CurrentOperation op){
+    char msg[80];
+    sprintf(msg, "setCurrentOperation: %d", (int)op);
+    FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI", msg);      
     current_operation = op;
 }
 
@@ -248,7 +250,16 @@ bool FTPBasicAPI::connect(IPAddress adr, int port, Client *client_ptr, bool doCh
     sprintf(buffer,"connect %s:%d", adr.toString().c_str(), port);
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI::connect", buffer); 
 #endif         
-    ok = client_ptr->connect(adr, port);
+    // try to connect 10 times
+    client_ptr->stop(); // make sure we start with a clean state
+    delay(100);
+    for (int j=0;j < 10; j++){
+        ok = client_ptr->connect(adr, port);
+        if (ok) break;
+        delay(500);
+    }
+    //ok = client_ptr->connect(adr, port);
+    ok = client_ptr->connected();
     if (ok && doCheckResult){
         const char* ok_result[] = {"220","200",nullptr};
         ok = checkResult(ok_result, "connect");
@@ -257,10 +268,12 @@ bool FTPBasicAPI::connect(IPAddress adr, int port, Client *client_ptr, bool doCh
         while(command_ptr->available() > 0){
             command_ptr->read();
         }
-
     }
-    if (!ok){
-        FTPLogger::writeLog( LOG_ERROR, "FTPBasicAPI::connect", buffer);      
+    // log result
+    if (ok) {
+        FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI::connected", buffer);      
+    } else {
+        FTPLogger::writeLog( LOG_ERROR, "FTPBasicAPI::connected", buffer);      
     }
     return ok;
 }
@@ -271,13 +284,13 @@ bool FTPBasicAPI::cmd(const char* command, const char* par, const char* expected
 }
 
 bool FTPBasicAPI::cmd(const char* command_str, const char* par, const char* expected[], bool wait_for_data) {
-    char command_buffer[512];
+    char command_buffer[FTP_COMMAND_BUFFER_SIZE];
     Stream *stream_ptr = command_ptr;
     if (par==nullptr){
-        strcpy(command_buffer, command_str);
+        strncpy(command_buffer,FTP_COMMAND_BUFFER_SIZE, command_str);
         stream_ptr->println(command_buffer);
     } else {
-        sprintf(command_buffer,"%s %s", command_str, par);
+        snprintf(command_buffer,FTP_COMMAND_BUFFER_SIZE, "%s %s", command_str, par);
         stream_ptr->println(command_buffer);
     }
     FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI::cmd", command_buffer);
@@ -291,7 +304,7 @@ bool FTPBasicAPI::checkResult(const char* expected[],const char* command, bool w
     result_reply[0] = '\0';
     Stream *stream_ptr = command_ptr;
 
-    char result_str[80];
+    char result_str[FTP_RESULT_BUFFER_SIZE];
     if (wait_for_data || stream_ptr->available()) {
         // wait for reply
         while(stream_ptr->available()==0){
@@ -299,7 +312,7 @@ bool FTPBasicAPI::checkResult(const char* expected[],const char* command, bool w
         }
         // read reply
         //result_str = stream_ptr->readStringUntil('\n').c_str();
-        CStringFunctions::readln(*stream_ptr, result_str, 80);
+        CStringFunctions::readln(*stream_ptr, result_str, FTP_RESULT_BUFFER_SIZE);
 
         if (strlen(result_str)>3) {  
             FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI::checkResult", result_str);
@@ -339,12 +352,14 @@ bool FTPBasicAPI::checkResult(const char* expected[],const char* command, bool w
     return ok;    
 }
 
-void FTPBasicAPI::checkClosed(Client *client){
+bool FTPBasicAPI::checkClosed(Client *client){
     if (!client->connected()){
         FTPLogger::writeLog( LOG_DEBUG, "FTPBasicAPI","checkClosed -> client is closed"); 
         // mark the actual command as completed     
-        setCurrentOperation(NOP);
+        setCurrentOperation(IS_EOF);
+        return true;
     }
+    return false;
 } 
 
 
@@ -356,47 +371,17 @@ void FTPBasicAPI::checkClosed(Client *client){
  */
 
 FTPFile::FTPFile(FTPBasicAPI *api_ptr, const char* name, FileMode mode, bool autoClose){
-    FTPLogger::writeLog( LOG_DEBUG, "FTPFile");
+    FTPLogger::writeLog( LOG_DEBUG, "FTPFile", name);
     auto_close = autoClose;
     if (name!=nullptr)
-        this->file_name = strdup(name);
+        file_name = name;
     this->mode = mode;
     this->api_ptr = api_ptr;
 }
 
-FTPFile::FTPFile(FTPFile &cpy){
-    file_name = strdup(cpy.file_name);
-    eol = cpy.eol;
-    mode = cpy.mode;
-    api_ptr = cpy.api_ptr;
-    object_type = cpy.object_type;
-}
-
-FTPFile::FTPFile(FTPFile &&move){
-    file_name = move.file_name;
-    eol = move.eol;
-    mode = move.mode;
-    api_ptr = move.api_ptr;
-    object_type = move.object_type;
-    // clear source
-    move.file_name = nullptr;
-    api_ptr = nullptr;
-}
-
-FTPFile& FTPFile::operator=(const FTPFile &cpy) {
-    file_name = strdup(cpy.file_name);
-    eol = cpy.eol;
-    mode = cpy.mode;
-    api_ptr = cpy.api_ptr;
-    object_type = cpy.object_type;
-    return *this;
-}
 
 FTPFile::~FTPFile(){
-    if (this->file_name!=nullptr){
-        if (auto_close) close();
-        free((void*)this->file_name);
-    }
+    if (auto_close) close();
 }
 
 size_t FTPFile::write(uint8_t data) {
@@ -406,7 +391,7 @@ size_t FTPFile::write(uint8_t data) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "Can not write - File has been opened in READ_MODE");
         return 0;
     }
-    Stream *result_ptr = api_ptr->write(file_name, mode );
+    Stream *result_ptr = api_ptr->write(file_name.c_str(), mode );
     return result_ptr->write(data);
 }
 
@@ -422,59 +407,61 @@ size_t FTPFile::write(char* data, int len) {
 int FTPFile::read() {
     if (!is_open) return -1;
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "read");
-    Stream *result_ptr =  api_ptr->read(file_name);
+    Stream *result_ptr =  api_ptr->read(file_name.c_str());
     return result_ptr->read();
 }
-int FTPFile::read(void *buf, size_t nbyte) {
+size_t FTPFile::readBytes(uint8_t *buf, size_t nbyte) {
     if (!is_open) return 0;
-    FTPLogger::writeLog( LOG_INFO, "FTPFile", "read-n");
+    FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "readBytes");
     memset(buf,0, nbyte);
-    Stream *result_ptr =  api_ptr->read(file_name);
+    Stream *result_ptr =  api_ptr->read(file_name.c_str());
     return result_ptr->readBytes((char*)buf, nbyte);
 }
-int FTPFile::readln(void *buf, size_t nbyte) {
+size_t FTPFile::readln(char *buf, size_t nbyte) {
     if (!is_open) return 0;
-    FTPLogger::writeLog( LOG_INFO, "FTPFile", "readln");
+    FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "readln");
     memset(buf,0, nbyte);
-    Stream *result_ptr =  api_ptr->read(file_name);
+    Stream *result_ptr =  api_ptr->read(file_name.c_str());
     return result_ptr->readBytesUntil(eol[0], (char*)buf, nbyte );
 }
 int FTPFile::peek() {
     if (!is_open) return -1;
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "peek");
-    Stream *result_ptr =  api_ptr->read(file_name);
+    Stream *result_ptr =  api_ptr->read(file_name.c_str());
     return result_ptr->peek();
 }
 int FTPFile::available(){
+    if (api_ptr->currentOperation()== IS_EOF) return 0;
     if (!is_open) return 0;
+
     char msg[80];
-    Stream *result_ptr =  api_ptr->read(file_name);
+    Stream *result_ptr =  api_ptr->read(file_name.c_str());
     int len = result_ptr->available();
     sprintf(msg,"available: %d", len);
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", msg);
     return len;
 }
 
-size_t FTPFile::size(){
+size_t FTPFile::size() const {
     if (!is_open) return 0;
     char msg[80];
-    size_t size =  api_ptr->size(file_name);
+    size_t size =  api_ptr->size(file_name.c_str());
     sprintf(msg,"size: %d", size);
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", msg);
     return size;
 }
 
-bool FTPFile::isDirectory(){
+bool FTPFile::isDirectory() const {
     if (!is_open) return false;
     FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "isDirectory");
-    return  api_ptr->objectType(file_name)==TypeDirectory;
+    return  api_ptr->objectType(file_name.c_str())==TypeDirectory;
 }
 
 void FTPFile::flush() {
     if (!is_open) return;
     if (api_ptr->currentOperation()==WRITE_OP) {
         FTPLogger::writeLog( LOG_DEBUG, "FTPFile", "flush");
-        Stream *result_ptr =  api_ptr->write(file_name, mode);
+        Stream *result_ptr =  api_ptr->write(file_name.c_str(), mode);
         result_ptr->flush();
     }
 }
@@ -483,7 +470,7 @@ void FTPFile::close() {
     if (is_open){
         FTPLogger::writeLog( LOG_INFO, "FTPFile", "close");
         const char* ok[] = {"226", nullptr};
-        api_ptr->checkResult(ok, "close", false);
+        bool is_ok = api_ptr->checkResult(ok, "close", false);
         if (api_ptr->currentOperation()==WRITE_OP) {
             flush();
         }
@@ -493,7 +480,7 @@ void FTPFile::close() {
 }
 
 const char * FTPFile::name() const {
-    return file_name;
+    return file_name.c_str();
 }
 
 void FTPFile::setEOL(char* eol){
@@ -533,15 +520,27 @@ bool FTPClient::begin(IPAddress remote_addr, const char* user, const char* passw
 bool FTPClient::end() {
     FTPLogger::writeLog( LOG_INFO, "FTPClient", "end");
     bool result = api.quit();
+
+    api.setCurrentOperation(NOP);
+
     if (command_ptr) command_ptr->stop();
     if (data_ptr) data_ptr->stop();
     return result;
 }
 
 // get the file 
-FTPFile FTPClient::open(const char *filename, FileMode mode) {
-    FTPLogger::writeLog( LOG_INFO, "FTPClient", "open");
-    return FTPFile(&api, filename, mode );
+FTPFile FTPClient::open(const char *filename, FileMode mode, bool autoClose) {
+    char msg[200];
+    snprintf(msg, sizeof(msg), "open: %s", filename);
+    FTPLogger::writeLog( LOG_INFO, "FTPClient", msg);
+    // abort any open processing
+    api.abort();
+    // open new data connection
+    api.passv();
+
+    api.setCurrentOperation(NOP);
+
+    return FTPFile(&api, filename, mode, autoClose );
 }
 
 // Create the requested directory heirarchy--if intermediate directories
@@ -582,29 +581,7 @@ FTPFileIterator::FTPFileIterator(FTPBasicAPI *api, const char* dir, FileMode mod
     this->directory_name = dir;
     this->api_ptr = api;
     this->file_mode = mode;
-}
-FTPFileIterator::FTPFileIterator(FTPFileIterator &copy) {
-    FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator()-copy");
-    this->api_ptr = copy.api_ptr;
-    this->stream_ptr = copy.stream_ptr;
-    this->directory_name = copy.directory_name;  
-    this->file_mode = copy.file_mode;
-    this->buffer = copy.buffer;
-}    
-FTPFileIterator::FTPFileIterator(FTPFileIterator &&copy) {
-    FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator()-move");
-    this->api_ptr = copy.api_ptr;
-    this->stream_ptr = copy.stream_ptr;
-    this->directory_name = copy.directory_name;  
-    this->file_mode = copy.file_mode;
-    this->buffer = copy.buffer;
-    copy.api_ptr = nullptr;
-    copy.stream_ptr = nullptr;
-    copy.directory_name = nullptr;
-}    
-FTPFileIterator::~FTPFileIterator() {
-    FTPLogger::writeLog( LOG_DEBUG, "~FTPFileIterator()");
-}
+} 
 FTPFileIterator &FTPFileIterator::begin() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator", "begin");
     if (api_ptr!=nullptr && directory_name!=nullptr) {
@@ -619,7 +596,7 @@ FTPFileIterator &FTPFileIterator::begin() {
 FTPFileIterator& FTPFileIterator::end() {
     FTPLogger::writeLog( LOG_DEBUG, "FTPFileIterator", "end");
     static FTPFileIterator end;
-    end.buffer[0] = 0; // empty buffer
+    end.buffer = ""; 
     return end;
 }
 FTPFileIterator &FTPFileIterator::operator++() {
@@ -644,14 +621,14 @@ void FTPFileIterator::readLine() {
     if (stream_ptr!=nullptr) {
         buffer = stream_ptr->readStringUntil('\n');
         FTPLogger::writeLog( LOG_DEBUG, "line", buffer.c_str());
-        if (buffer.length() > 0){
+
+        // End of ls
+        if (api_ptr->currentOperation() == LS_OP && buffer[0]==0){
+            const char* ok[] = {"226", nullptr};
+            bool is_ok = api_ptr->checkResult(ok, "close-ls", false);
             api_ptr->setCurrentOperation(NOP);
         }
-        //// when ls is called on a file it returns the file itself
-        // if (strcmp(buffer, directory_name)==0){
-        //     // which we just ignore
-        //     buffer[0] = 0;
-        // }
+
     } else {
         FTPLogger::writeLog( LOG_ERROR, "FTPFileIterator", "stream_ptr is null");
     }
