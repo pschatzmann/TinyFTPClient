@@ -78,7 +78,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a97dc4d34bbeafdf909062cf0c960b2da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_t_p_client.html#a97dc4d34bbeafdf909062cf0c960b2da">FTPClient</a> (Client &amp;command, Client &amp;data, int port=COMMAND_PORT, int data_port=DATA_PORT)</td></tr>
+<tr class="memitem:a97dc4d34bbeafdf909062cf0c960b2da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_t_p_client.html#a97dc4d34bbeafdf909062cf0c960b2da">FTPClient</a> (Client &amp;command, Client &amp;data, int port=FTP_COMMAND_PORT, int dataPort=dataPort)</td></tr>
 <tr class="memdesc:a97dc4d34bbeafdf909062cf0c960b2da"><td class="mdescLeft">&#160;</td><td class="mdescRight">default construcotr  <a href="class_f_t_p_client.html#a97dc4d34bbeafdf909062cf0c960b2da">More...</a><br /></td></tr>
 <tr class="separator:a97dc4d34bbeafdf909062cf0c960b2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a603d82a6117c818a17721a512b791720"><td class="memItemLeft" align="right" valign="top"><a id="a603d82a6117c818a17721a512b791720"></a>
@@ -121,7 +121,7 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2eaf43023e1db44f0cb611e27e1b91ce"><td class="memItemLeft" align="right" valign="top"><a id="a2eaf43023e1db44f0cb611e27e1b91ce"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (Client *command, Client *data, int port=COMMAND_PORT, int data_port=DATA_PORT)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (Client *command, Client *data, int port=FTP_COMMAND_PORT, int dataPort=dataPort)</td></tr>
 <tr class="separator:a2eaf43023e1db44f0cb611e27e1b91ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -148,7 +148,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>password</b> 
 int&#160;</td><td class="memItemRight" valign="bottom"><b>port</b></td></tr>
 <tr class="separator:a31f6988344d79a8e85d43dffbffd32e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6387a303626318a4e276c3a6d5b1126e"><td class="memItemLeft" align="right" valign="top"><a id="a6387a303626318a4e276c3a6d5b1126e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>data_port</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>dataPort</b></td></tr>
 <tr class="separator:a6387a303626318a4e276c3a6d5b1126e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f030265af7da795776da649ff678dfe"><td class="memItemLeft" align="right" valign="top"><a id="a9f030265af7da795776da649ff678dfe"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>cleanup_clients</b></td></tr>
@@ -179,13 +179,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>cleanup_clients</b></
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>port</em> = <code>COMMAND_PORT</code>, </td>
+          <td class="paramname"><em>port</em> = <code>FTP_COMMAND_PORT</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>data_port</em> = <code>DATA_PORT</code>&#160;</td>
+          <td class="paramname"><em>dataPort</em> = <code>dataPort</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
