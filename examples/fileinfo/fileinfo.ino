@@ -27,13 +27,13 @@ void setup() {
     //FTPLogger::setLogLevel(LOG_DEBUG);
 
     // open connection
-    client.begin(IPAddress(192,168,1,10), "user", "password");
+    client.begin(IPAddress(192,168,1,10), "ftp-userid", "ftp-password");
 
-    FTPFile file = client.open("/home/pschatzmann/configure-linux.sh");
+    FTPFile file = client.open("/home/ftp-userid/docker-cleanup.sh");
     if (file){
-      Serial.println(file.name());
-      Serial.println(file.size());
-      Serial.println(file.isDirectory());
+      Serial.print("name:"); Serial.println(file.name());
+      Serial.print("size:");Serial.println(file.size());
+      Serial.print("is directory:"); Serial.println(file.isDirectory()?"true":"false");
     }
     
     // clenaup

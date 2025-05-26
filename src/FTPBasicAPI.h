@@ -191,13 +191,7 @@ class FTPBasicAPI {
     FTPLogger::writeLog(LOG_INFO, "FTPBasicAPI", "closeData");
     data_ptr->stop();
 
-    // Transfer Completed
-    const char *ok[] = {"226", nullptr};
-    if (currentOperation() == IS_EOF) {
-      checkResult(ok, "closeData", false);
-    } else {
-     // abort();
-    }
+    // abort(); ?
 
   }
 

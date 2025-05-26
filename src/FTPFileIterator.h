@@ -85,7 +85,7 @@ class FTPFileIterator {
       buffer = stream_ptr->readStringUntil('\n');
       FTPLogger::writeLog(LOG_DEBUG, "line", buffer.c_str());
 
-      // End of ls
+      // End of ls !!!
       if (api_ptr->currentOperation() == LS_OP && buffer[0] == 0) {
         // Close data connection
         api_ptr->closeData();
@@ -94,7 +94,7 @@ class FTPFileIterator {
 
         // Get final status
         const char *ok[] = {"226", "250", nullptr};
-        api_ptr->checkResult(ok, "ls-end", false);
+        api_ptr->checkResult(ok, "ls-end", true);
       }
     } else {
       FTPLogger::writeLog(LOG_ERROR, "FTPFileIterator", "stream_ptr is null");

@@ -24,7 +24,7 @@ void setup() {
     //FTPLogger::setLogLevel(LOG_DEBUG);
 
     // open connection
-    client.begin(IPAddress(192,168,1,10), "user", "password");
+    client.begin(IPAddress(192,168,1,10), "ftp-userid", "ftp-password");
 
     // list files
     for (auto file : client.ls("/"))  {

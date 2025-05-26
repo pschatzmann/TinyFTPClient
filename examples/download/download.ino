@@ -29,10 +29,10 @@ void setup() {
     //FTPLogger::setLogLevel(LOG_DEBUG);
     
     // open connection
-    client.begin(IPAddress(192,168,1,10), "user", "password");
+    client.begin(IPAddress(192,168,1,10), "ftp-userid", "ftp-password");
 
     // copy data from file
-    FTPFile file = client.open("/Users/pschatzmann/Dropbox/Manuals/Mavlink.pdf");
+    FTPFile file = client.open("/home/ftp-userid/Dropbox/Manuals/Mavlink.pdf");
     int len;
     byte buffer[100];
     while (file.available()>0){

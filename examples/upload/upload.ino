@@ -24,10 +24,10 @@ void setup() {
     FTPLogger::setLogLevel(LOG_DEBUG);
 
     // open connection
-    client.begin(IPAddress(192,168,1,10), "user", "password");
+    client.begin(IPAddress(192,168,1,10), "ftp-userid", "ftp-password");
 
     // copy data to file
-    FTPFile file = client.open("/test.txt", WRITE_MODE);
+    FTPFile file = client.open("test.txt", WRITE_MODE);
     char buffer[100];
     for (int j=0;j<100;j++){
         sprintf(buffer, "test %d", j);

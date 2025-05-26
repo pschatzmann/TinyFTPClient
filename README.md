@@ -81,7 +81,7 @@ This is platform specific as well. On a ESP32 or ESP8266 e.g. the following logi
 ```C++
     Serial.begin(115200);
     // connect to WIFI
-    WiFi.begin("Network name, "wifi password");
+    WiFi.begin("Network name", "wifi password");
     while (WiFi.status() != WL_CONNECTED) {
       delay(500);
       Serial.print(".");
