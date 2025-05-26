@@ -67,7 +67,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="classftp__client_1_1_f_t_p_logger-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ftp_client::FTPLogger Class Reference</div>  </div>
@@ -77,38 +76,28 @@ $(function() {
 <p><a class="el" href="classftp__client_1_1_f_t_p_logger.html" title="FTPLogger To activate logging define the output stream e.g. with FTPLogger.setOutput(Serial); and (op...">FTPLogger</a> To activate logging define the output stream e.g. with FTPLogger.setOutput(Serial); and (optionally) set the log level.  
  <a href="classftp__client_1_1_f_t_p_logger.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_f_t_p_logger_8h_source.html">FTPLogger.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:afa373d72aa5a3cf08aa2f8360178a9a4"><td class="memItemLeft" align="right" valign="top"><a id="afa373d72aa5a3cf08aa2f8360178a9a4"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_logger.html#afa373d72aa5a3cf08aa2f8360178a9a4">setLogLevel</a> (LogLevel level)</td></tr>
-<tr class="memdesc:afa373d72aa5a3cf08aa2f8360178a9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classftp__client_1_1_f_t_p_logger.html" title="FTPLogger To activate logging define the output stream e.g. with FTPLogger.setOutput(Serial); and (op...">FTPLogger</a> To activate logging define the output stream e.g. with FTPLogger.setOutput(Serial); and optionally set the log level. <br /></td></tr>
-<tr class="separator:afa373d72aa5a3cf08aa2f8360178a9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a977795004fffde3432be39e9cf0e1309"><td class="memItemLeft" align="right" valign="top"><a id="a977795004fffde3432be39e9cf0e1309"></a>
+<tr class="memitem:a23d85891ed03763393b8b342f3f8dc16"><td class="memItemLeft" align="right" valign="top"><a id="a23d85891ed03763393b8b342f3f8dc16"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setLogLevel</b> (LogLevel level)</td></tr>
+<tr class="separator:a23d85891ed03763393b8b342f3f8dc16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabd79ec81b14a33c4c7337c92f62a1d1"><td class="memItemLeft" align="right" valign="top"><a id="aabd79ec81b14a33c4c7337c92f62a1d1"></a>
 static LogLevel&#160;</td><td class="memItemRight" valign="bottom"><b>getLogLevel</b> ()</td></tr>
-<tr class="separator:a977795004fffde3432be39e9cf0e1309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7b02a0e44d13c09c9da62de854e2c1c"><td class="memItemLeft" align="right" valign="top"><a id="ab7b02a0e44d13c09c9da62de854e2c1c"></a>
+<tr class="separator:aabd79ec81b14a33c4c7337c92f62a1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec678e08c7d2952c5114e30bbb6b2fc2"><td class="memItemLeft" align="right" valign="top"><a id="aec678e08c7d2952c5114e30bbb6b2fc2"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>setOutput</b> (Stream &amp;out)</td></tr>
-<tr class="separator:ab7b02a0e44d13c09c9da62de854e2c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1302f4e061df5dddba26f49239a0d72f"><td class="memItemLeft" align="right" valign="top"><a id="a1302f4e061df5dddba26f49239a0d72f"></a>
+<tr class="separator:aec678e08c7d2952c5114e30bbb6b2fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c512156cdec1591bc4135a39337cc9"><td class="memItemLeft" align="right" valign="top"><a id="ad6c512156cdec1591bc4135a39337cc9"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>writeLog</b> (LogLevel level, const char *module, const char *msg=nullptr)</td></tr>
-<tr class="separator:a1302f4e061df5dddba26f49239a0d72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
-Static Protected Attributes</h2></td></tr>
-<tr class="memitem:adefbb32567e54e13d42c1ecaa2b88582"><td class="memItemLeft" align="right" valign="top"><a id="adefbb32567e54e13d42c1ecaa2b88582"></a>
-static LogLevel&#160;</td><td class="memItemRight" valign="bottom"><b>min_log_level</b> = LOG_ERROR</td></tr>
-<tr class="separator:adefbb32567e54e13d42c1ecaa2b88582"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22692455524992234fcb873f84b8a53d"><td class="memItemLeft" align="right" valign="top"><a id="a22692455524992234fcb873f84b8a53d"></a>
-static Stream *&#160;</td><td class="memItemRight" valign="bottom"><b>out_ptr</b> = nullptr</td></tr>
-<tr class="separator:a22692455524992234fcb873f84b8a53d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ad6c512156cdec1591bc4135a39337cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classftp__client_1_1_f_t_p_logger.html" title="FTPLogger To activate logging define the output stream e.g. with FTPLogger.setOutput(Serial); and (op...">FTPLogger</a> To activate logging define the output stream e.g. with FTPLogger.setOutput(Serial); and (optionally) set the log level. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a></li>
-<li>src/ArduinoFTPClient.cpp</li>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/<a class="el" href="_f_t_p_logger_8h_source.html">FTPLogger.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

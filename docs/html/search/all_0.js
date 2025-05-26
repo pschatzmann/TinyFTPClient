@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['abort_0',['abort',['../classftp__client_1_1_f_t_p_client.html#a92573c4d3ef5f1df639eef2bf55f6c08',1,'ftp_client::FTPClient']]],
-  ['arduinoftpclient_2eh_1',['ArduinoFTPClient.h',['../_arduino_f_t_p_client_8h.html',1,'']]],
-  ['ascii_2',['ascii',['../classftp__client_1_1_f_t_p_client.html#a0efba78c1cb5f1b1df6838eb36500fe1',1,'ftp_client::FTPClient']]]
+  ['api_0',['api',['../classftp__client_1_1_f_t_p_session.html#a98e5417af904718ff8b4df67463438e3',1,'ftp_client::FTPSession']]],
+  ['ascii_1',['ascii',['../classftp__client_1_1_f_t_p_client.html#a587f98bf75e7324361289cc43de90baa',1,'ftp_client::FTPClient']]]
 ];

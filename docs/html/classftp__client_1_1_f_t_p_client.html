@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arduino TinyFTP: ftp_client::FTPClient Class Reference</title>
+<title>Arduino TinyFTP: ftp_client::FTPClient&lt; ClientType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,171 +71,132 @@ $(function() {
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classftp__client_1_1_f_t_p_client-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ftp_client::FTPClient Class Reference</div>  </div>
+<div class="title">ftp_client::FTPClient&lt; ClientType &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classftp__client_1_1_f_t_p_client.html" title="FTPClient Basic FTP access class which supports directory operatations and the opening of a files.">FTPClient</a> Basic FTP access class which supports directory operatations and the opening of a files.  
+<p><a class="el" href="classftp__client_1_1_f_t_p_client.html" title="FTPClient Basic FTP access class which supports directory operations and the opening of files.">FTPClient</a> Basic FTP access class which supports directory operations and the opening of files.  
  <a href="classftp__client_1_1_f_t_p_client.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_f_t_p_client_8h_source.html">FTPClient.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7d5afe4ed303e1ba2d547302c5e795b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a7d5afe4ed303e1ba2d547302c5e795b8">FTPClient</a> (Client &amp;command, Client &amp;data, int port=FTP_COMMAND_PORT, int dataPort=dataPort)</td></tr>
-<tr class="memdesc:a7d5afe4ed303e1ba2d547302c5e795b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">default construcotr  <a href="classftp__client_1_1_f_t_p_client.html#a7d5afe4ed303e1ba2d547302c5e795b8">More...</a><br /></td></tr>
-<tr class="separator:a7d5afe4ed303e1ba2d547302c5e795b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aebe7d38a13223bbcd593939048b99f"><td class="memItemLeft" align="right" valign="top"><a id="a2aebe7d38a13223bbcd593939048b99f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a2aebe7d38a13223bbcd593939048b99f">begin</a> (IPAddress remote_addr, const char *user=&quot;anonymous&quot;, const char *password=nullptr)</td></tr>
-<tr class="memdesc:a2aebe7d38a13223bbcd593939048b99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">opens the ftp connection <br /></td></tr>
-<tr class="separator:a2aebe7d38a13223bbcd593939048b99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38fd950e46bfaffbe6032d81d320df20"><td class="memItemLeft" align="right" valign="top"><a id="a38fd950e46bfaffbe6032d81d320df20"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a38fd950e46bfaffbe6032d81d320df20">end</a> ()</td></tr>
-<tr class="memdesc:a38fd950e46bfaffbe6032d81d320df20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the sessions by calling QUIT or BYE. <br /></td></tr>
-<tr class="separator:a38fd950e46bfaffbe6032d81d320df20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeca6454edd7e1227920edac56795e4a9"><td class="memItemLeft" align="right" valign="top"><a id="aeca6454edd7e1227920edac56795e4a9"></a>
-<a class="el" href="classftp__client_1_1_f_t_p_file.html">FTPFile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#aeca6454edd7e1227920edac56795e4a9">open</a> (const char *filename, <a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a> mode=READ_MODE, bool autoClose=false)</td></tr>
-<tr class="memdesc:aeca6454edd7e1227920edac56795e4a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the file <br /></td></tr>
-<tr class="separator:aeca6454edd7e1227920edac56795e4a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a925cbccf0cffbf8e78b66c7b56b9f037"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a925cbccf0cffbf8e78b66c7b56b9f037">mkdir</a> (const char *filepath)</td></tr>
-<tr class="separator:a925cbccf0cffbf8e78b66c7b56b9f037"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a656c6aa4bb39ba73d7be977db26e5ea2"><td class="memItemLeft" align="right" valign="top"><a id="a656c6aa4bb39ba73d7be977db26e5ea2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a656c6aa4bb39ba73d7be977db26e5ea2">remove</a> (const char *filepath)</td></tr>
-<tr class="memdesc:a656c6aa4bb39ba73d7be977db26e5ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the file. <br /></td></tr>
-<tr class="separator:a656c6aa4bb39ba73d7be977db26e5ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0a7cdb4dbc5ffb9c7c15604c2d062a9"><td class="memItemLeft" align="right" valign="top"><a id="ac0a7cdb4dbc5ffb9c7c15604c2d062a9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#ac0a7cdb4dbc5ffb9c7c15604c2d062a9">rmdir</a> (const char *filepath)</td></tr>
-<tr class="memdesc:ac0a7cdb4dbc5ffb9c7c15604c2d062a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a directory. <br /></td></tr>
-<tr class="separator:ac0a7cdb4dbc5ffb9c7c15604c2d062a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7401542f8f0edd00d0af2ecd75ccd35"><td class="memItemLeft" align="right" valign="top"><a id="ab7401542f8f0edd00d0af2ecd75ccd35"></a>
-<a class="el" href="classftp__client_1_1_f_t_p_file_iterator.html">FTPFileIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#ab7401542f8f0edd00d0af2ecd75ccd35">ls</a> (const char *path, <a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a> mode=WRITE_MODE)</td></tr>
-<tr class="memdesc:ab7401542f8f0edd00d0af2ecd75ccd35"><td class="mdescLeft">&#160;</td><td class="mdescRight">lists all file names in the specified directory <br /></td></tr>
-<tr class="separator:ab7401542f8f0edd00d0af2ecd75ccd35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a634d9ce9615120636e2cdd0687cdaf6d"><td class="memItemLeft" align="right" valign="top"><a id="a634d9ce9615120636e2cdd0687cdaf6d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a634d9ce9615120636e2cdd0687cdaf6d">binary</a> ()</td></tr>
-<tr class="memdesc:a634d9ce9615120636e2cdd0687cdaf6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to binary mode. <br /></td></tr>
-<tr class="separator:a634d9ce9615120636e2cdd0687cdaf6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0efba78c1cb5f1b1df6838eb36500fe1"><td class="memItemLeft" align="right" valign="top"><a id="a0efba78c1cb5f1b1df6838eb36500fe1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a0efba78c1cb5f1b1df6838eb36500fe1">ascii</a> ()</td></tr>
-<tr class="memdesc:a0efba78c1cb5f1b1df6838eb36500fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to ascii mode. <br /></td></tr>
-<tr class="separator:a0efba78c1cb5f1b1df6838eb36500fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39ae1fb17073503b5ce35ad2200bb4f2"><td class="memItemLeft" align="right" valign="top"><a id="a39ae1fb17073503b5ce35ad2200bb4f2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a39ae1fb17073503b5ce35ad2200bb4f2">type</a> (const char *str)</td></tr>
-<tr class="memdesc:a39ae1fb17073503b5ce35ad2200bb4f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binary or ascii with type command. <br /></td></tr>
-<tr class="separator:a39ae1fb17073503b5ce35ad2200bb4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92573c4d3ef5f1df639eef2bf55f6c08"><td class="memItemLeft" align="right" valign="top"><a id="a92573c4d3ef5f1df639eef2bf55f6c08"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a92573c4d3ef5f1df639eef2bf55f6c08">abort</a> ()</td></tr>
-<tr class="memdesc:a92573c4d3ef5f1df639eef2bf55f6c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort a current file transfer. <br /></td></tr>
-<tr class="separator:a92573c4d3ef5f1df639eef2bf55f6c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523cc18c50ddc7dcdd867292bd96c54d"><td class="memItemLeft" align="right" valign="top"><a id="a523cc18c50ddc7dcdd867292bd96c54d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a523cc18c50ddc7dcdd867292bd96c54d">FTPClient</a> (int port=FTP_COMMAND_PORT, int dataPort=FTP_DATA_PORT)</td></tr>
+<tr class="memdesc:a523cc18c50ddc7dcdd867292bd96c54d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a523cc18c50ddc7dcdd867292bd96c54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af28b09eaf0aef5c342da743e1e2291e6"><td class="memItemLeft" align="right" valign="top"><a id="af28b09eaf0aef5c342da743e1e2291e6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#af28b09eaf0aef5c342da743e1e2291e6">begin</a> (IPAddress remote_addr, const char *user=&quot;anonymous&quot;, const char *password=nullptr)</td></tr>
+<tr class="memdesc:af28b09eaf0aef5c342da743e1e2291e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the FTP connection. <br /></td></tr>
+<tr class="separator:af28b09eaf0aef5c342da743e1e2291e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793410cfa0c3eed6b5edca705b2ae534"><td class="memItemLeft" align="right" valign="top"><a id="a793410cfa0c3eed6b5edca705b2ae534"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a793410cfa0c3eed6b5edca705b2ae534">end</a> ()</td></tr>
+<tr class="memdesc:a793410cfa0c3eed6b5edca705b2ae534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the sessions by calling QUIT or BYE. <br /></td></tr>
+<tr class="separator:a793410cfa0c3eed6b5edca705b2ae534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78bf1e833b04c2c8858a063ee9e71932"><td class="memItemLeft" align="right" valign="top"><a id="a78bf1e833b04c2c8858a063ee9e71932"></a>
+<a class="el" href="classftp__client_1_1_f_t_p_file.html">FTPFile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a78bf1e833b04c2c8858a063ee9e71932">open</a> (const char *filename, FileMode mode=READ_MODE, bool autoClose=false)</td></tr>
+<tr class="memdesc:a78bf1e833b04c2c8858a063ee9e71932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the file. <br /></td></tr>
+<tr class="separator:a78bf1e833b04c2c8858a063ee9e71932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec4e6bea22d1974389500b122a3475ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#aec4e6bea22d1974389500b122a3475ec">mkdir</a> (const char *filepath)</td></tr>
+<tr class="separator:aec4e6bea22d1974389500b122a3475ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e0014bb39632b25c95296f32d3ad8e"><td class="memItemLeft" align="right" valign="top"><a id="a04e0014bb39632b25c95296f32d3ad8e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a04e0014bb39632b25c95296f32d3ad8e">remove</a> (const char *filepath)</td></tr>
+<tr class="memdesc:a04e0014bb39632b25c95296f32d3ad8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the file. <br /></td></tr>
+<tr class="separator:a04e0014bb39632b25c95296f32d3ad8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6b03cacfc23b889709204a3fbeafb0c"><td class="memItemLeft" align="right" valign="top"><a id="af6b03cacfc23b889709204a3fbeafb0c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#af6b03cacfc23b889709204a3fbeafb0c">rmdir</a> (const char *filepath)</td></tr>
+<tr class="memdesc:af6b03cacfc23b889709204a3fbeafb0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a directory. <br /></td></tr>
+<tr class="separator:af6b03cacfc23b889709204a3fbeafb0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bac8d0b56270e832b6a0b19453fc7a8"><td class="memItemLeft" align="right" valign="top"><a id="a2bac8d0b56270e832b6a0b19453fc7a8"></a>
+<a class="el" href="classftp__client_1_1_f_t_p_file_iterator.html">FTPFileIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a2bac8d0b56270e832b6a0b19453fc7a8">ls</a> (const char *path, FileMode mode=WRITE_MODE)</td></tr>
+<tr class="memdesc:a2bac8d0b56270e832b6a0b19453fc7a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all file names in the specified directory. <br /></td></tr>
+<tr class="separator:a2bac8d0b56270e832b6a0b19453fc7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a991962b43b870dc8e985af712b2bc217"><td class="memItemLeft" align="right" valign="top"><a id="a991962b43b870dc8e985af712b2bc217"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a991962b43b870dc8e985af712b2bc217">binary</a> ()</td></tr>
+<tr class="memdesc:a991962b43b870dc8e985af712b2bc217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to binary mode. <br /></td></tr>
+<tr class="separator:a991962b43b870dc8e985af712b2bc217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587f98bf75e7324361289cc43de90baa"><td class="memItemLeft" align="right" valign="top"><a id="a587f98bf75e7324361289cc43de90baa"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a587f98bf75e7324361289cc43de90baa">ascii</a> ()</td></tr>
+<tr class="memdesc:a587f98bf75e7324361289cc43de90baa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to ascii mode. <br /></td></tr>
+<tr class="separator:a587f98bf75e7324361289cc43de90baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31ca05125215904b5ce5887209fa5b5"><td class="memItemLeft" align="right" valign="top"><a id="ac31ca05125215904b5ce5887209fa5b5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#ac31ca05125215904b5ce5887209fa5b5">type</a> (const char *str)</td></tr>
+<tr class="memdesc:ac31ca05125215904b5ce5887209fa5b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binary or ascii with type command. <br /></td></tr>
+<tr class="separator:ac31ca05125215904b5ce5887209fa5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a506045f2613a71f997c91bcad125e283"><td class="memItemLeft" align="right" valign="top"><a id="a506045f2613a71f997c91bcad125e283"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (Client *command, Client *data, int port=FTP_COMMAND_PORT, int dataPort=dataPort)</td></tr>
-<tr class="separator:a506045f2613a71f997c91bcad125e283"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d1191430a8839387f7e12caa5dcd1be"><td class="memItemLeft" align="right" valign="top"><a id="a7d1191430a8839387f7e12caa5dcd1be"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a7d1191430a8839387f7e12caa5dcd1be">init</a> (int port=FTP_COMMAND_PORT, int dataPort=FTP_DATA_PORT)</td></tr>
+<tr class="memdesc:a7d1191430a8839387f7e12caa5dcd1be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the client. <br /></td></tr>
+<tr class="separator:a7d1191430a8839387f7e12caa5dcd1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a700a42750a754af0b699c0cfc4013536"><td class="memItemLeft" align="right" valign="top"><a id="a700a42750a754af0b699c0cfc4013536"></a>
-<a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a>&#160;</td><td class="memItemRight" valign="bottom"><b>api</b></td></tr>
-<tr class="separator:a700a42750a754af0b699c0cfc4013536"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42949885c383c14ddb138accad7b893a"><td class="memItemLeft" align="right" valign="top"><a id="a42949885c383c14ddb138accad7b893a"></a>
-Client *&#160;</td><td class="memItemRight" valign="bottom"><b>command_ptr</b> = nullptr</td></tr>
-<tr class="separator:a42949885c383c14ddb138accad7b893a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4833c6de279f40070e9ea720dd1bc1d"><td class="memItemLeft" align="right" valign="top"><a id="ad4833c6de279f40070e9ea720dd1bc1d"></a>
-Client *&#160;</td><td class="memItemRight" valign="bottom"><b>data_ptr</b> = nullptr</td></tr>
-<tr class="separator:ad4833c6de279f40070e9ea720dd1bc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87ab08f6339fb88a5aa71bf0310abe43"><td class="memItemLeft" align="right" valign="top"><a id="a87ab08f6339fb88a5aa71bf0310abe43"></a>
+<tr class="memitem:aae02b50633d676cb0f557b94c9d3f5d6"><td class="memItemLeft" align="right" valign="top"><a id="aae02b50633d676cb0f557b94c9d3f5d6"></a>
+<a class="el" href="classftp__client_1_1_f_t_p_session_mgr.html">FTPSessionMgr</a>&lt; ClientType &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mgr</b></td></tr>
+<tr class="separator:aae02b50633d676cb0f557b94c9d3f5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad11a56981a5af59012cff2867ddc055e"><td class="memItemLeft" align="right" valign="top"><a id="ad11a56981a5af59012cff2867ddc055e"></a>
 IPAddress&#160;</td><td class="memItemRight" valign="bottom"><b>remote_addr</b></td></tr>
-<tr class="separator:a87ab08f6339fb88a5aa71bf0310abe43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4928642b3410a683227a16c0529c384"><td class="memItemLeft" align="right" valign="top"><a id="ae4928642b3410a683227a16c0529c384"></a>
+<tr class="separator:ad11a56981a5af59012cff2867ddc055e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bab074fb64565e0274a3fee173c3f3f"><td class="memItemLeft" align="right" valign="top"><a id="a1bab074fb64565e0274a3fee173c3f3f"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>userid</b> = nullptr</td></tr>
-<tr class="separator:ae4928642b3410a683227a16c0529c384"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f39dcb71646fb9499921eac8285d711"><td class="memItemLeft" align="right" valign="top"><a id="a8f39dcb71646fb9499921eac8285d711"></a>
+<tr class="separator:a1bab074fb64565e0274a3fee173c3f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1af8c30075f7387d6370f1565284a9d3"><td class="memItemLeft" align="right" valign="top"><a id="a1af8c30075f7387d6370f1565284a9d3"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>password</b> = nullptr</td></tr>
-<tr class="separator:a8f39dcb71646fb9499921eac8285d711"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fd9ed317c488d7668b4d6a7e6f11c88"><td class="memItemLeft" align="right" valign="top"><a id="a3fd9ed317c488d7668b4d6a7e6f11c88"></a>
+<tr class="separator:a1af8c30075f7387d6370f1565284a9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee415163ba85c0d3a1825c8712e942a"><td class="memItemLeft" align="right" valign="top"><a id="a4ee415163ba85c0d3a1825c8712e942a"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>port</b></td></tr>
-<tr class="separator:a3fd9ed317c488d7668b4d6a7e6f11c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb4f374d88037775f758a71a98af86af"><td class="memItemLeft" align="right" valign="top"><a id="abb4f374d88037775f758a71a98af86af"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>dataPort</b></td></tr>
-<tr class="separator:abb4f374d88037775f758a71a98af86af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a835774822ab497ad9e6933e5891811be"><td class="memItemLeft" align="right" valign="top"><a id="a835774822ab497ad9e6933e5891811be"></a>
+<tr class="separator:a4ee415163ba85c0d3a1825c8712e942a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b6cb28fe25052fd988f2971e5d0ffc1"><td class="memItemLeft" align="right" valign="top"><a id="a3b6cb28fe25052fd988f2971e5d0ffc1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>data_port</b></td></tr>
+<tr class="separator:a3b6cb28fe25052fd988f2971e5d0ffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07fa0d67a32c8cc10db7e76739e04523"><td class="memItemLeft" align="right" valign="top"><a id="a07fa0d67a32c8cc10db7e76739e04523"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>cleanup_clients</b></td></tr>
-<tr class="separator:a835774822ab497ad9e6933e5891811be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ccb2f4984a43ef98b3e3e3d13124ea9"><td class="memItemLeft" align="right" valign="top"><a id="a5ccb2f4984a43ef98b3e3e3d13124ea9"></a>
+<tr class="separator:a07fa0d67a32c8cc10db7e76739e04523"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa712866272ed8fa7e3d4f5aa59fe5654"><td class="memItemLeft" align="right" valign="top"><a id="aa712866272ed8fa7e3d4f5aa59fe5654"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>auto_close</b> = true</td></tr>
-<tr class="separator:a5ccb2f4984a43ef98b3e3e3d13124ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aa712866272ed8fa7e3d4f5aa59fe5654"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classftp__client_1_1_f_t_p_client.html" title="FTPClient Basic FTP access class which supports directory operatations and the opening of a files.">FTPClient</a> Basic FTP access class which supports directory operatations and the opening of a files. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7d5afe4ed303e1ba2d547302c5e795b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d5afe4ed303e1ba2d547302c5e795b8">&#9670;&nbsp;</a></span>FTPClient()</h2>
+<div class="textblock"><h3>template&lt;class ClientType&gt;<br />
+class ftp_client::FTPClient&lt; ClientType &gt;</h3>
+
+<p><a class="el" href="classftp__client_1_1_f_t_p_client.html" title="FTPClient Basic FTP access class which supports directory operations and the opening of files.">FTPClient</a> Basic FTP access class which supports directory operations and the opening of files. </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aec4e6bea22d1974389500b122a3475ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec4e6bea22d1974389500b122a3475ec">&#9670;&nbsp;</a></span>mkdir()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class ClientType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ftp_client::FTPClient::FTPClient </td>
-          <td>(</td>
-          <td class="paramtype">Client &amp;&#160;</td>
-          <td class="paramname"><em>command</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Client &amp;&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>port</em> = <code>FTP_COMMAND_PORT</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dataPort</em> = <code>dataPort</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>default construcotr </p>
-<p><a class="el" href="classftp__client_1_1_f_t_p_client.html" title="FTPClient Basic FTP access class which supports directory operatations and the opening of a files.">FTPClient</a> Basic FTP access class which supports directory operatations and the opening of a files. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a925cbccf0cffbf8e78b66c7b56b9f037"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a925cbccf0cffbf8e78b66c7b56b9f037">&#9670;&nbsp;</a></span>mkdir()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ftp_client::FTPClient::mkdir </td>
+          <td class="memname">bool <a class="el" href="classftp__client_1_1_f_t_p_client.html">ftp_client::FTPClient</a>&lt; ClientType &gt;::mkdir </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>filepath</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Create the requested directory heirarchy&ndash;if intermediate directories do not exist they will be created. </p>
+<p>Create the requested directory hierarchy&ndash;if intermediate directories do not exist they will be created. </p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a></li>
-<li>src/ArduinoFTPClient.cpp</li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/<a class="el" href="_f_t_p_client_8h_source.html">FTPClient.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

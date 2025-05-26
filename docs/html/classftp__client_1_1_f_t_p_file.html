@@ -74,10 +74,10 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream and therfore provides all corresponding functionality.  
+<p><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream and therefore provides all corresponding functionality.  
  <a href="classftp__client_1_1_f_t_p_file.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_f_t_p_file_8h_source.html">FTPFile.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ftp_client::FTPFile:</div>
 <div class="dyncontent">
@@ -88,8 +88,7 @@ Inheritance diagram for ftp_client::FTPFile:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab5e4f98b2d1548f5224e387066e2b60f"><td class="memItemLeft" align="right" valign="top"><a id="ab5e4f98b2d1548f5224e387066e2b60f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_file.html#ab5e4f98b2d1548f5224e387066e2b60f">FTPFile</a> (<a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a> *api_ptr, const char *name, <a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a> mode, bool autoClose=true)</td></tr>
-<tr class="memdesc:ab5e4f98b2d1548f5224e387066e2b60f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream. <br /></td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>FTPFile</b> (<a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a> *api_ptr, const char *name, FileMode mode, bool autoClose=true)</td></tr>
 <tr class="separator:ab5e4f98b2d1548f5224e387066e2b60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d629daaeff33a46385899863583bb0"><td class="memItemLeft" align="right" valign="top"><a id="a97d629daaeff33a46385899863583bb0"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (uint8_t data)</td></tr>
@@ -124,9 +123,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>reopen</b> ()</td></t
 <tr class="memitem:a047ffd5f5cbe17d4bd2bedbea5b63705"><td class="memItemLeft" align="right" valign="top"><a id="a047ffd5f5cbe17d4bd2bedbea5b63705"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
 <tr class="separator:a047ffd5f5cbe17d4bd2bedbea5b63705"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a5f95cbd1dbbe83a114a0a045c25449"><td class="memItemLeft" align="right" valign="top"><a id="a9a5f95cbd1dbbe83a114a0a045c25449"></a>
+<tr class="memitem:a67bdd7f7f4456034f8c6618dc3ceacf9"><td class="memItemLeft" align="right" valign="top"><a id="a67bdd7f7f4456034f8c6618dc3ceacf9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>cancel</b> ()</td></tr>
+<tr class="separator:a67bdd7f7f4456034f8c6618dc3ceacf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8f8005101598ca0fc6a1ae30b7d7ab"><td class="memItemLeft" align="right" valign="top"><a id="adc8f8005101598ca0fc6a1ae30b7d7ab"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
-<tr class="separator:a9a5f95cbd1dbbe83a114a0a045c25449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:adc8f8005101598ca0fc6a1ae30b7d7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9e7196d397964d7ceafa3de8a0efa65"><td class="memItemLeft" align="right" valign="top"><a id="ae9e7196d397964d7ceafa3de8a0efa65"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
 <tr class="separator:ae9e7196d397964d7ceafa3de8a0efa65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,7 +151,7 @@ String&#160;</td><td class="memItemRight" valign="bottom"><b>file_name</b></td><
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>eol</b> = &quot;\n&quot;</td></tr>
 <tr class="separator:a74badfd974cfc5e1f70189a22cab3d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5a94abbc468800c75d356a0cad07788"><td class="memItemLeft" align="right" valign="top"><a id="ac5a94abbc468800c75d356a0cad07788"></a>
-<a class="el" href="_arduino_f_t_p_client_8h.html#a444d232382d32a4a05e76a0d5edd9fec">FileMode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mode</b></td></tr>
+FileMode&#160;</td><td class="memItemRight" valign="bottom"><b>mode</b></td></tr>
 <tr class="separator:ac5a94abbc468800c75d356a0cad07788"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05ef8211303184d0170e8122df45c9ac"><td class="memItemLeft" align="right" valign="top"><a id="a05ef8211303184d0170e8122df45c9ac"></a>
 <a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>api_ptr</b></td></tr>
@@ -165,10 +167,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>auto_close</b> = fals
 <tr class="separator:a8a1148935db17a4fe18a4e4f470cccc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream and therfore provides all corresponding functionality. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="_arduino_f_t_p_client_8h_source.html">ArduinoFTPClient.h</a></li>
-<li>src/ArduinoFTPClient.cpp</li>
+<div class="textblock"><p><a class="el" href="classftp__client_1_1_f_t_p_file.html" title="FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...">FTPFile</a> A single file which supports read and write operations. This class is implemented as an Arduino Stream and therefore provides all corresponding functionality. </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/<a class="el" href="_f_t_p_file_8h_source.html">FTPFile.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
