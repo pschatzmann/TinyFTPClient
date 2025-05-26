@@ -20,7 +20,7 @@ namespace ftp_client {
 template <class ClientType>
 class FTPClient {
  public:
-  /// Default constructor
+  /// Default constructor: Provide the client class as template argument e.g. FTPClient<WiFiClient> client;
   FTPClient(int port = FTP_COMMAND_PORT) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPClient");
     setPort(port);
