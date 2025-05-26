@@ -1,5 +1,5 @@
 #include "WiFi.h"
-#include "ArduinoFTPClient.h"
+#include "FTPClient.h"
 
 FTPClient<WiFiClient> client;
 

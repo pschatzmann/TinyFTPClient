@@ -2,7 +2,7 @@
 
 
 #include "WiFi.h"
-#include "ArduinoFTPClient.h"
+#include "FTPClient.h"
 
 FTPClient<WiFiClient> client;
 
@@ -29,9 +29,11 @@ void setup() {
     client.begin(IPAddress(192,168,1,10), "user", "password");
 
     FTPFile file = client.open("/home/pschatzmann/configure-linux.sh");
-    Serial.println(file.name());
-    Serial.println(file.size());
-    Serial.println(file.isDirectory());
+    if (file){
+      Serial.println(file.name());
+      Serial.println(file.size());
+      Serial.println(file.isDirectory());
+    }
     
     // clenaup
     client.end();
