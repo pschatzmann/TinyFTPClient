@@ -101,9 +101,7 @@ The open method provides a FTPFile for the indicated file name. The FTPFile is j
 you have all reading and writing functionality available that you already know e.g. from Serial.
 
 ```C++
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt");
@@ -122,9 +120,7 @@ the resources.
 Instead of reading a bock of characters we can request to read a line (which is delimited with LF)
 
 ```C++
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt");
@@ -142,9 +138,7 @@ You can write to a file on a remote system by using the regular Stream write() o
 the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.
 
 ```C++
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt", WRITE_MODE);
@@ -161,9 +155,7 @@ the file alreay exists it will be replaced with the new content if you use the F
 You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND
 
 ```C++
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 
     client.begin(IPAddress(192,168,1,10), "user", "password");
     FTPFile file = client.open("/test.txt", WRITE_APPEND_MODE);
@@ -188,9 +180,7 @@ The ArduinoFTPClient supports the following directory operations:
 The files of a directory are listed with the help of an Iterator. 
 
 ```C++
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
     
     client.begin(IPAddress(192,168,1,10), "user", "password");
 
@@ -210,10 +200,6 @@ Supported log levels are LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR
     FTPLogger::setLogLevel(LOG_DEBUG);
 ```
 
-## Limitations
-We currently support only one open control session with one open data session. This means that you can not run multiple operations in parallel. E.g doing a download while the list directory is still in process. 
-
-If you execute a new command any existing running command is cancelled.
 
 ## Documentation
 
