@@ -119,10 +119,15 @@ class FTPClient {
     this->port = port;
   }
 
+  /// Abort the indicated operation (e.g., READ_OP, WRITE_OP, LS_OP.)
   bool abort(CurrentOperation op) {
     return mgr.abort(op);
   } 
 
+  /// Provides access to the session manager
+  FTPSessionMgr<ClientType> &sessionMgr() {
+    return mgr;
+  }
  protected:
   FTPSessionMgr<ClientType> mgr;
   IPAddress remote_addr;
