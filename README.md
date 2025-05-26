@@ -29,9 +29,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 ```C++
     #include "WiFi.h"
 
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 ```
 
 ### ESP8266
@@ -39,9 +37,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 ```C++
     #include <ESP8266WiFi.h>
 
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 ```
 
 ### RP2040 W
@@ -49,9 +45,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 ```C++
     #include <WiFi.h>
 
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 ```
 
 
@@ -60,9 +54,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 ```C++
     #include <WiFiNINA.h>
 
-    WiFiClient cmd;
-    WiFiClient data;
-    FTPClient client(cmd, data);
+    FTPClient<WiFiClient> client;
 ```
 
 ### Ethernet Shield
@@ -70,9 +62,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 ```C++
     #include <Ethernet.h>
 
-    EthernetClient cmd;
-    EthernetClient data;
-    FTPClient client(cmd, data);
+    FTPClient<EthernetClient> client;
 ```
 
 ### Other Platforms

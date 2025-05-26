@@ -1,5 +1,6 @@
 #pragma once
 #include "FTPSession.h"
+#include "IPAddress.h"
 
 namespace ftp_client {
 /**
@@ -23,7 +24,7 @@ class FTPSessionMgr {
   }
 
   /// Initializes the session manager with the FTP server details
-  void begin(IPAddress &address, int port, int dataPort, const char *username,
+  bool begin(IPAddress &address, int port, int dataPort, const char *username,
              const char *password) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPSessionMgr", "createSession");
     this->address = address;
@@ -31,15 +32,18 @@ class FTPSessionMgr {
     this->dataPort = dataPort;
     this->username = username;
     this->password = password;
+    return true;
   }
 
   void end() {
     FTPLogger::writeLog(LOG_DEBUG, "FTPSessionMgr", "end");
-    for (auto &session : sessions) {
-      if (session != nullptr) {
-        session->end();
-        delete s;
-        session = nullptr;
+    for (int i = 0; i < FTP_MAX_SESSIONS; i++) {
+      if (sessions[i] != nullptr) {
+        FTPSession<ClientType> &session = *sessions[i];
+        session.api().quit();  // Send QUIT command to the server
+        session.end();
+        delete sessions[i];
+        sessions[i] = nullptr;
       }
     }
   }
@@ -47,17 +51,17 @@ class FTPSessionMgr {
   /// Provides a session for the FTP operations
   FTPSession<ClientType> &session() {
     for (int i = 0; i < FTP_MAX_SESSIONS; i++) {
-      if (session[i] == nullptr) {
-        session[i] = new FTPSession();
-        if (session[i]->begin(address, port, dataPort, username, password)) {
-          return *session[i];
+      if (sessions[i] == nullptr) {
+        sessions[i] = new FTPSession<ClientType>();
+        if (sessions[i]->begin(address, port, dataPort, username, password)) {
+          return *sessions[i];
         } else {
-          delete session[i];
-          session[i] = nullptr;
+          delete sessions[i];
+          sessions[i] = nullptr;
         }
-      } else if (session[i]->currentOperation() == NOP) {
+      } else if (sessions[i]->api().currentOperation() == NOP) {
         // Reuse existing session if it is not currently in use
-        return *session[i];
+        return *sessions[i];
       }
     }
     FTPLogger::writeLog(LOG_ERROR, "FTPSessionMgr", "No available sessions");
@@ -68,9 +72,11 @@ class FTPSessionMgr {
 
  protected:
   FTPSession<ClientType> *sessions[FTP_MAX_SESSIONS] = {nullptr};
-  IPAddress &address;
+  IPAddress address;
   int port;
   int dataPort;
   const char *username;
   const char *password;
-}
+};
+
+}  // namespace ftp_client

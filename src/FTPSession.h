@@ -32,13 +32,13 @@ class FTPSession {
   }
 
   /// Opens the data connection
-  bool passv(){return basic_api.passv()} CurrentOperation currentOperation() {
+  bool passv() {
     if (!is_valid) return false;
-    return basic_api.currentOperation();
+    return basic_api.passv();
   }
 
   void end() {
-    if (!is_valid) return false;
+    if (!is_valid) return;
     FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "end");
     closeCommand();
     closeData();
@@ -55,19 +55,17 @@ class FTPSession {
   }
 
   /// Returns the access to the basic API
-  FTPBasicAPI &api() { return baic_api; }
+  FTPBasicAPI &api() { return basic_api; }
 
   /// Returns true if the command client is connected
   operator bool() { return is_valid && command_client.connected(); }
 
-  void setValid(bool valid) {
-    is_valid = valid;
-  }
+  void setValid(bool valid) { is_valid = valid; }
 
  protected:
   ClientType command_client;
   ClientType data_client;
-  FTPBasicAPI baic_api;
+  FTPBasicAPI basic_api;
   bool is_valid = true;
 };
 

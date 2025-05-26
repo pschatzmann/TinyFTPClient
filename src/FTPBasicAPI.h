@@ -22,8 +22,8 @@ class FTPBasicAPI {
 
   ~FTPBasicAPI() { FTPLogger::writeLog(LOG_DEBUG, "~FTPBasicAPI"); }
 
-  bool open(Client *cmdPar, Client *dataPar, IPAddress &address, int port,
-            int dataPort, const char *username, const char *password) {
+  bool begin(Client *cmdPar, Client *dataPar, IPAddress &address, int port,
+             int dataPort, const char *username, const char *password) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI ", "open");
     command_ptr = cmdPar;
     data_ptr = dataPar;
@@ -190,8 +190,10 @@ class FTPBasicAPI {
   void closeData() {
     FTPLogger::writeLog(LOG_INFO, "FTPBasicAPI", "closeData");
     data_ptr->stop();
+    // abort
+    abort();
   }
-
+  
   void setCurrentOperation(CurrentOperation op) {
     char msg[80];
     sprintf(msg, "setCurrentOperation: %d", (int)op);
@@ -263,12 +265,12 @@ class FTPBasicAPI {
 
   bool cmd(const char *command, const char *par, const char *expected,
            bool wait_for_data = true) {
-    const char* expected_array[] = { expected, nullptr };
+    const char *expected_array[] = {expected, nullptr};
     return cmd(command, par, expected_array, wait_for_data);
   }
 
   bool cmd(const char *command_str, const char *par, const char *expected[],
-           bool wait_for_data=true) {
+           bool wait_for_data = true) {
     char command_buffer[FTP_COMMAND_BUFFER_SIZE];
     Stream *stream_ptr = command_ptr;
     if (par == nullptr) {
