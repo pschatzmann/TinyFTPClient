@@ -9,7 +9,7 @@
 #define FTP_USE_NAMESPACE true
 #endif
 
-#ifndef FTP_ABPRT_DELAY_MS 
+#ifndef FTP_ABORT_DELAY_MS 
 #define FTP_ABORT_DELAY_MS 300
 #endif
 
