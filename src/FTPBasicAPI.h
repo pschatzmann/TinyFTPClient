@@ -190,8 +190,15 @@ class FTPBasicAPI {
   void closeData() {
     FTPLogger::writeLog(LOG_INFO, "FTPBasicAPI", "closeData");
     data_ptr->stop();
-    // abort
-    abort();
+
+    // Transfer Completed
+    const char *ok[] = {"226", nullptr};
+    if (currentOperation() == IS_EOF) {
+      checkResult(ok, "closeData", false);
+    } else {
+     // abort();
+    }
+
   }
 
   void setCurrentOperation(CurrentOperation op) {
@@ -227,7 +234,7 @@ class FTPBasicAPI {
 
       if (strlen(result_str) > 3) {
         FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI::checkResult", result_str);
-        strncpy(result_reply, result_str, 80);
+        strncpy(result_reply, result_str, sizeof(result_reply) - 1);
         // if we did not expect anything
         if (expected[0] == nullptr) {
           ok = true;
@@ -304,7 +311,7 @@ class FTPBasicAPI {
   Client *data_ptr = nullptr;     // Client for upload and download of files
   IPAddress remote_address;
   bool is_open;
-  char result_reply[80];
+  char result_reply[100];
 
   bool connect(IPAddress adr, int port, Client *client_ptr,
                bool doCheckResult = false) {
@@ -315,8 +322,7 @@ class FTPBasicAPI {
     FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI::connect", buffer);
 #endif
     // try to connect 10 times
-    client_ptr->stop();  // make sure we start with a clean state
-    delay(100);
+    if (client_ptr->connected()) client_ptr->stop();  // make sure we start with a clean state
     for (int j = 0; j < 10; j++) {
       ok = client_ptr->connect(adr, port);
       if (ok) break;

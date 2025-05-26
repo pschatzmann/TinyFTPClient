@@ -119,6 +119,10 @@ class FTPClient {
     this->port = port;
   }
 
+  bool abort(CurrentOperation op) {
+    return mgr.abort(op);
+  } 
+
  protected:
   FTPSessionMgr<ClientType> mgr;
   IPAddress remote_addr;

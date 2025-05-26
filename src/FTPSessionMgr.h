@@ -69,6 +69,17 @@ class FTPSessionMgr {
     return empty_session;  // No available session
   }
 
+  /// Aborts the current operation in all sessions
+  bool abort(CurrentOperation op) {
+    FTPLogger::writeLog(LOG_DEBUG, "FTPSessionMgr", "abort");
+    for (int i = 0; i < FTP_MAX_SESSIONS; i++) {
+      if (sessions[i] != nullptr && sessions[i]->api().currentOperation() == op) {
+        return sessions[i]->api().abort();
+      }
+    }
+    return false;  // No session found with the specified operation 
+  }
+
  protected:
   FTPSession<ClientType> *sessions[FTP_MAX_SESSIONS] = {nullptr};
   IPAddress address;

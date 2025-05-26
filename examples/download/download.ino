@@ -18,11 +18,12 @@ void setup() {
       Serial.print(".");
     }
 
+#ifdef ESP32
     IPAddress localAddress = WiFi.localIP();
     Serial.println();
     Serial.print("Started with address ");
     Serial.println(localAddress.toString());
-
+#endif
     // optional logging
     FTPLogger::setOutput(Serial);
     //FTPLogger::setLogLevel(LOG_DEBUG);
@@ -35,7 +36,7 @@ void setup() {
     int len;
     byte buffer[100];
     while (file.available()>0){
-        len = file.read(buffer,100);
+        len = file.readBytes(buffer,100);
         Serial.write(buffer,len);
     }
 

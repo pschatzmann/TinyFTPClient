@@ -157,7 +157,7 @@ class FTPFile : public Stream {
       return 0;
     char msg[80];
     size_t size = api_ptr->size(file_name.c_str());
-    sprintf(msg, "size: %d", size);
+    sprintf(msg, "size: %ld", size);
     FTPLogger::writeLog(LOG_DEBUG, "FTPFile", msg);
     return size;
   }

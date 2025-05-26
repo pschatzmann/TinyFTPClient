@@ -31,27 +31,11 @@ class FTPSession {
                            username, password);
   }
 
-  /// Opens the data connection
-  bool passv() {
-    if (!is_valid) return false;
-    return basic_api.passv();
-  }
-
   void end() {
     if (!is_valid) return;
     FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "end");
     closeCommand();
     closeData();
-  }
-
-  void closeCommand() {
-    FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "endCommand");
-    command_client.stop();
-  }
-
-  void closeData() {
-    FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "endData");
-    data_client.stop();
   }
 
   /// Returns the access to the basic API
@@ -67,6 +51,17 @@ class FTPSession {
   ClientType data_client;
   FTPBasicAPI basic_api;
   bool is_valid = true;
+
+  void closeCommand() {
+    FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "endCommand");
+    command_client.stop();
+  }
+
+  void closeData() {
+    FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "endData");
+    data_client.stop();
+  }
+
 };
 
 }  // namespace ftp_client
