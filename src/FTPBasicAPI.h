@@ -164,7 +164,6 @@ class FTPBasicAPI {
       cmd("RETR", file_name, ok);
       setCurrentOperation(READ_OP);
     }
-    checkClosed(data_ptr);
     return data_ptr;
   }
 
@@ -175,7 +174,6 @@ class FTPBasicAPI {
       cmd(mode == WRITE_APPEND_MODE ? "APPE" : "STOR", file_name, ok_write);
       setCurrentOperation(WRITE_OP);
     }
-    checkClosed(data_ptr);
     return data_ptr;
   }
 
@@ -285,17 +283,6 @@ class FTPBasicAPI {
     FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI::cmd", command_buffer);
 
     return checkResult(expected, command_buffer, wait_for_data);
-  }
-
-  bool checkClosed(Client *client) {
-    if (!client->connected()) {
-      FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI",
-                          "checkClosed -> client is closed");
-      // mark the actual command as completed
-      setCurrentOperation(IS_EOF);
-      return true;
-    }
-    return false;
   }
 
  protected:

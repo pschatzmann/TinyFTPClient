@@ -73,11 +73,34 @@ class FTPSessionMgr {
   bool abort(CurrentOperation op) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPSessionMgr", "abort");
     for (int i = 0; i < FTP_MAX_SESSIONS; i++) {
-      if (sessions[i] != nullptr && sessions[i]->api().currentOperation() == op) {
+      if (sessions[i] != nullptr &&
+          sessions[i]->api().currentOperation() == op) {
         return sessions[i]->api().abort();
       }
     }
-    return false;  // No session found with the specified operation 
+    return false;  // No session found with the specified operation
+  }
+
+  /// Count the sessions
+  int count() {
+    int result = 0;
+    for (auto &session : sessions) {
+      if (session != nullptr) {
+        result++;
+      }
+    }
+    return result;
+  }
+  
+  /// Count the sessions with a specific current operation
+  int count(CurrentOperation op) {
+    int result = 0;
+    for (auto &session : sessions) {
+      if (session != nullptr && session->api().currentOperation() == op) {
+        result++;
+      }
+    }
+    return result;
   }
 
  protected:
