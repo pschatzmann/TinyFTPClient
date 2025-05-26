@@ -42,7 +42,7 @@ class FTPClient {
     mgr.end();
   }
 
-  /// Get the file
+  /// Open a file
   FTPFile open(const char *filename, FileMode mode = READ_MODE,
                bool autoClose = false) {
     char msg[200];
