@@ -86,7 +86,7 @@ $(function() {
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  ~<a class="code" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a>() { FTPLogger::writeLog(LOG_DEBUG, <span class="stringliteral">&quot;~FTPBasicAPI&quot;</span>); }</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keywordtype">bool</span> begin(Client *cmdPar, Client *dataPar, IPAddress &amp;address, <span class="keywordtype">int</span> port,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;             <span class="keywordtype">int</span> dataPort, <span class="keyword">const</span> <span class="keywordtype">char</span> *username, <span class="keyword">const</span> <span class="keywordtype">char</span> *password) {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;              <span class="keyword">const</span> <span class="keywordtype">char</span> *username, <span class="keyword">const</span> <span class="keywordtype">char</span> *password) {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    FTPLogger::writeLog(LOG_DEBUG, <span class="stringliteral">&quot;FTPBasicAPI &quot;</span>, <span class="stringliteral">&quot;open&quot;</span>);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    command_ptr = cmdPar;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    data_ptr = dataPar;</div>
@@ -256,7 +256,7 @@ $(function() {
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="comment">// abort</span></div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    abort();</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="keywordtype">void</span> setCurrentOperation(CurrentOperation op) {</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordtype">char</span> msg[80];</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    sprintf(msg, <span class="stringliteral">&quot;setCurrentOperation: %d&quot;</span>, (<span class="keywordtype">int</span>)op);</div>

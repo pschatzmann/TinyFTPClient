@@ -24,11 +24,11 @@ class FTPSession {
   }
 
   /// Initializes the session with the command client
-  bool begin(IPAddress &address, int port, int dataPort, const char *username,
+  bool begin(IPAddress &address, int port, const char *username,
              const char *password) {
     if (!is_valid) return false;
     return basic_api.begin(&command_client, &data_client, address, port,
-                           dataPort, username, password);
+                           username, password);
   }
 
   /// Opens the data connection

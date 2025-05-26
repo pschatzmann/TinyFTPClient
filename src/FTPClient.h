@@ -21,9 +21,9 @@ template <class ClientType>
 class FTPClient {
  public:
   /// Default constructor
-  FTPClient(int port = FTP_COMMAND_PORT, int dataPort = FTP_DATA_PORT) {
+  FTPClient(int port = FTP_COMMAND_PORT) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPClient");
-    init(port, dataPort);
+    setPort(port);
   }
 
   /// Opens the FTP connection
@@ -33,7 +33,7 @@ class FTPClient {
     this->userid = user;
     this->password = password;
     this->remote_addr = remote_addr;
-    return mgr.begin(remote_addr, this->port, this->data_port, user, password);
+    return mgr.begin(remote_addr, this->port, user, password);
   }
 
   /// Close the sessions by calling QUIT or BYE
@@ -115,22 +115,19 @@ class FTPClient {
     return api.type(str);
   }
 
+  void setPort(int port) {
+    this->port = port;
+  }
+
  protected:
   FTPSessionMgr<ClientType> mgr;
   IPAddress remote_addr;
   const char *userid = nullptr;
   const char *password = nullptr;
   int port;
-  int data_port;
   bool cleanup_clients;
   bool auto_close = true;
 
-  /// Initialize the client
-  void init(int port = FTP_COMMAND_PORT, int dataPort = FTP_DATA_PORT) {
-    FTPLogger::writeLog(LOG_DEBUG, "FTPClient");
-    this->port = port;
-    this->data_port = data_port;
-  }
 };
 
 }  // namespace ftp_client

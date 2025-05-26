@@ -67,7 +67,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classftp__client_1_1_f_t_p_client-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -82,10 +81,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a523cc18c50ddc7dcdd867292bd96c54d"><td class="memItemLeft" align="right" valign="top"><a id="a523cc18c50ddc7dcdd867292bd96c54d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a523cc18c50ddc7dcdd867292bd96c54d">FTPClient</a> (int port=FTP_COMMAND_PORT, int dataPort=FTP_DATA_PORT)</td></tr>
-<tr class="memdesc:a523cc18c50ddc7dcdd867292bd96c54d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
-<tr class="separator:a523cc18c50ddc7dcdd867292bd96c54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a929767f8dc5ee42b3ceaa1a0190dcb80"><td class="memItemLeft" align="right" valign="top"><a id="a929767f8dc5ee42b3ceaa1a0190dcb80"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a929767f8dc5ee42b3ceaa1a0190dcb80">FTPClient</a> (int port=FTP_COMMAND_PORT)</td></tr>
+<tr class="memdesc:a929767f8dc5ee42b3ceaa1a0190dcb80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a929767f8dc5ee42b3ceaa1a0190dcb80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af28b09eaf0aef5c342da743e1e2291e6"><td class="memItemLeft" align="right" valign="top"><a id="af28b09eaf0aef5c342da743e1e2291e6"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#af28b09eaf0aef5c342da743e1e2291e6">begin</a> (IPAddress remote_addr, const char *user=&quot;anonymous&quot;, const char *password=nullptr)</td></tr>
 <tr class="memdesc:af28b09eaf0aef5c342da743e1e2291e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the FTP connection. <br /></td></tr>
@@ -124,13 +123,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#ac31ca05125215904b5ce5887209fa5b5">type</a> (const char *str)</td></tr>
 <tr class="memdesc:ac31ca05125215904b5ce5887209fa5b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binary or ascii with type command. <br /></td></tr>
 <tr class="separator:ac31ca05125215904b5ce5887209fa5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a7d1191430a8839387f7e12caa5dcd1be"><td class="memItemLeft" align="right" valign="top"><a id="a7d1191430a8839387f7e12caa5dcd1be"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_client.html#a7d1191430a8839387f7e12caa5dcd1be">init</a> (int port=FTP_COMMAND_PORT, int dataPort=FTP_DATA_PORT)</td></tr>
-<tr class="memdesc:a7d1191430a8839387f7e12caa5dcd1be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the client. <br /></td></tr>
-<tr class="separator:a7d1191430a8839387f7e12caa5dcd1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a320f04e12e8aabe79d78ce027a8ec4"><td class="memItemLeft" align="right" valign="top"><a id="a5a320f04e12e8aabe79d78ce027a8ec4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPort</b> (int port)</td></tr>
+<tr class="separator:a5a320f04e12e8aabe79d78ce027a8ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -149,9 +144,6 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>password</b> 
 <tr class="memitem:a4ee415163ba85c0d3a1825c8712e942a"><td class="memItemLeft" align="right" valign="top"><a id="a4ee415163ba85c0d3a1825c8712e942a"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>port</b></td></tr>
 <tr class="separator:a4ee415163ba85c0d3a1825c8712e942a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b6cb28fe25052fd988f2971e5d0ffc1"><td class="memItemLeft" align="right" valign="top"><a id="a3b6cb28fe25052fd988f2971e5d0ffc1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>data_port</b></td></tr>
-<tr class="separator:a3b6cb28fe25052fd988f2971e5d0ffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07fa0d67a32c8cc10db7e76739e04523"><td class="memItemLeft" align="right" valign="top"><a id="a07fa0d67a32c8cc10db7e76739e04523"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>cleanup_clients</b></td></tr>
 <tr class="separator:a07fa0d67a32c8cc10db7e76739e04523"><td class="memSeparator" colspan="2">&#160;</td></tr>

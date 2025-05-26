@@ -25,10 +25,6 @@
 #define FTP_COMMAND_PORT 21
 #endif
 
-#ifndef FTP_DATA_PORT
-#define FTP_DATA_PORT 1000
-#endif
-
 #ifndef FTP_MAX_SESSIONS
 #define FTP_MAX_SESSIONS 10
 #endif

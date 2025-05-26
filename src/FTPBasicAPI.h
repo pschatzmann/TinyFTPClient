@@ -23,7 +23,7 @@ class FTPBasicAPI {
   ~FTPBasicAPI() { FTPLogger::writeLog(LOG_DEBUG, "~FTPBasicAPI"); }
 
   bool begin(Client *cmdPar, Client *dataPar, IPAddress &address, int port,
-             int dataPort, const char *username, const char *password) {
+              const char *username, const char *password) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI ", "open");
     command_ptr = cmdPar;
     data_ptr = dataPar;
@@ -193,7 +193,7 @@ class FTPBasicAPI {
     // abort
     abort();
   }
-  
+
   void setCurrentOperation(CurrentOperation op) {
     char msg[80];
     sprintf(msg, "setCurrentOperation: %d", (int)op);

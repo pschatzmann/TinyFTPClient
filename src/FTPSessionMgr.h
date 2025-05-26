@@ -24,12 +24,11 @@ class FTPSessionMgr {
   }
 
   /// Initializes the session manager with the FTP server details
-  bool begin(IPAddress &address, int port, int dataPort, const char *username,
+  bool begin(IPAddress &address, int port, const char *username,
              const char *password) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPSessionMgr", "createSession");
     this->address = address;
     this->port = port;
-    this->dataPort = dataPort;
     this->username = username;
     this->password = password;
     return true;
@@ -53,7 +52,7 @@ class FTPSessionMgr {
     for (int i = 0; i < FTP_MAX_SESSIONS; i++) {
       if (sessions[i] == nullptr) {
         sessions[i] = new FTPSession<ClientType>();
-        if (sessions[i]->begin(address, port, dataPort, username, password)) {
+        if (sessions[i]->begin(address, port, username, password)) {
           return *sessions[i];
         } else {
           delete sessions[i];
@@ -74,7 +73,6 @@ class FTPSessionMgr {
   FTPSession<ClientType> *sessions[FTP_MAX_SESSIONS] = {nullptr};
   IPAddress address;
   int port;
-  int dataPort;
   const char *username;
   const char *password;
 };
