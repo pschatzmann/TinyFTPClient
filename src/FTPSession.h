@@ -44,6 +44,7 @@ class FTPSession {
   /// Returns true if the command client is connected
   operator bool() { return is_valid && command_client.connected(); }
 
+  /// Used to set as invalid for dummy error session
   void setValid(bool valid) { is_valid = valid; }
 
  protected:

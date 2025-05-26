@@ -172,18 +172,22 @@ $(function() {
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    this-&gt;port = port;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  }</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  FTPSessionMgr&lt;ClientType&gt; mgr;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  IPAddress remote_addr;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *userid = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *password = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="keywordtype">int</span> port;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keywordtype">bool</span> cleanup_clients;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordtype">bool</span> auto_close = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}  <span class="comment">// namespace ftp_client</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keywordtype">bool</span> abort(CurrentOperation op) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> mgr.abort(op);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  } </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  FTPSessionMgr&lt;ClientType&gt; mgr;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  IPAddress remote_addr;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *userid = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *password = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keywordtype">int</span> port;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keywordtype">bool</span> cleanup_clients;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <span class="keywordtype">bool</span> auto_close = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;};</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}  <span class="comment">// namespace ftp_client</span></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_basic_a_p_i_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_basic_a_p_i.html">ftp_client::FTPBasicAPI</a></div><div class="ttdoc">FTPBasicAPI Implementation of Low Level FTP protocol. In order to simplify the logic we always use Pa...</div><div class="ttdef"><b>Definition:</b> FTPBasicAPI.h:17</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_client_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_client.html">ftp_client::FTPClient</a></div><div class="ttdoc">FTPClient Basic FTP access class which supports directory operations and the opening of files.</div><div class="ttdef"><b>Definition:</b> FTPClient.h:21</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_client_html_a04e0014bb39632b25c95296f32d3ad8e"><div class="ttname"><a href="classftp__client_1_1_f_t_p_client.html#a04e0014bb39632b25c95296f32d3ad8e">ftp_client::FTPClient::remove</a></div><div class="ttdeci">bool remove(const char *filepath)</div><div class="ttdoc">Delete the file.</div><div class="ttdef"><b>Definition:</b> FTPClient.h:70</div></div>

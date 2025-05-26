@@ -67,6 +67,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classftp__client_1_1_f_t_p_session-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -85,19 +86,9 @@ Public Member Functions</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_session.html#aca22520bec67d4369cd58c67d15d57a9">begin</a> (IPAddress &amp;address, int port, const char *username, const char *password)</td></tr>
 <tr class="memdesc:aca22520bec67d4369cd58c67d15d57a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the session with the command client. <br /></td></tr>
 <tr class="separator:aca22520bec67d4369cd58c67d15d57a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af426bbf24507e3d4c7414a2524cdba34"><td class="memItemLeft" align="right" valign="top"><a id="af426bbf24507e3d4c7414a2524cdba34"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_session.html#af426bbf24507e3d4c7414a2524cdba34">passv</a> ()</td></tr>
-<tr class="memdesc:af426bbf24507e3d4c7414a2524cdba34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the data connection. <br /></td></tr>
-<tr class="separator:af426bbf24507e3d4c7414a2524cdba34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada57f9ca390b6f9eaf414432996aa0fa"><td class="memItemLeft" align="right" valign="top"><a id="ada57f9ca390b6f9eaf414432996aa0fa"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
 <tr class="separator:ada57f9ca390b6f9eaf414432996aa0fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6afdc3ec483552463b1104431e372c95"><td class="memItemLeft" align="right" valign="top"><a id="a6afdc3ec483552463b1104431e372c95"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>closeCommand</b> ()</td></tr>
-<tr class="separator:a6afdc3ec483552463b1104431e372c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41b2cdfff676781a6d20500735ee1b3d"><td class="memItemLeft" align="right" valign="top"><a id="a41b2cdfff676781a6d20500735ee1b3d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>closeData</b> ()</td></tr>
-<tr class="separator:a41b2cdfff676781a6d20500735ee1b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98e5417af904718ff8b4df67463438e3"><td class="memItemLeft" align="right" valign="top"><a id="a98e5417af904718ff8b4df67463438e3"></a>
 <a class="el" href="classftp__client_1_1_f_t_p_basic_a_p_i.html">FTPBasicAPI</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_session.html#a98e5417af904718ff8b4df67463438e3">api</a> ()</td></tr>
 <tr class="memdesc:a98e5417af904718ff8b4df67463438e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the access to the basic API. <br /></td></tr>
@@ -107,8 +98,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>closeData</b> ()</td>
 <tr class="memdesc:a354e074bd75e8f8fd3a99665649b8998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the command client is connected. <br /></td></tr>
 <tr class="separator:a354e074bd75e8f8fd3a99665649b8998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61ca4d164dbd9127b3ac242fcb8a34e9"><td class="memItemLeft" align="right" valign="top"><a id="a61ca4d164dbd9127b3ac242fcb8a34e9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setValid</b> (bool valid)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classftp__client_1_1_f_t_p_session.html#a61ca4d164dbd9127b3ac242fcb8a34e9">setValid</a> (bool valid)</td></tr>
+<tr class="memdesc:a61ca4d164dbd9127b3ac242fcb8a34e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set as invalid for dummy error session. <br /></td></tr>
 <tr class="separator:a61ca4d164dbd9127b3ac242fcb8a34e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a6afdc3ec483552463b1104431e372c95"><td class="memItemLeft" align="right" valign="top"><a id="a6afdc3ec483552463b1104431e372c95"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>closeCommand</b> ()</td></tr>
+<tr class="separator:a6afdc3ec483552463b1104431e372c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b2cdfff676781a6d20500735ee1b3d"><td class="memItemLeft" align="right" valign="top"><a id="a41b2cdfff676781a6d20500735ee1b3d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>closeData</b> ()</td></tr>
+<tr class="separator:a41b2cdfff676781a6d20500735ee1b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>

@@ -67,7 +67,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> Sometimes you might have the need to write (your sensor) data into a remote file or you might need more data than you can store on your local Arduino device for your local processing logic .</p>
 <p>If your device is connected to the Internet this library is coming to your rescue: The FTP protocol is one of oldest communication protocols: It is easy to implement and therefore rather efficient and you can find plenty of free server implementations on all platforms.</p>
-<p>This is a simple but powerful FTP client library for Arduino that provides a Stream based API for the remote files.</p>
+<p>This is a simple but powerful header only C++ FTP client library for Arduino that provides a Stream based API for the remote files.</p>
 <p>We support</p>
 <ul>
 <li>The reading of Remote Files (File Download)</li>
@@ -79,35 +79,40 @@ $(function() {
 <h1><a class="anchor" id="autotoc_md1"></a>
 TCP IP</h1>
 <p>The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implemenation.</p>
-<p>To set up the FTPClient you need to provide a network client for the commands and one for the data to the constructor:</p>
+<p>To set up the FTPClient you need to provide a network client as template class parameter:</p>
 <h2><a class="anchor" id="autotoc_md2"></a>
 ESP32</h2>
 <div class="fragment"><div class="line">{C++}</div>
 <div class="line">   #include &quot;WiFi.h&quot;</div>
+<div class="line">   #include &quot;FTPClient.h&quot;</div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 ESP8266</h2>
 <div class="fragment"><div class="line">{C++}</div>
 <div class="line">   #include &lt;ESP8266WiFi.h&gt;</div>
+<div class="line">   #include &quot;FTPClient.h&quot;</div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
 RP2040 W</h2>
 <div class="fragment"><div class="line">{C++}</div>
 <div class="line">   #include &lt;WiFi.h&gt;</div>
+<div class="line">   #include &quot;FTPClient.h&quot;</div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
 Arduino Uno WiFi Rev.2, Arduino Nano 33 IoT etc</h2>
 <div class="fragment"><div class="line">{C++}</div>
 <div class="line">   #include &lt;WiFiNINA.h&gt;</div>
+<div class="line">   #include &quot;FTPClient.h&quot;</div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
 Ethernet Shield</h2>
 <div class="fragment"><div class="line">{C++}</div>
 <div class="line">   #include &lt;Ethernet.h&gt;</div>
+<div class="line">   #include &quot;FTPClient.h&quot;</div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;EthernetClient&gt; client;</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>

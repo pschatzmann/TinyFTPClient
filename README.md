@@ -7,8 +7,7 @@ If your device is connected to the Internet this library is coming to your rescu
 is one of oldest communication protocols: It is easy to implement and therefore rather efficient and
 you can find plenty of free server implementations on all platforms.
 
-This is a simple but powerful FTP client library for Arduino that provides a Stream based API for the 
-remote files. 
+This is a simple but powerful header only C++ FTP client library for Arduino that provides a Stream based API for the remote files. 
 
 We support
 
@@ -22,12 +21,13 @@ We support
 
 The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implemenation. 
 
-To set up the FTPClient you need to provide a network client for the commands and one for the data to the constructor: 
+To set up the FTPClient you need to provide a network client as template class parameter: 
 
 ### ESP32
 
 ```C++
     #include "WiFi.h"
+    #include "FTPClient.h"
 
     FTPClient<WiFiClient> client;
 ```
@@ -36,6 +36,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ```C++
     #include <ESP8266WiFi.h>
+    #include "FTPClient.h"
 
     FTPClient<WiFiClient> client;
 ```
@@ -44,6 +45,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ```C++
     #include <WiFi.h>
+    #include "FTPClient.h"
 
     FTPClient<WiFiClient> client;
 ```
@@ -53,6 +55,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ```C++
     #include <WiFiNINA.h>
+    #include "FTPClient.h"
 
     FTPClient<WiFiClient> client;
 ```
@@ -61,6 +64,7 @@ To set up the FTPClient you need to provide a network client for the commands an
 
 ```C++
     #include <Ethernet.h>
+    #include "FTPClient.h"
 
     FTPClient<EthernetClient> client;
 ```
