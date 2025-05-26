@@ -1,3 +1,13 @@
+# 
+# You can build the examples of this project on the desktop using the Arduino Emulator 
+# with cmake using the following commands:
+#
+#  mkdir build
+#  cd build
+#  cmake ..
+#  make
+# 
+
 cmake_minimum_required(VERSION 3.16)
 
 # set the project name
