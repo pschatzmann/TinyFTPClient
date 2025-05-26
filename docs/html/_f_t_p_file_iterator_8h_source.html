@@ -148,7 +148,7 @@ $(function() {
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      buffer = stream_ptr-&gt;readStringUntil(<span class="charliteral">&#39;\n&#39;</span>);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      FTPLogger::writeLog(LOG_DEBUG, <span class="stringliteral">&quot;line&quot;</span>, buffer.c_str());</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="comment">// End of ls</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="comment">// End of ls !!!</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      <span class="keywordflow">if</span> (api_ptr-&gt;currentOperation() == LS_OP &amp;&amp; buffer[0] == 0) {</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// Close data connection</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        api_ptr-&gt;closeData();</div>
@@ -157,7 +157,7 @@ $(function() {
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="comment">// Get final status</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *ok[] = {<span class="stringliteral">&quot;226&quot;</span>, <span class="stringliteral">&quot;250&quot;</span>, <span class="keyword">nullptr</span>};</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        api_ptr-&gt;checkResult(ok, <span class="stringliteral">&quot;ls-end&quot;</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        api_ptr-&gt;checkResult(ok, <span class="stringliteral">&quot;ls-end&quot;</span>, <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;      }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;      FTPLogger::writeLog(LOG_ERROR, <span class="stringliteral">&quot;FTPFileIterator&quot;</span>, <span class="stringliteral">&quot;stream_ptr is null&quot;</span>);</div>
@@ -173,7 +173,7 @@ $(function() {
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}  <span class="comment">// namespace ftp_client</span></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_basic_a_p_i_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_basic_a_p_i.html">ftp_client::FTPBasicAPI</a></div><div class="ttdoc">FTPBasicAPI Implementation of Low Level FTP protocol. In order to simplify the logic we always use Pa...</div><div class="ttdef"><b>Definition:</b> FTPBasicAPI.h:17</div></div>
-<div class="ttc" id="aclassftp__client_1_1_f_t_p_file_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_file.html">ftp_client::FTPFile</a></div><div class="ttdoc">FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...</div><div class="ttdef"><b>Definition:</b> FTPFile.h:15</div></div>
+<div class="ttc" id="aclassftp__client_1_1_f_t_p_file_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_file.html">ftp_client::FTPFile</a></div><div class="ttdoc">FTPFile A single file which supports read and write operations. This class is implemented as an Ardui...</div><div class="ttdef"><b>Definition:</b> FTPFile.h:16</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_file_iterator_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_file_iterator.html">ftp_client::FTPFileIterator</a></div><div class="ttdoc">FTPFileIterator The file name iterator can be used to list all available files and directories....</div><div class="ttdef"><b>Definition:</b> FTPFileIterator.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

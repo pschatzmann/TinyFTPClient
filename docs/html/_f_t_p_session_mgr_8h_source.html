@@ -131,25 +131,48 @@ $(function() {
 <div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classftp__client_1_1_f_t_p_session_mgr.html#a6d7e974212b261d7002f986bf5bba81b">   73</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a6d7e974212b261d7002f986bf5bba81b">abort</a>(CurrentOperation op) {</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    FTPLogger::writeLog(LOG_DEBUG, <span class="stringliteral">&quot;FTPSessionMgr&quot;</span>, <span class="stringliteral">&quot;abort&quot;</span>);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; FTP_MAX_SESSIONS; i++) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="keywordflow">if</span> (sessions[i] != <span class="keyword">nullptr</span> &amp;&amp; sessions[i]-&gt;api().currentOperation() == op) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> sessions[i]-&gt;api().abort();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// No session found with the specified operation </span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <a class="code" href="classftp__client_1_1_f_t_p_session.html">FTPSession&lt;ClientType&gt;</a> *sessions[FTP_MAX_SESSIONS] = {<span class="keyword">nullptr</span>};</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  IPAddress address;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keywordtype">int</span> port;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *username;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *password;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}  <span class="comment">// namespace ftp_client</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="keywordflow">if</span> (sessions[i] != <span class="keyword">nullptr</span> &amp;&amp;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;          sessions[i]-&gt;api().currentOperation() == op) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> sessions[i]-&gt;api().abort();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// No session found with the specified operation</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classftp__client_1_1_f_t_p_session_mgr.html#a3a32c0d933666e120c1a3322091e0781">   85</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a3a32c0d933666e120c1a3322091e0781">count</a>() {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">int</span> result = 0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;<a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a87a3b349cbc6399c17677cd5cd76a605">session</a> : sessions) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a87a3b349cbc6399c17677cd5cd76a605">session</a> != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        result++;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classftp__client_1_1_f_t_p_session_mgr.html#a224d9eb76280ac9a2d2013bb807fab98">   96</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a224d9eb76280ac9a2d2013bb807fab98">count</a>(CurrentOperation op) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">int</span> result = 0;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;<a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a87a3b349cbc6399c17677cd5cd76a605">session</a> : sessions) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a87a3b349cbc6399c17677cd5cd76a605">session</a> != <span class="keyword">nullptr</span> &amp;&amp; <a class="code" href="classftp__client_1_1_f_t_p_session_mgr.html#a87a3b349cbc6399c17677cd5cd76a605">session</a>-&gt;api().currentOperation() == op) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        result++;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <a class="code" href="classftp__client_1_1_f_t_p_session.html">FTPSession&lt;ClientType&gt;</a> *sessions[FTP_MAX_SESSIONS] = {<span class="keyword">nullptr</span>};</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  IPAddress address;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <span class="keywordtype">int</span> port;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *username;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *password;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;};</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}  <span class="comment">// namespace ftp_client</span></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_session_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session.html">ftp_client::FTPSession</a></div><div class="ttdoc">FTPSession This class manages the FTP session, including command and data connections....</div><div class="ttdef"><b>Definition:</b> FTPSession.h:17</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_session_html_a61ca4d164dbd9127b3ac242fcb8a34e9"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session.html#a61ca4d164dbd9127b3ac242fcb8a34e9">ftp_client::FTPSession::setValid</a></div><div class="ttdeci">void setValid(bool valid)</div><div class="ttdoc">Used to set as invalid for dummy error session.</div><div class="ttdef"><b>Definition:</b> FTPSession.h:48</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_session_mgr_html"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session_mgr.html">ftp_client::FTPSessionMgr</a></div><div class="ttdoc">FTPSessionMgr This class manages multiple FTP sessions, allowing for concurrent operations and sessio...</div><div class="ttdef"><b>Definition:</b> FTPSessionMgr.h:17</div></div>
+<div class="ttc" id="aclassftp__client_1_1_f_t_p_session_mgr_html_a224d9eb76280ac9a2d2013bb807fab98"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session_mgr.html#a224d9eb76280ac9a2d2013bb807fab98">ftp_client::FTPSessionMgr::count</a></div><div class="ttdeci">int count(CurrentOperation op)</div><div class="ttdoc">Count the sessions with a specific current operation.</div><div class="ttdef"><b>Definition:</b> FTPSessionMgr.h:96</div></div>
+<div class="ttc" id="aclassftp__client_1_1_f_t_p_session_mgr_html_a3a32c0d933666e120c1a3322091e0781"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session_mgr.html#a3a32c0d933666e120c1a3322091e0781">ftp_client::FTPSessionMgr::count</a></div><div class="ttdeci">int count()</div><div class="ttdoc">Count the sessions.</div><div class="ttdef"><b>Definition:</b> FTPSessionMgr.h:85</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_session_mgr_html_a6d7e974212b261d7002f986bf5bba81b"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session_mgr.html#a6d7e974212b261d7002f986bf5bba81b">ftp_client::FTPSessionMgr::abort</a></div><div class="ttdeci">bool abort(CurrentOperation op)</div><div class="ttdoc">Aborts the current operation in all sessions.</div><div class="ttdef"><b>Definition:</b> FTPSessionMgr.h:73</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_session_mgr_html_a79063b3165352ec087d3d7b03462e42a"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session_mgr.html#a79063b3165352ec087d3d7b03462e42a">ftp_client::FTPSessionMgr::begin</a></div><div class="ttdeci">bool begin(IPAddress &amp;address, int port, const char *username, const char *password)</div><div class="ttdoc">Initializes the session manager with the FTP server details.</div><div class="ttdef"><b>Definition:</b> FTPSessionMgr.h:27</div></div>
 <div class="ttc" id="aclassftp__client_1_1_f_t_p_session_mgr_html_a87a3b349cbc6399c17677cd5cd76a605"><div class="ttname"><a href="classftp__client_1_1_f_t_p_session_mgr.html#a87a3b349cbc6399c17677cd5cd76a605">ftp_client::FTPSessionMgr::session</a></div><div class="ttdeci">FTPSession&lt; ClientType &gt; &amp; session()</div><div class="ttdoc">Provides a session for the FTP operations.</div><div class="ttdef"><b>Definition:</b> FTPSessionMgr.h:51</div></div>
