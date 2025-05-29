@@ -40,7 +40,9 @@ class FTPBasicAPI {
     }
 
     is_open = true;
-    ;
+    const char *ok_result[] = {"200", nullptr};
+    cmd("OPTS", "UTF8", ok_result);
+
     return true;
   }
 
