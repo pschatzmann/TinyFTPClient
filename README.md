@@ -1,5 +1,8 @@
 # TinyFTPClient
 
+[![Arduino Library](https://img.shields.io/badge/Arduino-Library-blue.svg)](https://www.arduino.cc/reference/en/libraries/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 Sometimes you might have the need to write (your sensor) data into a remote file or you might need
 more data than you can store on your local Arduino device for your local processing logic . 
 
