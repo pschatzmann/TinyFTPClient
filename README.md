@@ -19,7 +19,7 @@ We support
 
 ## TCP IP
 
-The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implemenation. 
+The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implementation. 
 
 To set up the FTPClient you need to provide a network client as template class parameter: 
 
@@ -139,7 +139,7 @@ Instead of reading a bock of characters we can request to read a line (which is 
 
 ## File Upload - Writing to Remote Files
 You can write to a file on a remote system by using the regular Stream write() or print() methods. If
-the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.
+the file already exists it will be replaced with the new content if you use the FileMode WRITE.
 
 ```C++
     FTPClient<WiFiClient> client;
