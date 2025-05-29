@@ -71,6 +71,10 @@ class CStringFunctions {
       }
       str[j] = c;
     }
+    // For Windows we remove the \r at the end
+    if (str[len - 1] == '\r') {
+      len--; // remove \r
+    }
     memset(str + len, 0, maxLen - len);
     return len;
   }
