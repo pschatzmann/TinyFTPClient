@@ -1,5 +1,8 @@
 # TinyFTPClient
 
+[![Arduino Library](https://img.shields.io/badge/Arduino-Library-blue.svg)](https://www.arduino.cc/reference/en/libraries/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 Sometimes you might have the need to write (your sensor) data into a remote file or you might need
 more data than you can store on your local Arduino device for your local processing logic . 
 
@@ -19,7 +22,7 @@ We support
 
 ## TCP IP
 
-The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implemenation. 
+The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implementation. 
 
 To set up the FTPClient you need to provide a network client as template class parameter: 
 
@@ -139,7 +142,7 @@ Instead of reading a bock of characters we can request to read a line (which is 
 
 ## File Upload - Writing to Remote Files
 You can write to a file on a remote system by using the regular Stream write() or print() methods. If
-the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.
+the file already exists it will be replaced with the new content if you use the FileMode WRITE.
 
 ```C++
     FTPClient<WiFiClient> client;
