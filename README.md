@@ -139,7 +139,7 @@ Instead of reading a bock of characters we can request to read a line (which is 
 
 ## File Upload - Writing to Remote Files
 You can write to a file on a remote system by using the regular Stream write() or print() methods. If
-the file alreay exists it will be replaced with the new content if you use the FileMode WRITE.
+the file already exists it will be replaced with the new content if you use the FileMode WRITE.
 
 ```C++
     FTPClient<WiFiClient> client;
