@@ -83,6 +83,7 @@ class FTPFileIterator {
     buffer = "";
     if (stream_ptr != nullptr) {
       buffer = stream_ptr->readStringUntil('\n');
+      if (buffer.endsWith("\r")) buffer.remove(buffer.length() - 1);
       FTPLogger::writeLog(LOG_DEBUG, "line", buffer.c_str());
 
       // End of ls !!!
