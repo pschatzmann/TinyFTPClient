@@ -19,7 +19,7 @@ We support
 
 ## TCP IP
 
-The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implemenation. 
+The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implementation. 
 
 To set up the FTPClient you need to provide a network client as template class parameter: 
 
