@@ -21,9 +21,15 @@ template <class ClientType>
 class FTPClient {
  public:
   /// Default constructor: Provide the client class as template argument e.g. FTPClient<WiFiClient> client;
-  FTPClient(int port = FTP_COMMAND_PORT) {
+  FTPClient(int port = FTP_COMMAND_PORT, bool useType = false) {
     FTPLogger::writeLog(LOG_DEBUG, "FTPClient");
+    setUseTypeCommand(useType);
     setPort(port);
+  }
+
+  /// if set to true the BIN and ASCII command are executed as type I or A 
+  void setUseTypeCommand(bool useType) {
+    use_type_command = useType;
   }
 
   /// Opens the FTP connection
@@ -98,6 +104,7 @@ class FTPClient {
   bool binary() {
     FTPBasicAPI &api = mgr.session().api();
     if (!api) return false;
+    api.setUseTypeCommand(use_type_command);
     return api.binary();
   }
 
@@ -105,6 +112,7 @@ class FTPClient {
   bool ascii() {
     FTPBasicAPI &api = mgr.session().api();
     if (!api) return false;
+    api.setUseTypeCommand(use_type_command);
     return api.ascii();
   }
 
@@ -136,6 +144,7 @@ class FTPClient {
   int port;
   bool cleanup_clients;
   bool auto_close = true;
+  bool use_type_command = false;
 
 };
 

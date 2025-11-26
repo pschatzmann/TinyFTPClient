@@ -146,12 +146,14 @@ class FTPBasicAPI {
 
   bool binary() {
     FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI", "binary");
-    return cmd("BIN", nullptr, "200");
+    const char *type_cmd = use_type ? "TYPE I" : "BIN";
+    return cmd(type_cmd, nullptr, "200");
   }
 
   bool ascii() {
     FTPLogger::writeLog(LOG_DEBUG, "FTPBasicAPI", "ascii");
-    return cmd("ASC", nullptr, "200");
+    const char *type_cmd = use_type ? "TYPE A" : "ASC";
+    return cmd(type_cmd, nullptr, "200");
   }
 
   bool type(const char *txt) {
@@ -287,13 +289,18 @@ class FTPBasicAPI {
     return checkResult(expected, command_buffer, wait_for_data);
   }
 
+  void setUseTypeCommand(bool useType) {
+    use_type = useType;
+  }
+
  protected:
   // currently running op -> do we need to cancel ?
   CurrentOperation current_operation = NOP;
   Client *command_ptr = nullptr;  // Client for commands
   Client *data_ptr = nullptr;     // Client for upload and download of files
   IPAddress remote_address;
-  bool is_open;
+  bool is_open = false;
+  bool use_type = false;
   char result_reply[100];
 
   bool connect(IPAddress adr, int port, Client *client_ptr,
