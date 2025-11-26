@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['tinyftpclient_21',['TinyFTPClient',['../index.html',1,'']]],
-  ['type_22',['type',['../classftp__client_1_1_f_t_p_client.html#ac31ca05125215904b5ce5887209fa5b5',1,'ftp_client::FTPClient']]]
+  ['nano_2033_20iot_20etc_0',['Arduino Uno WiFi Rev.2, Arduino Nano 33 IoT etc',['../index.html#autotoc_md5',1,'']]]
 ];

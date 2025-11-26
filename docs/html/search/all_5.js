@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['ls_15',['ls',['../classftp__client_1_1_f_t_p_client.html#a2bac8d0b56270e832b6a0b19453fc7a8',1,'ftp_client::FTPClient']]]
+  ['directory_0',['List Directory',['../index.html#autotoc_md14',1,'']]],
+  ['directory_20operatrions_1',['Directory operatrions',['../index.html#autotoc_md13',1,'']]],
+  ['documentation_2',['Documentation',['../index.html#autotoc_md16',1,'']]],
+  ['download_20line_20based_3',['File Download - Line Based',['../index.html#autotoc_md10',1,'']]],
+  ['download_20reading_20remote_20files_4',['File Download - Reading Remote Files',['../index.html#autotoc_md9',1,'']]]
 ];
