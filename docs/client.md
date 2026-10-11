@@ -189,7 +189,7 @@ The files of a directory are listed with the help of an Iterator.
 
 ## Logging
 
-See the [Logging](../README.md#logging) chapter of the README.
+See [Logging](logging.md).
 
 ## Examples
 
