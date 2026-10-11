@@ -2,57 +2,72 @@
 
 #include "FTPCommon.h"
 
-namespace ftp_client {
-
-// initialize static variables
-static LogLevel ftp_min_log_level = LOG_ERROR;
-static Stream *ftp_logger_out_ptr = nullptr; 
+namespace tinyftp {
 
 /**
- * @brief FTPLogger
- * To activate logging define the output stream e.g. with
- * FTPLogger.setOutput(Serial); and (optionally) set the log level
+ * @brief FTPLoggerClass
+ * To activate logging start the FTPLogger object with the output stream and
+ * (optionally) the log level e.g. with FTPLogger.begin(Serial, LOG_INFO);
  * @author Phil Schatzmann
  */
-class FTPLogger {
+class FTPLoggerClass {
  public:
-  static void setLogLevel(LogLevel level) {
-    ftp_min_log_level = level;
+  /// Provides the single instance which is available as FTPLogger
+  static FTPLoggerClass &instance() {
+    static FTPLoggerClass logger;
+    return logger;
   }
-  
-  static LogLevel getLogLevel() {
-    return ftp_min_log_level;
+
+  FTPLoggerClass(const FTPLoggerClass &) = delete;
+  FTPLoggerClass &operator=(const FTPLoggerClass &) = delete;
+
+  /// Starts the logging to the indicated output
+  void begin(Stream &out, FTPLogLevel level = LOG_ERROR) {
+    setOutput(out);
+    setLogLevel(level);
   }
-  
-  static void setOutput(Stream &out) {
-    ftp_logger_out_ptr = &out;
-  }
-  
-  static void writeLog(LogLevel level, const char *module, const char *msg = nullptr) {
-    if (ftp_logger_out_ptr != nullptr && level >= ftp_min_log_level) {
-      ftp_logger_out_ptr->print("FTP ");
+
+  void setLogLevel(FTPLogLevel level) { min_log_level = level; }
+
+  FTPLogLevel getLogLevel() { return min_log_level; }
+
+  void setOutput(Stream &out) { out_ptr = &out; }
+
+  void writeLog(FTPLogLevel level, const char *module,
+                const char *msg = nullptr) {
+    if (out_ptr != nullptr && level >= min_log_level) {
+      out_ptr->print("FTP ");
       switch (level) {
         case LOG_DEBUG:
-          ftp_logger_out_ptr->print("DEBUG - ");
+          out_ptr->print("DEBUG - ");
           break;
         case LOG_INFO:
-          ftp_logger_out_ptr->print("INFO - ");
+          out_ptr->print("INFO - ");
           break;
         case LOG_WARN:
-          ftp_logger_out_ptr->print("WARN - ");
+          out_ptr->print("WARN - ");
           break;
         case LOG_ERROR:
-          ftp_logger_out_ptr->print("ERROR - ");
+          out_ptr->print("ERROR - ");
           break;
       }
-      ftp_logger_out_ptr->print(module);
+      out_ptr->print(module);
       if (msg != nullptr) {
-        ftp_logger_out_ptr->print(": ");
-        ftp_logger_out_ptr->print(msg);
+        out_ptr->print(": ");
+        out_ptr->print(msg);
       }
-      ftp_logger_out_ptr->println();
+      out_ptr->println();
     }
   }
+
+ protected:
+  FTPLogLevel min_log_level = LOG_ERROR;
+  Stream *out_ptr = nullptr;
+
+  FTPLoggerClass() = default;
 };
 
-}
+/// The FTPLogger object: all translation units share the same instance
+static FTPLoggerClass &FTPLogger = FTPLoggerClass::instance();
+
+}  // namespace tinyftp

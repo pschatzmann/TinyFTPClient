@@ -20,8 +20,8 @@ void setup() {
     Serial.println(localAddress.toString());
 #endif
     // optional logging
-    FTPLogger::setOutput(Serial);
-    //FTPLogger::setLogLevel(LOG_DEBUG);
+    FTPLogger.begin(Serial, LOG_ERROR);
+    // FTPLogger.begin(Serial, LOG_DEBUG);
 
     // open connection
     client.begin(IPAddress(192,168,1,10), "ftp-userid", "ftp-password");

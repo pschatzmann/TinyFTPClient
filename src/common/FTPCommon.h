@@ -5,10 +5,6 @@
 #include "IPAddress.h"
 #include "Stream.h"
 
-#ifndef FTP_USE_NAMESPACE
-#define FTP_USE_NAMESPACE true
-#endif
-
 #ifndef FTP_ABORT_DELAY_MS 
 #define FTP_ABORT_DELAY_MS 300
 #endif
@@ -29,59 +25,39 @@
 #define FTP_MAX_SESSIONS 10
 #endif
 
-namespace ftp_client {
+#ifndef FTP_REPLY_TIMEOUT_MS
+#define FTP_REPLY_TIMEOUT_MS 10000
+#endif
+
+#ifndef FTP_CONNECT_RETRIES
+#define FTP_CONNECT_RETRIES 10
+#endif
+
+#ifndef FTP_CONNECT_RETRY_DELAY_MS
+#define FTP_CONNECT_RETRY_DELAY_MS 500
+#endif
+
+/// FTP client and server functionality
+namespace tinyftp {
 
 /// @brief File Mode
 enum FileMode { READ_MODE, WRITE_MODE, WRITE_APPEND_MODE };
-enum CurrentOperation { READ_OP, WRITE_OP, LS_OP, NOP, IS_EOF };
-enum LogLevel { LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR };
+/// @brief State of a session: RESERVED_OP means a data connection was opened
+/// (PASV) but no transfer command was sent yet
+enum CurrentOperation { READ_OP, WRITE_OP, LS_OP, NOP, RESERVED_OP };
+enum FTPLogLevel { LOG_DEBUG, LOG_INFO, LOG_WARN, LOG_ERROR };
 enum ObjectType { TypeFile, TypeDirectory, TypeUndefined };
 
-/**
- * @brief CStringFunctions
- * We implemented some missing C based string functions for character arrays
- * @author Phil Schatzmann
- */
-
-class CStringFunctions {
- public:
-  static int findNthInStr(char *str, char ch, int n) {
-    int occur = 0;
-    // Loop to find the Nth
-    // occurence of the character
-    for (unsigned int i = 0; i < strlen(str); i++) {
-      if (str[i] == ch) {
-        occur += 1;
-      }
-      if (occur == n) return i;
+/// Provides the position of the n-th occurrence of ch in str (or -1)
+inline int findNthInStr(const char *str, char ch, int n) {
+  int occur = 0;
+  for (unsigned int i = 0; i < strlen(str); i++) {
+    if (str[i] == ch) {
+      occur += 1;
     }
-    return -1;
+    if (occur == n) return i;
   }
-
-  static int readln(Stream &stream, char *str, int maxLen) {
-    int len = 0;
-    if (maxLen > stream.available()) {
-      maxLen = stream.available();
-    }
-    for (int j = 0; j < maxLen; j++) {
-      len = j;
-      char c = stream.read();
-      if (c == 0 || c == '\n') {
-        break;
-      }
-      str[j] = c;
-    }
-    // For Windows we remove the \r at the end
-    if (str[len - 1] == '\r') {
-      len--; // remove \r
-    }
-    memset(str + len, 0, maxLen - len);
-    return len;
-  }
-};
-
+  return -1;
 }
 
-#if FTP_USE_NAMESPACE
-using namespace ftp_client;
-#endif
+}  // namespace tinyftp

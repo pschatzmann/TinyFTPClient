@@ -1,11 +1,11 @@
+#pragma once
+
 #include "FTPBasicAPI.h"
 
-namespace ftp_client {
+namespace tinyftp {
 /**
  * @brief FTPSession
- * This class manages the FTP session, including command and data connections.
- * It provides methods to initialize the session, open data connections, and
- * manage the session lifecycle.
+ * An FTPBasicAPI which owns its command and data connections.
  * @note The class is designed to be used in an Arduino environment, where
  *       the Client interface is typically implemented by network libraries such
  *       as WiFi or Ethernet.
@@ -14,55 +14,39 @@ namespace ftp_client {
  * @author Phil Schatzmann
  */
 template <class ClientType>
-class FTPSession {
+class FTPSession : public FTPBasicAPI {
  public:
-  FTPSession() { FTPLogger::writeLog(LOG_DEBUG, "FTPSession"); }
+  FTPSession() { FTPLogger.writeLog(LOG_DEBUG, "FTPSession"); }
 
   ~FTPSession() {
-    FTPLogger::writeLog(LOG_DEBUG, "~FTPSession");
+    FTPLogger.writeLog(LOG_DEBUG, "~FTPSession");
     end();
   }
 
-  /// Initializes the session with the command client
+  /// Opens the command connection and logs in
   bool begin(IPAddress &address, int port, const char *username,
              const char *password) {
-    if (!is_valid) return false;
-    return basic_api.begin(&command_client, &data_client, address, port,
-                           username, password);
+    return FTPBasicAPI::begin(&command_client, &data_client, address, port,
+                              username, password);
   }
 
+  /// Closes the command and data connections
   void end() {
-    if (!is_valid) return;
-    FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "end");
-    closeCommand();
-    closeData();
+    FTPLogger.writeLog(LOG_DEBUG, "FTPSession", "end");
+    command_client.stop();
+    data_client.stop();
+    is_open = false;
+    resetTransfer();
   }
 
-  /// Returns the access to the basic API
-  FTPBasicAPI &api() { return basic_api; }
+  /// Returns true if logged in and the command connection is still alive
+  bool connected() { return is_open && command_client.connected(); }
 
-  /// Returns true if the command client is connected
-  operator bool() { return is_valid && command_client.connected(); }
-
-  /// Used to set as invalid for dummy error session
-  void setValid(bool valid) { is_valid = valid; }
+  operator bool() { return connected(); }
 
  protected:
   ClientType command_client;
   ClientType data_client;
-  FTPBasicAPI basic_api;
-  bool is_valid = true;
-
-  void closeCommand() {
-    FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "endCommand");
-    command_client.stop();
-  }
-
-  void closeData() {
-    FTPLogger::writeLog(LOG_DEBUG, "FTPSession", "endData");
-    data_client.stop();
-  }
-
 };
 
-}  // namespace ftp_client
+}  // namespace tinyftp

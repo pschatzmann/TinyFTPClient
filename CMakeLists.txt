@@ -6,12 +6,13 @@
 #  cd build
 #  cmake ..
 #  make
+#  ctest --output-on-failure
 # 
 
 cmake_minimum_required(VERSION 3.16)
 
 # set the project name
-project(ftp-client)
+project(tinyftp)
 
 # lots of warnings and all warnings as errors
 # add_compile_options(-Wall -Wextra )
@@ -27,7 +28,11 @@ if(NOT arduino_emulator_POPULATED)
 endif()
 
 # define location for header files
-add_library(ftp-client INTERFACE)
-target_include_directories(ftp-client INTERFACE src)
+add_library(tinyftp INTERFACE)
+target_include_directories(tinyftp INTERFACE src)
+add_library(ftp-client ALIAS tinyftp)
+
+enable_testing()
 
 add_subdirectory("examples")
+add_subdirectory("tests")
