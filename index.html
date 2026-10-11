@@ -88,31 +88,16 @@ $(function() {
 <div class="line"><span class="preprocessor">#include &quot;FTPServer.h&quot;</span>   <span class="comment">// FTP server functionality</span></div>
 </div><!-- fragment --><p>All classes are in the <code>tinyftp</code> namespace: it is imported automatically unless you define <code>FTP_USE_NAMESPACE</code> as false.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Logging</h1>
-<p>The client and the server log via the <code>FTPLogger</code> object, which is inactive until you start it with the output Stream and the log level:</p>
-<div class="fragment"><div class="line">++</div>
-<div class="line">   Serial.begin(115200);</div>
-<div class="line">   FTPLogger.begin(Serial, LOG_INFO);</div>
-</div><!-- fragment --><p>Supported log levels are <code>LOG_DEBUG</code>, <code>LOG_INFO</code>, <code>LOG_WARN</code> and <code>LOG_ERROR</code> (default): only messages with the indicated level or above are written. You can change the level later with <code>FTPLogger.setLogLevel(LOG_DEBUG);</code>.</p>
-<p>Each line contains the level, the module and the message, e.g.</p>
-<div class="fragment"><div class="line">FTP INFO - FTPClient: open: /test.txt</div>
-<div class="line">FTP ERROR - FTPBasicAPI::checkResult: RETR /missing.txt</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
-Tests</h1>
-<p>The automatic tests run on the desktop with the <a href="https://github.com/pschatzmann/Arduino-Emulator">Arduino Emulator</a>:</p>
-<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
-<div class="line">cmake ..</div>
-<div class="line">make</div>
-<div class="line">ctest --output-on-failure</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
 Documentation</h1>
 <ul>
 <li><a class="el" href="md_docs_2client.html">FTP Client</a></li>
 <li><a class="el" href="md_docs_2server.html">FTP Server</a></li>
 <li><a class="el" href="md_docs_2tinyppp.html">FTP over a Serial Connection with TinyPPP</a></li>
+<li><a class="el" href="md_docs_2logging.html">Logging</a></li>
+<li><a class="el" href="md_docs_2desktop.html">Building on the Desktop</a>: examples and automatic tests</li>
 <li><a href="https://pschatzmann.github.io/TinyFTP/annotated.html">Class Documentation</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Support</h1>
 <p>Please read the documentation first and check the issues and discussions before posting any new ones on Github.</p>
 <p>Open issues only for bugs and if it is not a bug, use a discussion: Provide enough information about</p><ul>
@@ -124,12 +109,12 @@ Support</h1>
 </ul>
 <p>to enable others to understand and reproduce your issue.</p>
 <p>Finally, <b>don't</b> send me any e-mails or post questions on my personal website!</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Installation</h1>
 <p>You can download the library as zip and call include Library -&gt; zip library. Or you can git clone this project into the Arduino libraries folder e.g. with </p><div class="fragment"><div class="line">cd  ~/Documents/Arduino/libraries</div>
 <div class="line">git clone https://github.com/pschatzmann/TinyFTP.git</div>
 </div><!-- fragment --><p>I recommend to use git because you can easily update to the latest version just by executing the git pull command in the project folder.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Sponsor Me</h1>
 <p>This software is totally free, but you can make me happy by rewarding me with a treat</p>
 <ul>

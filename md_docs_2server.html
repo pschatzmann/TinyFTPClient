@@ -72,8 +72,8 @@ $(function() {
   <div class="headertitle"><div class="title">FTP Server</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md24"></a> A simple, extensible header-only C++ FTP server for Arduino: <code>FTPServer&lt;TServer, TStorage&gt;</code> serves the files of a storage (e.g. SD, SPIFFS, LittleFS) to any regular FTP client.</p>
-<h1><a class="anchor" id="autotoc_md25"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md22"></a> A simple, extensible header-only C++ FTP server for Arduino: <code>FTPServer&lt;TServer, TStorage&gt;</code> serves the files of a storage (e.g. SD, SPIFFS, LittleFS) to any regular FTP client.</p>
+<h1><a class="anchor" id="autotoc_md23"></a>
 Features</h1>
 <ul>
 <li>Supports common FTP commands: USER, PASS, LIST, NLST, PWD, CWD (CD), CDUP, RETR, STOR, APPE, ABOR, DELE, MKD, RMD, RNFR, RNTO, SIZE, SYST, TYPE, BIN, ASC, NOOP, PASV, EPSV, PORT, FEAT, OPTS, QUIT, HELP: so all commands which are used by the FTPClient of this library</li>
@@ -83,10 +83,10 @@ Features</h1>
 <li>Pluggable server and storage backends (e.g., WiFiServer, SD, SD_MMC, SPIFFS, LittleFS)</li>
 <li>Easy to extend with custom command handlers</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md26"></a>
+<h1><a class="anchor" id="autotoc_md24"></a>
 TCP IP</h1>
 <p>The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific server implementation as first template parameter: the server class must provide an <code>accept()</code> method which returns the connected client.</p>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md25"></a>
 ESP32</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;WiFi.h&gt;</span></div>
@@ -94,7 +94,7 @@ ESP32</h2>
 <div class="line"><span class="preprocessor">   #include &quot;FTPServer.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPServer&lt;WiFiServer, SDClass&gt; ftpServer(21, &amp;SD);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md26"></a>
 ESP8266</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;ESP8266WiFi.h&gt;</span></div>
@@ -102,7 +102,7 @@ ESP8266</h2>
 <div class="line"><span class="preprocessor">   #include &quot;FTPServer.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPServer&lt;WiFiServer, SDClass&gt; ftpServer(21, &amp;SD);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md27"></a>
 RP2040 W</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;WiFi.h&gt;</span></div>
@@ -110,7 +110,7 @@ RP2040 W</h2>
 <div class="line"><span class="preprocessor">   #include &quot;FTPServer.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPServer&lt;WiFiServer, SDClass&gt; ftpServer(21, &amp;SD);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Ethernet</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;Ethernet.h&gt;</span></div>
@@ -118,13 +118,13 @@ Ethernet</h2>
 <div class="line"><span class="preprocessor">   #include &quot;FTPServer.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPServer&lt;EthernetServer, SDClass&gt; ftpServer(21, &amp;SD);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
 Other Platforms</h2>
 <p>I suggest that you have a look at the network specific examples provided by Arduino, in order to find what includes and server class you need to use on your platform.</p>
-<h1><a class="anchor" id="autotoc_md32"></a>
+<h1><a class="anchor" id="autotoc_md30"></a>
 Storage</h1>
 <p>The second template parameter defines the storage which provides the files. It needs to support <code>open(path, mode)</code> (with a mode string like "r" or with the SD FILE_READ/FILE_WRITE modes), <code>exists()</code>, <code>remove()</code>, <code>mkdir()</code> and <code>rmdir()</code>. If the storage also provides <code>rename()</code>, the RNFR/RNTO commands are supported as well. Please include the header of your storage (e.g. SD.h) before FTPServer.h.</p>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 SD</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line">   FTPServer&lt;WiFiServer, SDClass&gt; ftpServer(21, &amp;SD);</div>
@@ -133,7 +133,7 @@ SD</h2>
 <div class="line">     SD.begin(chipSelectPin);</div>
 <div class="line">     ...</div>
 <div class="line">   }</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md34"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
 LittleFS, SPIFFS or SD_MMC</h2>
 <p>On the ESP32, ESP8266 and RP2040 the file systems are based on <code>fs::FS</code>:</p>
 <div class="fragment"><div class="line">++</div>
@@ -159,7 +159,7 @@ LittleFS, SPIFFS or SD_MMC</h2>
 <div class="line">     SD_MMC.begin();</div>
 <div class="line">     ...</div>
 <div class="line">   }</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md35"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md33"></a>
 TinyFATFS</h2>
 <p><a href="https://github.com/pschatzmann/TinyFATFS">TinyFATFS</a> provides the FAT file system with the Arduino SD API and flexible drivers (e.g. SD card via SPI, RAM disk). Use <code>fatfs::SDClass</code> with its <code>SD</code> object as storage:</p>
 <div class="fragment"><div class="line">++</div>
@@ -179,7 +179,7 @@ TinyFATFS</h2>
 <div class="line">     ...</div>
 <div class="line">   }</div>
 </div><!-- fragment --><p>Instead of the SPI driver you can e.g. use a RAM disk with <code>RamIO drive{200, 512}; SD.begin(drive);</code>. TinyFATFS does not provide <code>rename()</code>, so RNFR/RNTO reply with 502.</p>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 CallbackFS</h2>
 <p>The <code>CallbackFS</code> object does not store any files: it logs each file operation and reports it to your callback, whose result is used for <code>exists()</code>, <code>remove()</code>, <code>mkdir()</code>, <code>rmdir()</code> and <code>rename()</code>. For <code>open()</code> the callback gets the mode ("r", "w" or "a") as parameter:</p>
 <div class="fragment"><div class="line">++</div>
@@ -224,7 +224,7 @@ CallbackFS</h2>
 <div class="line">     <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">   });</div>
 </div><!-- fragment --><p>Without read or write callback, RETR, STOR and APPE are reported to the operation callback but fail with a 550 reply.</p>
-<h1><a class="anchor" id="autotoc_md37"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 Starting the Server</h1>
 <p>Connect to the network, initialize the storage, define the users and start the server. Call <code>doLoop()</code> from your loop: it does not block, but accepts new clients and processes one step (a command or a part of a transfer) of each connected client. So keep your loop short and call <code>doLoop()</code> as often as possible.</p>
 <div class="fragment"><div class="line"> ++</div>
@@ -263,7 +263,7 @@ Starting the Server</h1>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">  ftpServer.doLoop();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md38"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md36"></a>
 Data Connections</h1>
 <p>File transfers and listings use a separate data connection:</p>
 <ul>
@@ -273,7 +273,7 @@ Data Connections</h1>
 <li><code>setDataTimeout(ms)</code> defines how long the server waits for a data connection.</li>
 <li>During a transfer only ABOR is processed immediately: the other commands of the connection are processed when the transfer has ended.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<h1><a class="anchor" id="autotoc_md37"></a>
 Configuration</h1>
 <p>The following defines can be set before including FTPServer.h:</p>
 <table class="markdownTable">
@@ -288,10 +288,10 @@ Configuration</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>FTP_DATA_TIMEOUT</code>   </td><td class="markdownTableBodyNone">5000   </td><td class="markdownTableBodyNone">Timeout in ms for opening and idling on data connections   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md40"></a>
+<h1><a class="anchor" id="autotoc_md38"></a>
 Extending</h1>
 <p>Add custom commands using <code>addCommand(name, handler, needsAuth = true)</code> or override handler methods.</p>
-<h1><a class="anchor" id="autotoc_md41"></a>
+<h1><a class="anchor" id="autotoc_md39"></a>
 Examples</h1>
 <ul>
 <li><a href="../examples/server-simple/server-simple.ino">server-simple</a> </li>

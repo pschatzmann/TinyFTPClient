@@ -72,7 +72,7 @@ $(function() {
   <div class="headertitle"><div class="title">FTP Client</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md7"></a> This is a simple but powerful header only C++ FTP client library for Arduino that provides a Stream based API for the remote files.</p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md5"></a> This is a simple but powerful header only C++ FTP client library for Arduino that provides a Stream based API for the remote files.</p>
 <p>We support</p>
 <ul>
 <li>The reading of Remote Files (File Download)</li>
@@ -81,49 +81,49 @@ $(function() {
 <li>Creation and deletion of remote directories</li>
 <li>Deletion of remote files</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 TCP IP</h1>
 <p>The initialization of TCP/IP is pretty much platform dependent. You just need to provide your platform specific client implementation.</p>
 <p>To set up the FTPClient you need to provide a network client as template class parameter:</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 ESP32</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &quot;WiFi.h&quot;</span></div>
 <div class="line"><span class="preprocessor">   #include &quot;FTPClient.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
 ESP8266</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;ESP8266WiFi.h&gt;</span></div>
 <div class="line"><span class="preprocessor">   #include &quot;FTPClient.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
 RP2040 W</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;WiFi.h&gt;</span></div>
 <div class="line"><span class="preprocessor">   #include &quot;FTPClient.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
 Arduino Uno WiFi Rev.2, Arduino Nano 33 IoT etc</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;WiFiNINA.h&gt;</span></div>
 <div class="line"><span class="preprocessor">   #include &quot;FTPClient.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;WiFiClient&gt; client;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
 Ethernet Shield</h2>
 <div class="fragment"><div class="line">++</div>
 <div class="line"><span class="preprocessor">   #include &lt;Ethernet.h&gt;</span></div>
 <div class="line"><span class="preprocessor">   #include &quot;FTPClient.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line">   FTPClient&lt;EthernetClient&gt; client;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
 Other Platforms</h2>
 <p>The initialization of TCP/IP is pretty much platform dependent. I suggest that you have a look at the network specific examples provided by Arduino, in order to find what includes and classes you need to use on your platform.</p>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Connecting</h2>
 <p>This is platform specific as well. On a ESP32 or ESP8266 e.g. the following login into the WiFi network is working:</p>
 <div class="fragment"><div class="line">++</div>
@@ -139,7 +139,7 @@ Connecting</h2>
 <div class="line">   Serial.println();</div>
 <div class="line">   Serial.print(<span class="stringliteral">&quot;Started with address &quot;</span>);</div>
 <div class="line">   Serial.println(localAddress.toString());</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
 File Download - Reading Remote Files</h1>
 <p>You open a FTP connection to a remote host by calling the begin() method on a FTPClient object where you pass</p><ul>
 <li>the IP address of your server</li>
@@ -161,7 +161,7 @@ File Download - Reading Remote Files</h1>
 <div class="line">   file.close();</div>
 <div class="line">   client.end();</div>
 </div><!-- fragment --><p> After the processing you need to close the file with close() and the client with end() to release the resources.</p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 File Download - Line Based</h1>
 <p>Instead of reading a block of characters we can request to read a line (which is delimited with LF)</p>
 <div class="fragment"><div class="line">++</div>
@@ -176,7 +176,7 @@ File Download - Line Based</h1>
 <div class="line">   }</div>
 <div class="line">   file.close();</div>
 <div class="line">   client.end();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md16"></a>
 File Upload - Writing to Remote Files</h1>
 <p>You can write to a file on a remote system by using the regular Stream write() or print() methods. If the file already exists it will be replaced with the new content if you use the FileMode WRITE.</p>
 <div class="fragment"><div class="line">++</div>
@@ -191,7 +191,7 @@ File Upload - Writing to Remote Files</h1>
 <div class="line">   }</div>
 <div class="line">   file.close();</div>
 <div class="line">   client.end();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md17"></a>
 File Upload - Appending</h1>
 <p>You can also append information to an existing remote file by indicating the FileMode WRITE_APPEND</p>
 <div class="fragment"><div class="line">++</div>
@@ -206,7 +206,7 @@ File Upload - Appending</h1>
 <div class="line">   }</div>
 <div class="line">   file.close();</div>
 <div class="line">   client.end();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
 Directory Operations</h1>
 <p>The FTPClient supports the following directory operations:</p>
 <ul>
@@ -215,7 +215,7 @@ Directory Operations</h1>
 <li>bool rmdir(char *filepath)</li>
 <li>FTPFileIterator ls(char *directoryPath)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 List Directory</h2>
 <p>The files of a directory are listed with the help of an Iterator.</p>
 <div class="fragment"><div class="line">++</div>
@@ -227,10 +227,10 @@ List Directory</h2>
 <div class="line">   <span class="keywordflow">for</span> (<span class="keyword">auto</span> file : client.ls(<span class="stringliteral">&quot;/&quot;</span>))  {</div>
 <div class="line">       Serial.println(file.name());</div>
 <div class="line">   }</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md22"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
 Logging</h1>
-<p>See the <a href="../README.md#logging">Logging</a> chapter of the README.</p>
-<h1><a class="anchor" id="autotoc_md23"></a>
+<p>See <a class="el" href="md_docs_2logging.html">Logging</a>.</p>
+<h1><a class="anchor" id="autotoc_md21"></a>
 Examples</h1>
 <ul>
 <li><a href="../examples/client-download/client-download.ino">client-download</a></li>
