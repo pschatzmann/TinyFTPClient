@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['read_0',['read',['../classtinyftp_1_1_callback_file.html#a5a044ed8bd294fcb3de2df4579792a6c',1,'tinyftp::CallbackFile::read()'],['../classtinyftp_1_1_f_t_p_basic_a_p_i.html#a8209c146edd863307c532864c86178fb',1,'tinyftp::FTPBasicAPI::read()']]],
+  ['readbytes_1',['readBytes',['../classtinyftp_1_1_f_t_p_file.html#ac4c6d99df850af9c9b1f9fb4d650715f',1,'tinyftp::FTPFile']]],
+  ['readdata_2',['readData',['../classtinyftp_1_1_f_t_p_file.html#aa704c87ec92a68f3ea57185e75af91cf',1,'tinyftp::FTPFile']]],
+  ['readdataline_3',['readDataLine',['../classtinyftp_1_1_f_t_p_file_iterator.html#afd547b4d15d248c1fd5732d27cdcfeba',1,'tinyftp::FTPFileIterator']]],
+  ['readline_4',['readline',['../classtinyftp_1_1_f_t_p_file_iterator.html#a4b59ffc6fbbfa35133685eab13a4ee4c',1,'tinyftp::FTPFileIterator::readLine()'],['../classtinyftp_1_1_f_t_p_server.html#ad9b7a8401d8cfd1e88c3880a8e7b26c4',1,'tinyftp::FTPServer::readLine()']]],
+  ['readln_5',['readln',['../classtinyftp_1_1_f_t_p_file.html#a35e45151f281501eef1412b2c13a8fa3',1,'tinyftp::FTPFile']]],
+  ['readreply_6',['readReply',['../classtinyftp_1_1_f_t_p_basic_a_p_i.html#adeaa1b0e82e23e7d0a574eee9dfb4a4b',1,'tinyftp::FTPBasicAPI']]],
+  ['readreplyline_7',['readReplyLine',['../classtinyftp_1_1_f_t_p_basic_a_p_i.html#a85e4b4a3d0fc39fd14bef41255acf37e',1,'tinyftp::FTPBasicAPI']]],
+  ['readstream_8',['readStream',['../classtinyftp_1_1_f_t_p_file.html#a6d8559df12d9592965a0b9304e8b51e8',1,'tinyftp::FTPFile']]],
+  ['release_9',['release',['../classtinyftp_1_1_f_t_p_transfer_handle.html#afabc83a5cbd4e90b53e26a197c5671be',1,'tinyftp::FTPTransferHandle']]],
+  ['releasehandle_10',['releaseHandle',['../classtinyftp_1_1_f_t_p_basic_a_p_i.html#ac9c617cdf1c843945ec9c18b474cb11a',1,'tinyftp::FTPBasicAPI']]],
+  ['remove_11',['remove',['../classtinyftp_1_1_f_t_p_client.html#a8ccd3833ccc1ebc4275ea1cfaa4a4c26',1,'tinyftp::FTPClient']]],
+  ['renamein_12',['renameIn',['../classtinyftp_1_1_f_t_p_server.html#a9f67b34105c3056ddf8401d2b51a8460',1,'tinyftp::FTPServer']]],
+  ['reopen_13',['reopen',['../classtinyftp_1_1_f_t_p_file.html#ad68aa9113cb938d4da480eddbf721aef',1,'tinyftp::FTPFile']]],
+  ['reply_14',['reply',['../classtinyftp_1_1_f_t_p_server.html#aed013e0ebc21d1531c9abe5ff89eb3ef',1,'tinyftp::FTPServer']]],
+  ['report_15',['report',['../classtinyftp_1_1_callback_f_s_class.html#a7c6486c23e3e79444cfc26c759c491e4',1,'tinyftp::CallbackFSClass']]],
+  ['reserve_16',['reserve',['../classtinyftp_1_1_f_t_p_basic_a_p_i.html#a69fd8cdac538aee6f88d51a2f46673cc',1,'tinyftp::FTPBasicAPI']]],
+  ['resettransfer_17',['resetTransfer',['../classtinyftp_1_1_f_t_p_basic_a_p_i.html#a9ff53a61ae8d3f0b36cfc5399b72516a',1,'tinyftp::FTPBasicAPI']]],
+  ['resolvepath_18',['resolvePath',['../classtinyftp_1_1_f_t_p_server.html#a296f8adb8a36e6362da4ef7e480bd342',1,'tinyftp::FTPServer']]],
+  ['rmdir_19',['rmdir',['../classtinyftp_1_1_f_t_p_client.html#a5c2da89ae76015bdb33d5a3295df0a71',1,'tinyftp::FTPClient']]]
+];
